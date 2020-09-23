@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Carousel from '../../components/Carousel/Carousel';
 import Categories from '../../components/Categories/Categories';
 import FeaturedSection from '../../components/FeaturedSection/FeaturedSection';
+import BankOffers from '../../components/BankOffers/BankOffers';
 
 class Home extends Component {
 
@@ -28,6 +29,7 @@ class Home extends Component {
           subHead1='Choose from our best products'
           subHead2='These products are worth adding to your cart!'
         />
+        <BankOffers/>
       </div>
     );
   }

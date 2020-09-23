@@ -1,0 +1,17 @@
+.offerSection{
+  height: auto;
+  margin-bottom: 14px;
+  height: 140px;
+}
+.offers_carousel img{
+  height: 140px;
+} 
+.offers_carousel{
+  margin: 0px auto;
+} 
+.offers_carousel li{
+  display: none;
+}
+.slide{
+  margin-top: 18px;
+}
