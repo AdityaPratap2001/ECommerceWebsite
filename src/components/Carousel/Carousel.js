@@ -1,8 +1,8 @@
 import React from 'react';
 import './Carousel.css';
 import src1 from '../../assets/banner1.png';
-import src2 from '../../assets/banner9.png';
-import src3 from '../../assets/banner8.png';
+import src2 from '../../assets/banner2.png';
+import src3 from '../../assets/banner3.png';
 
 const Carousel = () => {
   return (
