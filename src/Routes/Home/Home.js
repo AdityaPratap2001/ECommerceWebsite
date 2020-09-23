@@ -23,6 +23,11 @@ class Home extends Component {
           subHead1='Choose from our best products'
           subHead2='These products are worth adding to your cart!'
         />
+        <FeaturedSection
+          sectionTitle='Personalized for You' 
+          subHead1='Choose from our best products'
+          subHead2='These products are worth adding to your cart!'
+        />
       </div>
     );
   }
