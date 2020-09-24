@@ -2,6 +2,7 @@
   height: 10vh;
   margin-top: 10%;
   padding: 0.7%;
+  transform: scale(1.8);
 }
 .Navbar{
   display: flex;

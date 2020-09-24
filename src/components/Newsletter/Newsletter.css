@@ -14,14 +14,27 @@
   margin: auto;
   margin-bottom: 50px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 5%;
 }
 .newsletter div{
   height: 100%;
   text-align: center;
-  padding: 8% 0;
+  padding: 4.7% 5%;
   font-family: 'Poppins',sans-serif;
+}
+.newsletter form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.newsletter .newsletter_input{
+  display: flex;
+  flex-direction: column;
+  height: auto;
 }
 .newsletter h5{
   margin-top: 20px;
@@ -29,6 +42,7 @@
 }
 .newsletter input{
   outline: none;
+  /* margin:  0 10%; */
   width: 60%;
   font-size: 12px;
   height: 35px;
@@ -40,7 +54,6 @@
   margin-top: 25px;
   width: 25%;
   height: 40px;
-  /* background-color: gainsboro; */
   background-color: transparent;
   color: #fff;
 }

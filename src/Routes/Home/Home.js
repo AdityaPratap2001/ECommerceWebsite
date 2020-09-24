@@ -6,6 +6,7 @@ import Categories from '../../components/Categories/Categories';
 import FeaturedSection from '../../components/FeaturedSection/FeaturedSection';
 import BankOffers from '../../components/BankOffers/BankOffers';
 import Newsletter from '../../components/Newsletter/Newsletter';
+import Footer from '../../components/Footer/Footer';
 
 class Home extends Component {
 
@@ -32,6 +33,7 @@ class Home extends Component {
         />
         <BankOffers/>
         <Newsletter/>
+        <Footer/>
       </div>
     );
   }

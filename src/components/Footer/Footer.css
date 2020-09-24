@@ -1,0 +1,43 @@
+.footer{
+  height: auto;
+  padding: 3% 3%;
+  background-color: rgb(26, 24, 24);
+  color: #fff;
+  font-family: 'Poppins',sans-serif;
+}
+.footer_sub{
+  display: flex;
+  justify-content: space-between;
+}
+.footer_sub div{
+  padding: 0 2.5%;
+}
+.footer_sub div img{
+  width: 100%;
+}
+.footer h4{
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.footer h5{
+  font-size: 14px;
+  font-weight: 400;
+  margin: 3px;
+}
+.fontIcon{
+  margin-top: 20px;
+  text-align: center;
+}
+.fontIcon i{
+  font-size: 23px;
+  margin: 15px 10px;
+}
+.footer h6{
+  font-weight: 350;
+  color: #fff;
+  text-align: center;
+}
+.footer h6:hover{
+  color: #fff;
+}

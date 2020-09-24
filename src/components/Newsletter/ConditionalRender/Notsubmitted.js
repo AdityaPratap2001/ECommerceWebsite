@@ -26,13 +26,13 @@ class Notsubmitted extends Component {
         <h4>Want to get daily updates on the latest fashion trends?</h4>
         <h5>Signup for our newsletter...!</h5>
         <div>
-          <form onSubmit={this.submitHandler}>
+          <form className='newsletter_input' onSubmit={this.submitHandler}>
             <input 
               type='email' 
               placeholder='Your Email' 
               onChange={this.changeHandler}
               value={this.state.signUpEmail}
-            /><br></br>
+            />
             <button type="submit" class="btn btn-light">Submit</button>
           </form>
         </div>
