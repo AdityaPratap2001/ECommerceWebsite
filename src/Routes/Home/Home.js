@@ -5,6 +5,7 @@ import Carousel from '../../components/Carousel/Carousel';
 import Categories from '../../components/Categories/Categories';
 import FeaturedSection from '../../components/FeaturedSection/FeaturedSection';
 import BankOffers from '../../components/BankOffers/BankOffers';
+import Newsletter from '../../components/Newsletter/Newsletter';
 
 class Home extends Component {
 
@@ -30,6 +31,7 @@ class Home extends Component {
           subHead2='These products are worth adding to your cart!'
         />
         <BankOffers/>
+        <Newsletter/>
       </div>
     );
   }
