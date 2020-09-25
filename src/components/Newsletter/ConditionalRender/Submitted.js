@@ -15,7 +15,7 @@ class Submitted extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.submitHandler}>
+        <form className='newsletter_input' onSubmit={this.submitHandler}>
           <i class="fas fa-check-circle"></i>
           <h4>Thank you for Siging Up to our newsletter!</h4>
           <button type='submit' className='submitted'>Another Email?</button>

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+// import {Redirect} from 'react-router-dom';
+// import { useHistory } from "react-router-dom";
 import Spinner from '../../components/Spinner/Spinner';
 import Navbar from '../../components/Navbar/Navbar';
 import './Login.css';
 import LoginForm from './LoginForm';
+import axios from 'axios';
 
 class Login extends Component {
 
@@ -11,7 +14,30 @@ class Login extends Component {
   }
 
   onSubmit = (details) =>{
-    console.log(details);
+
+    const userData = {
+      username : details.email,
+      password : details.password
+    }
+    // const history = useHistory();
+    console.log('Userdata : ' +userData);
+
+    const sendData = (userData) =>{
+      axios.post('http://06e75fbe8e59.ngrok.io/login',userData)
+        .then((response)=>{
+          console.log(response);
+          console.log(response.status);
+          if(response.status === 200){
+            this.setState({loading : false});
+            // history.push('/');
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    }
+    sendData(userData);
+
     this.setState({loading : true});
   }
 

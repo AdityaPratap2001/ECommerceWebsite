@@ -1,0 +1,14 @@
+.selected{
+  margin-top: 15vh;
+  border: red 1px solid;
+}
+.breadcrumbnav{
+  /* background-color: white; */
+  padding-left: 2%;
+  margin: 10px 0;
+}
+.breadcrumbnav .link{
+  color: black;
+  margin: 0 5px;
+  font-weight: 500;
+}

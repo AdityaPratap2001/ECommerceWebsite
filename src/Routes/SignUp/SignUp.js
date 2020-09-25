@@ -8,7 +8,7 @@ import axios from 'axios';
 class SignUp extends Component {
 
   state = {
-    loading : false
+    loading : false,
   }
 
   onSubmit = (details) =>{
@@ -25,7 +25,7 @@ class SignUp extends Component {
     console.log(userData);
 
     const sendData = (userData) =>{
-      axios.post('http://9114a0b74727.ngrok.io/registeruser',userData)
+      axios.post('http://06e75fbe8e59.ngrok.io/registeruser',userData)
         .then((response)=>{
           console.log(response);
           console.log(response.status);
@@ -43,7 +43,7 @@ class SignUp extends Component {
   }
 
   render() {
-
+    
     if(this.state.loading){
       return(
         <div>

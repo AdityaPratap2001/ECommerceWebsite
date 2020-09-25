@@ -26,19 +26,19 @@ class Navbar extends Component {
           </NavLink>
         </div>
         <div className='NavLink'>
-            <NavLink to='/men' activeStyle={{textDecoration:'underline',color:'black'}}>
+            <NavLink to='/category/Men' activeStyle={{textDecoration:'underline',color:'black'}}>
               <h4>MEN</h4>  
             </NavLink>
-            <NavLink to='/women' activeStyle={{textDecoration:'underline',color:'black'}}>
+            <NavLink to='/category/Women' activeStyle={{textDecoration:'underline',color:'black'}}>
               <h4>WOMEN</h4>
             </NavLink>
-            <NavLink to='/kids' activeStyle={{textDecoration:'underline',color:'black'}}>
+            <NavLink to='/category/Kids' activeStyle={{textDecoration:'underline',color:'black'}}>
               <h4>KIDS</h4>
             </NavLink>
-            <NavLink to='/home&living' activeStyle={{textDecoration:'underline',color:'black'}}>
+            <NavLink to='/category/Home_&_Living' activeStyle={{textDecoration:'underline',color:'black'}}>
               <h4>HOME & LIVING</h4>
             </NavLink>
-            <NavLink to='/travel_bags' activeStyle={{textDecoration:'underline',color:'black'}}>
+            <NavLink to='/category/Travel_Bags' activeStyle={{textDecoration:'underline',color:'black'}}>
               <h4>TRAVEL BAGS</h4>
             </NavLink>
         </div>
