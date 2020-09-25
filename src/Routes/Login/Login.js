@@ -5,12 +5,18 @@ import Spinner from '../../components/Spinner/Spinner';
 import Navbar from '../../components/Navbar/Navbar';
 import './Login.css';
 import LoginForm from './LoginForm';
+import Error from './Error/Error';
 import axios from 'axios';
 
 class Login extends Component {
 
   state = {
-    loading : false
+    loading : false,
+    error: false,
+  }
+
+  errorReload = () =>{
+    this.setState({loading : false,error : false});
   }
 
   onSubmit = (details) =>{
@@ -38,6 +44,7 @@ class Login extends Component {
           }
         })
         .catch(error => {
+          this.setState({error : true})
           console.log(error);
         })
     }
@@ -47,7 +54,20 @@ class Login extends Component {
   }
 
   render() {
-      
+    
+    if(this.state.error){
+      return(
+        <div>
+          <Navbar/>
+          <div className='backdrop'>
+            <div className='signup_box error_box'>
+              <Error reload={this.errorReload}/>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
     if(this.state.loading){
       return(
         <div>

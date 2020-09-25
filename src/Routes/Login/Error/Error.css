@@ -1,0 +1,24 @@
+.error img{
+  width: 20%;
+  margin-top: 17%;
+}
+.error h5{
+  margin-top: 20px;
+}
+.error button{
+  background-color: black;
+  border: black 1.5px solid;
+  padding: 10px;
+  color: white;
+  border-radius: 4px;
+  width: 24%;
+}
+.error button:hover{
+  background-color: rgb(51, 43, 43);
+}
+.error{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
