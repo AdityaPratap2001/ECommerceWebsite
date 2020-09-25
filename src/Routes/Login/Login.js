@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-// import {Redirect} from 'react-router-dom';
-// import { useHistory } from "react-router-dom";
+// import {Redirect,useHistory} from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner';
 import Navbar from '../../components/Navbar/Navbar';
 import './Login.css';
 import LoginForm from './LoginForm';
 import Error from './Error/Error';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
   state = {
     loading : false,
     error: false,
+    redirect : null,
   }
 
   errorReload = () =>{
@@ -25,22 +26,37 @@ class Login extends Component {
       username : details.email,
       password : details.password
     }
-    // const config = {
+    // const userConfig = {
     //   headers: {
-    //     Authorization : 'Bearer' +  details.email
+    //     'Content-type' : 'application/json',
+    //   },
+    //   data: {
+    //     username : details.email,
+    //     password : details.password
     //   }
     // }
-    // const history = useHistory();
+    
     console.log('Userdata : ' +userData);
 
     const sendData = (userData) =>{
       axios.post('http://06e75fbe8e59.ngrok.io/login',userData)
         .then((response)=>{
           console.log(response);
+          console.log(response.data.jwt);
           if(response.status === 200){
             this.setState({loading : false});
+            this.setState({redirect : '/'});
+            localStorage.setItem('token',response.data.jwt);
+            // const history = useHistory();
             // history.push('/');
-            // axios.post('http://06e75fbe8e59.ngrok.io/authenticate')
+
+            // axios.post('http://06e75fbe8e59.ngrok.io/authenticate',userConfig)
+            //   .then((res)=>{
+            //     console.log('Authenticate :'+res)
+            //   })
+            //   .catch((err)=>{
+            //     console.log(err);
+            //   })
           }
         })
         .catch(error => {
@@ -55,6 +71,10 @@ class Login extends Component {
 
   render() {
     
+    if(this.state.redirect){
+      return <Redirect to={this.state.redirect}/>
+    }
+
     if(this.state.error){
       return(
         <div>

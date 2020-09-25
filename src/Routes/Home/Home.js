@@ -15,6 +15,19 @@ class Home extends Component {
     searchTerm : null,
   }
 
+  componentDidMount(){
+    let token = localStorage.getItem('token');
+    if(token){
+      this.setState({isLoggedIn : true});
+      console.log(token);
+      console.log('token exists!');
+      console.log(this.state);
+    }
+    else{
+      console.log("token doesn't exist!");
+    }
+  }
+
   render() {
     return (
       <div>

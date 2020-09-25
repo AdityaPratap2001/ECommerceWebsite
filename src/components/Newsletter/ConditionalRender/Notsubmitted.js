@@ -33,7 +33,7 @@ class Notsubmitted extends Component {
               onChange={this.changeHandler}
               value={this.state.signUpEmail}
             />
-            <button type="submit" class="btn btn-light">Submit</button>
+            <button type="submit" className="btn btn-light">Submit</button>
           </form>
         </div>
       </div>
