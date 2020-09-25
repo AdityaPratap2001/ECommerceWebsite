@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import './SignUp.css';
 import Spinner from '../../components/Spinner/Spinner';
+import Confirmation from './Confirmation/Confirmation';
 import Form from './Form';
 import axios from 'axios';
 
@@ -9,6 +10,7 @@ class SignUp extends Component {
 
   state = {
     loading : false,
+    statusOk : false
   }
 
   onSubmit = (details) =>{
@@ -31,6 +33,7 @@ class SignUp extends Component {
           console.log(response.status);
           if(response.status === 200){
             this.setState({loading : false});
+            this.setState({statusOk : true});
           }
         })
         .catch(error => {
@@ -43,6 +46,19 @@ class SignUp extends Component {
   }
 
   render() {
+
+    if(this.state.statusOk){
+      return(
+        <div>
+          <Navbar/>
+          <div className='backdrop'>
+            <div className='signup_box confirmation_box'>
+              <Confirmation/>
+            </div>
+          </div>
+        </div>
+      )
+    }
     
     if(this.state.loading){
       return(

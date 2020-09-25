@@ -19,6 +19,11 @@ class Login extends Component {
       username : details.email,
       password : details.password
     }
+    // const config = {
+    //   headers: {
+    //     Authorization : 'Bearer' +  details.email
+    //   }
+    // }
     // const history = useHistory();
     console.log('Userdata : ' +userData);
 
@@ -26,10 +31,10 @@ class Login extends Component {
       axios.post('http://06e75fbe8e59.ngrok.io/login',userData)
         .then((response)=>{
           console.log(response);
-          console.log(response.status);
           if(response.status === 200){
             this.setState({loading : false});
             // history.push('/');
+            // axios.post('http://06e75fbe8e59.ngrok.io/authenticate')
           }
         })
         .catch(error => {
