@@ -16,8 +16,10 @@
 } */
 .products_display{
   /* border: yellowgreen 1px solid; */
+  padding-top: 30px;
   margin-left: 16.9vw;
   margin-top: 45px;
+  padding-bottom: 60px;
 }
 .displayContainer{
   display: flex;
@@ -30,4 +32,22 @@
   width: 16.9%;
   position: fixed;
   padding: 2% 3%;
+}
+
+.displayContainer>.product{
+  width: 210px;
+  height: auto;
+  padding-bottom: 10px;
+  margin: 0 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+.loading img{
+  width: 40%;
 }

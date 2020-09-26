@@ -5,6 +5,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import axios from 'axios';
 import ProductsDisplay from './ProductsDisplay/ProductsDisplay';
+import loaderSrc from '../../assets/loader2.gif';
 
 class SelectedCategory extends Component {
 
@@ -71,24 +72,26 @@ class SelectedCategory extends Component {
     
     
     console.log('MC-'+ mainSearchCategory + ' SC-' + subSearchCategory);
-
-    axios.get(`http://8cc71ce054dc.ngrok.io/api/products/productCategory/${mainSearchCategory}`)
-      .then(response => {
-        console.log(response);
-        this.setState({products : response.data});
-      })
-      .catch(error => {
-        console.log(error);
-      })
     
     if(this.state.subcategory){
-      axios.get(`http://84ba7cccd0f5.ngrok.io/api/products/productCategory/${mainSearchCategory}/productSubCategory/${subSearchCategory}`)
+      // axios.get(`http://fcf486b8eac1.ngrok.io/api/products/productCategory/${mainSearchCategory}/ProductSubCategory/${subSearchCategory}`)
+        axios.get(`http://fcf486b8eac1.ngrok.io/api/products/productCategory/ProductSubCategory/${mainSearchCategory}/${subSearchCategory}`)
         .then(res => {
           console.log(res);
           this.setState({products : res.data});
         })
         .catch(err =>{
           console.log(err);
+        })
+    }
+    else{
+        axios.get(`http://fcf486b8eac1.ngrok.io/api/products/productCategory/${mainSearchCategory}`)
+        .then(response => {
+          console.log(response);
+          this.setState({products : response.data});
+        })
+        .catch(error => {
+          console.log(error);
         })
     }
     // console.log(fetchedData);
@@ -128,8 +131,8 @@ class SelectedCategory extends Component {
     }
 
     let data = (
-      <div>
-        Loading...
+      <div className='displayContainer loading'>
+        <img src={loaderSrc} alt='loader'/>
       </div>
     )
     if(this.state.products){
