@@ -1,14 +1,33 @@
-.selected{
+.selected_page{
   margin-top: 15vh;
-  border: red 1px solid;
 }
 .breadcrumbnav{
-  /* background-color: white; */
   padding-left: 2%;
   margin: 10px 0;
+  position: fixed;
 }
 .breadcrumbnav .link{
   color: black;
   margin: 0 5px;
   font-weight: 500;
+}
+/* .display_category{
+  border: rgb(180, 70, 165) 2px solid;
+} */
+.products_display{
+  /* border: yellowgreen 1px solid; */
+  margin-left: 16.9vw;
+  margin-top: 45px;
+}
+.displayContainer{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.sidebar{
+  border-right: #ccc 2.7px solid;
+  margin-top: 45px;
+  width: 16.9%;
+  position: fixed;
+  padding: 2% 3%;
 }

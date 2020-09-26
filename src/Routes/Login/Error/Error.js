@@ -1,7 +1,7 @@
 import React from 'react';
 import './Error.css';
 import src from '../../../assets/error3.png';
-import {NavLink} from 'react-router-dom';
+// import {NavLink} from 'react-router-dom';
 
 const Error = (props) =>{
   return (

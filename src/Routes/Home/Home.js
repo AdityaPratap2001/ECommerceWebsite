@@ -7,19 +7,34 @@ import FeaturedSection from '../../components/FeaturedSection/FeaturedSection';
 import BankOffers from '../../components/BankOffers/BankOffers';
 import Newsletter from '../../components/Newsletter/Newsletter';
 import Footer from '../../components/Footer/Footer';
+import axios from 'axios';
 
 class Home extends Component {
 
   state = {
     isLoggedIn : false,
     searchTerm : null,
+    products : null
   }
 
   componentDidMount(){
+
+    axios.get('http://8cc71ce054dc.ngrok.io/api/products/allProducts')
+          .then(response => {
+            console.log(response);
+            this.setState({products : response.data});
+            console.log('items fetched state changed!');
+            // console.log(this.state);
+          })
+          .catch(error =>{
+            console.log(error)
+          })
+    console.log(this.state);
+
     let token = localStorage.getItem('token');
     if(token){
       this.setState({isLoggedIn : true});
-      console.log(token);
+      // console.log(token);
       console.log('token exists!');
       console.log(this.state);
     }
@@ -29,26 +44,33 @@ class Home extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Navbar/>
-        <Carousel/>
-        <Categories/>
-        <FeaturedSection 
-          sectionTitle='Featured Products' 
-          subHead1='Choose from our best products'
-          subHead2='These products are worth adding to your cart!'
-        />
-        <FeaturedSection
-          sectionTitle='Personalized for You' 
-          subHead1='Choose from our best products'
-          subHead2='These products are worth adding to your cart!'
-        />
-        <BankOffers/>
-        <Newsletter/>
-        <Footer/>
-      </div>
-    );
+
+    // if(this.state.products){
+      return (
+        <div>
+          <Navbar logStatus={this.state.isLoggedIn}/>
+          <Carousel/>
+          <Categories/>
+          <FeaturedSection
+            products={this.state.products} 
+            sectionTitle='Featured Products' 
+            subHead1='Choose from our best products'
+            subHead2='These products are worth adding to your cart!'
+          />
+          <FeaturedSection
+            products={this.state.products}
+            sectionTitle='Personalized for You' 
+            subHead1='Choose from our best products'
+            subHead2='These products are worth adding to your cart!'
+          />
+          <BankOffers/>
+          <Newsletter/>
+          <Footer/>
+        </div>
+      );
+    // }
+    // return <h4>Loading...</h4>
+  
   }
 }
 
