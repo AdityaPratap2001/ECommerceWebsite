@@ -13,7 +13,18 @@ class Navbar extends Component {
   }
 
   componentDidMount(){
-    this.setState({isLoggedIn : this.props.logStatus})
+    // this.setState({isLoggedIn : this.props.logStatus})
+    let token = localStorage.getItem('token');
+    if(token !== null){
+      this.setState({isLoggedIn : true});
+      console.log(token);
+      // window.location.reload(true);
+      console.log('token exists!');
+      console.log(this.state);
+    }
+    else{
+      console.log("token doesn't exist!");
+    }
   }
 
   searchSubmit = (term) => {
@@ -22,6 +33,22 @@ class Navbar extends Component {
   }
 
   render() {
+
+    // let data = (
+    //   <ConditinalRender isLoggedIn={false}/>
+    // )
+    // let token = localStorage.getItem('token');
+    // if(token !== null){
+    //   data = (
+    //     <ConditinalRender isLoggedIn={true}/>
+    //   )
+    //   console.log(token);
+    //   console.log('token exists!');
+    //   console.log(this.state);
+    // }
+    // else{
+    //   console.log("token doesn't exist!");
+    // }
 
     return(
       <div className="Navbar navbar navbar-expand-lg navbar-light bg-light">

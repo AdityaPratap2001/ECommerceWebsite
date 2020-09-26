@@ -3,14 +3,20 @@ import Navbar from '../../components/Navbar/Navbar';
 import './SignUp.css';
 import Spinner from '../../components/Spinner/Spinner';
 import Confirmation from './Confirmation/Confirmation';
+import Error from '../Login/Error/Error';
 import Form from './Form';
 import axios from 'axios';
+// Trying
 
 class SignUp extends Component {
 
   state = {
     loading : false,
-    statusOk : false
+    statusOk : null
+  }
+
+  errorReload = () =>{
+    this.setState({loading : false,statusOk : null});
   }
 
   onSubmit = (details) =>{
@@ -37,6 +43,7 @@ class SignUp extends Component {
           }
         })
         .catch(error => {
+          this.setState({statusOk : false});
           console.log(error);
         })
     }
@@ -54,6 +61,18 @@ class SignUp extends Component {
           <div className='backdrop'>
             <div className='signup_box confirmation_box'>
               <Confirmation/>
+            </div>
+          </div>
+        </div>
+      )
+    }
+    if(this.state.statusOk === false){
+      return(
+        <div>
+          <Navbar/>
+          <div className='backdrop'>
+            <div className='signup_box error_box'>
+              <Error reload={this.errorReload} content='Something went wrong!'/>
             </div>
           </div>
         </div>

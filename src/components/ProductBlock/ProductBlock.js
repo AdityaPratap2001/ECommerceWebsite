@@ -6,9 +6,9 @@ const ProductBlock = (props) => {
   return (
     <div className='product'>
       <img className='product_img' src={src} alt='productImg'/>
-      <h4><b>Seller</b></h4>
-      <h6>Product title</h6>
-      <h6><b>Rs. 359</b></h6>
+      <h4><b>{props.item.seller}</b></h4>
+      <h6>{props.item.name}</h6>
+      <h6><b>Rs. {props.item.price}</b></h6>
     </div>
   );
 }

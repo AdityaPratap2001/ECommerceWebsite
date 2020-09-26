@@ -2,7 +2,7 @@ import React from 'react';
 
 const Login = (props) => {
   return (
-    <div className='conditional_render'>
+    <div className='conditional_render logged_in'>
       <i class="fas fa-heart"></i>
       <i class="fas fa-shopping-cart"></i>
       <i class="fas fa-user"></i>

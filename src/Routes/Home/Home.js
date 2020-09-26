@@ -12,7 +12,7 @@ import axios from 'axios';
 class Home extends Component {
 
   state = {
-    isLoggedIn : false,
+    // isLoggedIn : false,
     searchTerm : null,
     products : null
   }
@@ -31,16 +31,16 @@ class Home extends Component {
           })
     console.log(this.state);
 
-    let token = localStorage.getItem('token');
-    if(token){
-      this.setState({isLoggedIn : true});
-      // console.log(token);
-      console.log('token exists!');
-      console.log(this.state);
-    }
-    else{
-      console.log("token doesn't exist!");
-    }
+    // let token = localStorage.getItem('token');
+    // if(token !== null){
+    //   this.setState({isLoggedIn : true});
+    //   // console.log(token);
+    //   console.log('token exists!');
+    //   console.log(this.state);
+    // }
+    // else{
+    //   console.log("token doesn't exist!");
+    // }
   }
 
   render() {
@@ -48,7 +48,8 @@ class Home extends Component {
     // if(this.state.products){
       return (
         <div>
-          <Navbar logStatus={this.state.isLoggedIn}/>
+          {/* <Navbar logStatus={this.state.isLoggedIn}/> */}
+          <Navbar/>
           <Carousel/>
           <Categories/>
           <FeaturedSection
