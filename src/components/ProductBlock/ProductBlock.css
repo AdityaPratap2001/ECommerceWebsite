@@ -13,6 +13,7 @@
               0 8px 8px rgba(0,0,0,0.12),
               0 16px 16px rgba(0,0,0,0.12); */
   box-shadow: 0 2px 16px 4px rgba(40,44,63,0.4);
+  color: black;
   /* box-shadow: 3px 8px 14px 5px rgba(0, 0, 0, 0.822); */
 }
 
@@ -32,4 +33,9 @@
   font-size: 12.3px;
   margin: 4px;
   margin-left: 10px;
+}
+@media (max-width:580px){
+  .product{
+    width: 190px;
+  }
 }

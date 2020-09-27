@@ -1,0 +1,116 @@
+import React, { Component } from 'react';
+import './ProductDetails.css';
+import Navbar from '../../components/Navbar/Navbar';
+import Product_Loader from './Product_Loader/Product_Loader';
+import axios from 'axios';
+import producdImgSrc from '../../assets/sampleProduct.png'; 
+
+class ProductDetails extends Component {
+
+  state = {
+    productId : this.props.match.params.id,
+    productDetails : null,
+  }
+
+  componentDidMount(){
+    axios.get(`http://9241293ba585.ngrok.io/api/products/productId/${this.state.productId}`)
+      .then(response => {
+        console.log(response.data[0]);
+        this.setState({productDetails : response.data[0]});
+      })
+      .catch(error =>{
+        console.log(error)
+      })
+  }
+
+  wishlist = () => {
+    console.log('Wishlisted!');
+  }
+
+  render() {
+
+    // if(this.state.productDetails){
+    //   console.log('ENTERED!');
+    //   let details = this.state.allProducts.map(item => {
+    //     // if(item.id === this.state.productId){
+    //     //   return item
+    //     //   // this.setState({productDetails : item});
+    //     // }
+    //     console.log(item);
+    //   })
+    //   this.setState({productDetails : details});
+    // }
+
+    let data = (
+      <div>
+        <Product_Loader/>
+      </div>
+    )
+    if(this.state.productDetails){
+      data = (
+        <div className='productDetails'>
+          <div className='productDetailsLeft'> 
+            <div className='heart' onClick={this.wishlist}>
+              <i className="fas fa-heart"/>
+            </div>
+            <img className='img-fluid' src={producdImgSrc} alt='product_Img'/>
+          </div>
+          <div className='productDetailsRight'>
+            <h6 className='seller'>{this.state.productDetails.seller}</h6>
+            <h5 className='title'>{this.state.productDetails.name}</h5>
+            <h6 className='specialPrice'>Special price ends in 2 days!</h6>
+            <h5 className='price'>Rs.{this.state.productDetails.price}</h5>
+            <h5 className='offers'>Available Offers</h5>
+            <i className="tag fas fa-tag"></i>
+              <h5 className='specialOffer'>Special Price Get extra 5% off (price inclusive of discount)</h5><br></br>
+            <i className="tag fas fa-tag"></i>
+              <h5 className='specialOffer'>Bank Offers 5% off* with Axis Bank Buzz CRedit Card</h5>
+
+            <div className='productsButton'>
+              <button type="button" class="btn btn-outline-danger">Wishlist</button>
+              <button type="button" class="btn btn-outline-danger">Add to Cart</button>
+            </div>
+            
+            <h5 className='prodHead'>Product Details</h5>
+            <div style={{display : 'flex'}}>
+              <div className='tableLabel'>
+                <h6 className='tableLabels'>Type</h6>
+                <h6 className='tableLabels'>Fit</h6>
+                <h6 className='tableLabels'>Fabric</h6>
+                <h6 className='tableLabels'>Sales Package</h6>
+              </div>
+              <div className='tableLabelData'>
+                <h6 className='tableLabeldata'>Type</h6>
+                <h6 className='tableLabeldata'>Fit</h6>
+                <h6 className='tableLabeldata'>Fabric</h6>
+                <h6 className='tableLabeldata'>Sales Package</h6>
+              </div>
+            </div>
+            
+
+            {/* <h6 className='tableLabel'>Type</h6>
+              <h6 className='productTableData one'>Data</h6><br></br>
+            <h6 className='tableLabel'>Fit</h6>
+              <h6 className='productTableData two'>Data</h6><br></br>
+            <h6 className='tableLabel'>Fabric</h6>
+              <h6 className='productTableData three'>Data</h6><br></br>
+            <h6 className='tableLabel'>Sales Package</h6>
+              <h6 className='productTableData four'>Data</h6><br></br> */}
+
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div>
+        <Navbar/>
+        <div className='displayProduct'>
+          {data}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default ProductDetails;

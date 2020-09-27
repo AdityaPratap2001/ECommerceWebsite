@@ -75,7 +75,7 @@ class SelectedCategory extends Component {
     
     if(this.state.subcategory){
       // axios.get(`http://fcf486b8eac1.ngrok.io/api/products/productCategory/${mainSearchCategory}/ProductSubCategory/${subSearchCategory}`)
-        axios.get(`http://c613b03efc2a.ngrok.io/api/products/productCategory/ProductSubCategory/${mainSearchCategory}/${subSearchCategory}`)
+        axios.get(`http://9241293ba585.ngrok.io/api/products/productCategory/productSubCategory/${mainSearchCategory}/${subSearchCategory}`)
         .then(res => {
           console.log(res);
           this.setState({products : res.data});
@@ -85,7 +85,7 @@ class SelectedCategory extends Component {
         })
     }
     else{
-        axios.get(`http://c613b03efc2a.ngrok.io/api/products/productCategory/${mainSearchCategory}`)
+        axios.get(`http://9241293ba585.ngrok.io/api/products/productCategory/${mainSearchCategory}`)
         .then(response => {
           console.log(response);
           this.setState({products : response.data});
