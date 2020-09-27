@@ -44,9 +44,15 @@ class Login extends Component {
           console.log(response);
           console.log(response.data.jwt);
           if(response.status === 200){
-            this.setState({loading : false});
-            this.setState({redirect : '/'});
-            localStorage.setItem('token',response.data.jwt);
+            if(response.data !== 'Not Verified!'){
+              this.setState({loading : false});
+              this.setState({redirect : '/'});
+              localStorage.setItem('token',response.data.jwt);
+            }
+            else{
+              this.setState({loading : false});
+              this.setState({error : true})
+            }
             // const history = useHistory();
             // history.push('/');
 
