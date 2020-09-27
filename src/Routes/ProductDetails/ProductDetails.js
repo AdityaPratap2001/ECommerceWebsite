@@ -4,12 +4,14 @@ import Navbar from '../../components/Navbar/Navbar';
 import Product_Loader from './Product_Loader/Product_Loader';
 import axios from 'axios';
 import producdImgSrc from '../../assets/sampleProduct.png'; 
+import { Redirect } from 'react-router-dom';
 
 class ProductDetails extends Component {
 
   state = {
     productId : this.props.match.params.id,
     productDetails : null,
+    redirect : null
   }
 
   componentDidMount(){
@@ -23,23 +25,32 @@ class ProductDetails extends Component {
       })
   }
 
-  wishlist = () => {
+  addToWishlist = () => {
     console.log('Wishlisted!');
+    let token = localStorage.getItem('token');
+    if(token === null){
+      this.setState({redirect : '/userLogin'})
+    }
+    else{
+      alert('Can work on it!');
+    }
+  }
+  addToCart = () => {
+    console.log('Add to cart!');
+    let token = localStorage.getItem('token');
+    if(token === null){
+      this.setState({redirect : '/userLogin'})
+    }
+    else{
+      alert('Can work on it!');
+    }
   }
 
   render() {
 
-    // if(this.state.productDetails){
-    //   console.log('ENTERED!');
-    //   let details = this.state.allProducts.map(item => {
-    //     // if(item.id === this.state.productId){
-    //     //   return item
-    //     //   // this.setState({productDetails : item});
-    //     // }
-    //     console.log(item);
-    //   })
-    //   this.setState({productDetails : details});
-    // }
+    if(this.state.redirect){
+      return <Redirect to={this.state.redirect}/>
+    }
 
     let data = (
       <div>
@@ -54,7 +65,7 @@ class ProductDetails extends Component {
             
             <div className='imgCont'>
               <img className='img-fluid' src={producdImgSrc} alt='product_Img'/>
-              <div className='heart' onClick={this.wishlist}>
+              <div className='heart' onClick={this.addToWishlist}>
                 <i className="fas fa-heart"/>
               </div>
             </div>
@@ -72,8 +83,8 @@ class ProductDetails extends Component {
               <h5 className='specialOffer'>Bank Offers 5% off* with Axis Bank Buzz CRedit Card</h5>
 
             <div className='productsButton'>
-              <button type="button" class="btn btn-outline-danger">Wishlist</button>
-              <button type="button" class="btn btn-outline-danger">Add to Cart</button>
+              <button type="button" onClick={this.addToWishlist} class="btn btn-outline-danger">Wishlist</button>
+              <button type="button" onClick={this.addToCart} class="btn btn-outline-danger">Add to Cart</button>
             </div>
             
             <h5 className='prodHead'>Product Details</h5>

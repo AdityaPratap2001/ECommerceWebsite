@@ -48,6 +48,7 @@ class Login extends Component {
               this.setState({loading : false});
               this.setState({redirect : '/'});
               localStorage.setItem('token',response.data.jwt);
+              localStorage.setItem('username',userData.username);
             }
             else{
               this.setState({loading : false});
@@ -87,7 +88,7 @@ class Login extends Component {
           <Navbar/>
           <div className='backdrop'>
             <div className='signup_box error_box'>
-              <Error reload={this.errorReload}/>
+              <Error reload={this.errorReload} content="Username & password doesn't match"/>
             </div>
           </div>
         </div>
