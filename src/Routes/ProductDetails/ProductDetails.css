@@ -18,6 +18,11 @@
   min-width: 300px;
   padding: 2% 0;
   text-align: center;
+  /* position: relative; */
+}
+.imgCont{
+  width: fit-content;
+  margin: auto;
   position: relative;
 }
 .productDetailsRight{
@@ -38,8 +43,10 @@
   color: darkgrey;
   background-color: floralwhite;
   position: absolute;
-  right: 17%;
-  top: 6.8%;
+  /* right: 17%;
+  top: 6.8%; */
+  top: 2%;
+  right: 2%;
   padding: 4px;
   padding: 4px 8px;
 }
@@ -99,4 +106,26 @@
 .productDetailsRight>.prodHead{
   margin-top: 12px;
   margin-bottom: 14px;
+}
+
+.tableLabels,.tableLabeldata{
+  font-size: 12.9px;
+}
+
+@media (max-width:1000px){
+  .productDetailsLeft>.imgCont{
+    width: 80%;
+    margin-right: 20px;
+  }
+}
+@media (max-width:667px){
+  .productDetailsLeft{
+    border-right: none;
+  }
+  .productDetailsRight{
+    width: 70%;
+  }
+  .productDetailsLeft>img{
+    margin-right: auto;
+  }
 }

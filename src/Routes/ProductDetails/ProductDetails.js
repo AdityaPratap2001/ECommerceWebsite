@@ -49,12 +49,17 @@ class ProductDetails extends Component {
     if(this.state.productDetails){
       data = (
         <div className='productDetails'>
+          
           <div className='productDetailsLeft'> 
-            <div className='heart' onClick={this.wishlist}>
-              <i className="fas fa-heart"/>
+            
+            <div className='imgCont'>
+              <img className='img-fluid' src={producdImgSrc} alt='product_Img'/>
+              <div className='heart' onClick={this.wishlist}>
+                <i className="fas fa-heart"/>
+              </div>
             </div>
-            <img className='img-fluid' src={producdImgSrc} alt='product_Img'/>
           </div>
+
           <div className='productDetailsRight'>
             <h6 className='seller'>{this.state.productDetails.seller}</h6>
             <h5 className='title'>{this.state.productDetails.name}</h5>
@@ -80,10 +85,10 @@ class ProductDetails extends Component {
                 <h6 className='tableLabels'>Sales Package</h6>
               </div>
               <div className='tableLabelData'>
-                <h6 className='tableLabeldata'>Type</h6>
-                <h6 className='tableLabeldata'>Fit</h6>
-                <h6 className='tableLabeldata'>Fabric</h6>
-                <h6 className='tableLabeldata'>Sales Package</h6>
+                <h6 className='tableLabeldata'>{this.state.productDetails.prodType}</h6>
+                <h6 className='tableLabeldata'>{this.state.productDetails.fit}</h6>
+                <h6 className='tableLabeldata'>{this.state.productDetails.material}</h6>
+                <h6 className='tableLabeldata'>Pack of 1</h6>
               </div>
             </div>
             
