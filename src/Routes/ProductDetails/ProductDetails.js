@@ -11,11 +11,14 @@ class ProductDetails extends Component {
   state = {
     productId : this.props.match.params.id,
     productDetails : null,
-    redirect : null
+    redirect : null,
+    wishlisted : null,
+    addedToCart : null,
+    quantity : 1,
   }
 
   componentDidMount(){
-    axios.get(`http://9241293ba585.ngrok.io/api/products/productId/${this.state.productId}`)
+    axios.get(`http://40465ccd13b2.ngrok.io/api/products/productId/${this.state.productId}`)
       .then(response => {
         console.log(response.data[0]);
         this.setState({productDetails : response.data[0]});
@@ -23,16 +26,54 @@ class ProductDetails extends Component {
       .catch(error =>{
         console.log(error)
       })
+
+    let userId = localStorage.getItem('username');
+    let productData = {
+      username : userId,
+      productId : this.state.productId
+    }
+    console.log(productData);
+    axios.post('http://91d7ddfbae13.ngrok.io/doesProductExist',productData)
+      .then(res => {
+        if(res.data){
+          this.setState({wishlisted : true});
+        }
+      })
+      .catch(err => {
+        console.log('error');
+      })
+
+    axios.post('http://91d7ddfbae13.ngrok.io/doesProductExistInCart',productData)
+      .then(res => {
+        if(res.data){
+          this.setState({addedToCart : true});
+        }
+      })
+
   }
 
   addToWishlist = () => {
-    console.log('Wishlisted!');
+    // console.log('Wishlisted!');
     let token = localStorage.getItem('token');
     if(token === null){
       this.setState({redirect : '/userLogin'})
     }
     else{
-      alert('Can work on it!');
+      
+      let userId = localStorage.getItem('username');
+      let productData = {
+        username : userId,
+        productId : this.state.productId
+      }
+      console.log(productData);
+      axios.post('http://91d7ddfbae13.ngrok.io/addToWishlist',productData)
+        .then(response => {
+          console.log(response);
+          this.setState({wishlisted : true});
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
   }
   addToCart = () => {
@@ -42,14 +83,114 @@ class ProductDetails extends Component {
       this.setState({redirect : '/userLogin'})
     }
     else{
-      alert('Can work on it!');
+      
+      let userId = localStorage.getItem('username');
+      let productData = {
+        username : userId,
+        productId : this.state.productId,
+        productAmt : this.state.quantity
+      }
+      console.log(productData);
+      axios.post('http://91d7ddfbae13.ngrok.io/addToCart',productData)
+        .then(response => {
+          console.log(response);
+          this.setState({addedToCart : true});
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
+  }
+
+  removeItemFromWishlist = () => {
+    console.log('will remove from wishlist!');
+    let token = localStorage.getItem('token');
+    if(token === null){
+      this.setState({redirect : '/userLogin'})
+    }
+    else{
+      
+      let userId = localStorage.getItem('username');
+      let productData = {
+        username : userId,
+        productId : this.state.productId
+      }
+      console.log(productData);
+      axios.post('http://91d7ddfbae13.ngrok.io/removeFromWishlist',productData)
+        .then(response => {
+          console.log(response);
+          this.setState({wishlisted : false});
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    }
+  }
+
+  removeFromCart = () => {
+    console.log('will delete item from cart!');
+    let token = localStorage.getItem('token');
+    if(token === null){
+      this.setState({redirect : '/userLogin'})
+    }
+    else{
+      
+      let userId = localStorage.getItem('username');
+      let productData = {
+        username : userId,
+        productId : this.state.productId,
+        productAmt : this.state.quantity
+      }
+      console.log(productData);
+      axios.post('http://91d7ddfbae13.ngrok.io/removeFromCart',productData)
+        .then(response => {
+          console.log(response);
+          this.setState({addedToCart : false});
+        })
+        .catch(error => {
+          console.log(error);
+        })
+    }
+  }
+
+  qtyChange = (e) => {
+    this.setState({quantity : e.target.value});
   }
 
   render() {
 
     if(this.state.redirect){
       return <Redirect to={this.state.redirect}/>
+    }
+    
+    let wishIcon = (
+      <div className='heart inacttive' onClick={this.addToWishlist}>
+        <i className="fas fa-heart"/>
+      </div>
+    )
+    let wishlistButton = (
+      <button type="button" onClick={this.addToWishlist} class="btn btn-outline-danger">Add to Wishlist</button>
+    )
+
+    if(this.state.wishlisted){
+      wishlistButton = (
+        <button type="button" onClick={this.removeItemFromWishlist} class="btn btn-outline-danger activeBtnn">Remove from Wishlist</button>
+      )
+      wishIcon = (
+        <div className='heart acttive' onClick={this.removeItemFromWishlist}>
+          <i className="fas fa-heart"/>
+        </div>
+      )
+
+    }
+
+    let cartButton = (
+      <button type="button" onClick={this.addToCart} class="btn btn-outline-danger">Add to Cart</button>
+    )
+    if(this.state.addedToCart){
+      cartButton = (
+        <button type="button" onClick={this.removeFromCart} class="btn btn-outline-danger activeBtnn">Remove from Cart</button>   
+      )
     }
 
     let data = (
@@ -65,9 +206,7 @@ class ProductDetails extends Component {
             
             <div className='imgCont'>
               <img className='img-fluid' src={producdImgSrc} alt='product_Img'/>
-              <div className='heart' onClick={this.addToWishlist}>
-                <i className="fas fa-heart"/>
-              </div>
+              {wishIcon}
             </div>
           </div>
 
@@ -81,10 +220,24 @@ class ProductDetails extends Component {
               <h5 className='specialOffer'>Special Price Get extra 5% off (price inclusive of discount)</h5><br></br>
             <i className="tag fas fa-tag"></i>
               <h5 className='specialOffer'>Bank Offers 5% off* with Axis Bank Buzz CRedit Card</h5>
-
+            
+            <div className='Quantity'>
+              <h6 className='quantity'>Quantity :</h6>
+              <select className='selectQnt' onChange={this.qtyChange}>
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5</option>
+              </select>
+            </div>
+        
+            
             <div className='productsButton'>
-              <button type="button" onClick={this.addToWishlist} class="btn btn-outline-danger">Wishlist</button>
-              <button type="button" onClick={this.addToCart} class="btn btn-outline-danger">Add to Cart</button>
+              {/* <button type="button" onClick={this.addToWishlist} class="btn btn-outline-danger">Wishlist</button> */}
+              {/* <button type="button" onClick={this.addToCart} class="btn btn-outline-danger">Add to Cart</button> */}
+              {wishlistButton}
+              {cartButton}
             </div>
             
             <h5 className='prodHead'>Product Details</h5>
@@ -102,16 +255,6 @@ class ProductDetails extends Component {
                 <h6 className='tableLabeldata'>Pack of 1</h6>
               </div>
             </div>
-            
-
-            {/* <h6 className='tableLabel'>Type</h6>
-              <h6 className='productTableData one'>Data</h6><br></br>
-            <h6 className='tableLabel'>Fit</h6>
-              <h6 className='productTableData two'>Data</h6><br></br>
-            <h6 className='tableLabel'>Fabric</h6>
-              <h6 className='productTableData three'>Data</h6><br></br>
-            <h6 className='tableLabel'>Sales Package</h6>
-              <h6 className='productTableData four'>Data</h6><br></br> */}
 
           </div>
         </div>

@@ -33,7 +33,7 @@ class SignUp extends Component {
     console.log(userData);
 
     const sendData = (userData) =>{
-      axios.post('http://06e75fbe8e59.ngrok.io/registeruser',userData)
+      axios.post('http://91d7ddfbae13.ngrok.io/registeruser',userData)
         .then((response)=>{
           console.log(response);
           console.log(response.status);

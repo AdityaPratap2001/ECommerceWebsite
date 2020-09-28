@@ -71,6 +71,9 @@
 .logged_in{
   width: 150px;
 }
+.logged_in i:hover{
+  transform: scale(1.3);
+}
 .conditional_render i{
   font-size: 18.5px;
 }
