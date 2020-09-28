@@ -6,6 +6,9 @@ import Login from './Routes/Login/Login';
 import './App.css';
 import SelectedCategory from './Routes/SelectedCategory/SelectedCategory';
 import ProductDetails from './Routes/ProductDetails/ProductDetails';
+import Wishlist from './Routes/Wishlist/Wishlist';
+import Cart from './Routes/Cart/Cart';
+import User from './Routes/User/User';
 
 function App() {
   return (
@@ -23,6 +26,15 @@ function App() {
         />
         <Route path='/product/id/:id' exact 
           render={props => <ProductDetails key={props.location.pathname} {...props}/>}
+        />
+        <Route path='/wishlist' exact 
+          render={props => <Wishlist/>}
+        />
+        <Route path='/cart' exact 
+          render={props => <Cart/>}
+        />
+        <Route path='/user' exact 
+          render={props => <User/>}
         />
       </BrowserRouter>
     </div>
