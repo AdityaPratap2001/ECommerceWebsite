@@ -28,6 +28,10 @@ class Cart extends Component {
         console.log(err);
       })
   }
+  
+  placeOrder = () => {
+    alert('Order Placed!');
+  }
 
   render() {
 
@@ -48,6 +52,14 @@ class Cart extends Component {
       )
     }
 
+    // var weekDate = new Date();
+    // var options = {weekday : 'long',month : 'long',day : 'numeric'};
+    // weekDate.setDate(weekDate.getDate() + 7);
+    // weekDate.toString(options);
+    var weekDate = new Date();
+    weekDate.setDate(weekDate.getDate() + 7);
+    weekDate = weekDate.toDateString();
+
     let data = (
       <div className='wishLoader'>
         <img src={loadSrc} alt='Loader'/>
@@ -63,7 +75,31 @@ class Cart extends Component {
           </div>
           
           <div className='cartValue'>
-            Value
+            <div className='cartValueHeader'>
+              PRICE DETAILS
+            </div>
+            <div className='cartCharge'>
+              <div>
+                <div>Price ({this.state.list.length-1} items)</div>
+                <div>Rs. {this.state.list[this.state.list.length - 1]}</div>
+              </div>
+              <div>
+                <div>Delivery Charges</div>
+                <div>Rs. 50</div>
+              </div>
+            </div>
+            <div className='totalAmount'>
+              <div>TOTAL AMOUNT</div>
+              <div>Rs. {Number(this.state.list[this.state.list.length - 1])+50}</div>
+            </div>
+            <div className='deliveryBy'>
+              <div>Delivery By :</div>
+              {/* <div> Saturday, Oct 6</div> */}
+              <div>{weekDate}</div>
+            </div>
+            {/* <div>  */}
+            <button type="button" onClick={this.placeOrder} className="orderButton btn btn-dark">Place Order</button>
+            {/* </div> */}
           </div>
         
         </div>
