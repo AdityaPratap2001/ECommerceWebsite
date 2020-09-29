@@ -5,8 +5,31 @@
   margin: auto;
   margin-top: 15vh;
   justify-content: center;
-  justify-content: center;
   padding: 0 2%;
+}
+.cart_container .transaction img{
+  width: 38%; 
+}
+.transaction{
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+.transaction h5{
+  font-size: 25px;
+}
+.emptyImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 80vh;
+}
+.emptyImg img{
+  width: 55%;
 }
 .cart{
   display: flex;
@@ -154,7 +177,6 @@
 
 @media (max-width:977px){
   .cartItems{
-    border: blue 1px solid;
     width: 75vw;
   }
   .cartValue{

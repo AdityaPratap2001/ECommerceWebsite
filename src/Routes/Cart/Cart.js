@@ -4,12 +4,15 @@ import loadSrc from '../../assets/loader2.gif';
 import axios from 'axios';
 import CartItem from './CartItem/CartItem';
 import './Cart.css';
+import transactionSrc from '../../assets/transaction2.gif';
+import emptyImg from '../../assets/emptyCart.png';
 
 class Cart extends Component {
 
   state = {
     list : null,
     isEmpty : null,
+    transactionComplete : null
   }
 
   componentDidMount(){
@@ -30,26 +33,47 @@ class Cart extends Component {
   }
   
   placeOrder = () => {
-    alert('Order Placed!');
+    let userId = localStorage.getItem('username');
+    console.log(userId);
+    axios.get(`http://91d7ddfbae13.ngrok.io/orderPlaced/${userId}`)
+      .then(res => {
+        console.log(res);
+        if(res.status === 200){
+          // alert('Order Placed!');
+          this.setState({transactionComplete : true});
+          // setTimeout(function(){
+          //   window.location.reload();
+          // },4000)
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  transactionCompleted = () => {
+    this.setState({transactionComplete : null,list : null,isEmpty : true});
   }
 
   render() {
 
     if(this.state.list){
-      var cartItems = (
-        <div>
-          {
-            this.state.list.map((cartItem,index) => {
-              if(index !== (this.state.list.length-1) ){
-                return <CartItem item={cartItem}/>
-              }
-              else{
-                return null;
-              }
-            })
-          }
-        </div>
-      )
+      if(this.state.list.length > 1){
+        var cartItems = (
+          <div>
+            {
+              this.state.list.map((cartItem,index) => {
+                if(index !== (this.state.list.length-1) ){
+                  return <CartItem item={cartItem}/>
+                }
+                else{
+                  return null;
+                }
+              })
+            }
+          </div>
+        )
+      }
     }
 
     // var weekDate = new Date();
@@ -65,6 +89,13 @@ class Cart extends Component {
         <img src={loadSrc} alt='Loader'/>
       </div>
     )
+    if(this.state.isEmpty){
+      data = (
+        <div className='emptyImg'>
+          <img src={emptyImg} alt='cartEmpty'></img>
+        </div>
+      )
+    }
     if(this.state.list){
       data = (
         <div className='cart'>
@@ -104,6 +135,16 @@ class Cart extends Component {
         
         </div>
       )
+      if(this.state.transactionComplete){
+        data = (
+          <div className='transaction'>
+            <h5>Transaction Successful!</h5>
+            <img src={transactionSrc} alt='transactionCompleted'/>
+            <h6>Your Order will be delivered to you, within 7 working days</h6>
+            <button onClick={this.transactionCompleted} type="button" class="btn btn-outline-dark">Back To Cart!</button>
+          </div>
+        )
+      }
     }
 
     return (
