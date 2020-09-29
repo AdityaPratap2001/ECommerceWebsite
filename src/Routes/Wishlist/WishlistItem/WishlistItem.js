@@ -30,7 +30,8 @@ class WishlistItem extends Component {
     console.log(productData);
     axios.post('http://91d7ddfbae13.ngrok.io/removeFromWishlist',productData)
     .then(response => {
-      alert('Item Deleted!');
+      // alert('Item Deleted!');
+      window.location.reload();
     })
     .catch(error => {
       console.log(error);

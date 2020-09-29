@@ -125,6 +125,9 @@
   display: flex;
   position: relative;
 }
+.wishlistItem>.wishContainer>a:hover{
+  color: black;
+}
 .wishlistItem img{
   height: 100%;
 }
