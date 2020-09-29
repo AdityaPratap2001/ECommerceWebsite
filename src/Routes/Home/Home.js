@@ -19,7 +19,7 @@ class Home extends Component {
 
   componentDidMount(){
 
-    axios.get('http://40465ccd13b2.ngrok.io/api/products/allProducts')
+    axios.get('http://4876e7ab8c9d.ngrok.io/api/products/allProducts')
           .then(response => {
             console.log(response);
             this.setState({products : response.data});

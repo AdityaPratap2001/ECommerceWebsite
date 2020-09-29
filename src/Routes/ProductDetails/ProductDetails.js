@@ -18,7 +18,7 @@ class ProductDetails extends Component {
   }
 
   componentDidMount(){
-    axios.get(`http://40465ccd13b2.ngrok.io/api/products/productId/${this.state.productId}`)
+    axios.get(`http://4876e7ab8c9d.ngrok.io/api/products/productId/${this.state.productId}`)
       .then(response => {
         console.log(response.data[0]);
         this.setState({productDetails : response.data[0]});

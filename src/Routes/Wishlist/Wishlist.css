@@ -27,7 +27,7 @@
   margin-bottom: 16px;
 }
 .wishLoader{
-  height: 80vh;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,7 +111,7 @@
   border: #ccc 1.3px solid;
   margin-bottom: 20px;
 }
-.wishlistItem>div>.wishlistItemImage{
+.wishlistItem>.wishlistContainer>.wishlistItemImage{
   width: 130px;
 }
 .wishlistItem>div>.wishlistItemImage img{
@@ -121,12 +121,26 @@
   display: flex;
   position: relative;
 }
+.wishlistItem>.wishContainer>a{
+  display: flex;
+  position: relative;
+}
+.wishlistItem img{
+  height: 100%;
+}
+.wishlistItem .wishlistItemImage{
+  height: 150px;
+  width: 130px;
+}
 .wishlistItem>.wishContainer>.alongImg>.prodSeller{
   font-size: 14px;
   margin-bottom: 2px;
 }
 .wishlistItem>.wishContainer>.alongImg>.prodName{
   font-size: 18px;
+}
+.wishlistItem>.wishContainer .alongImg:hover{
+  color: black;
 }
 .wishlistItem>.wishContainer>.alongImg>.prodPrice{
   font-size: 21px;
@@ -141,7 +155,7 @@
 }
 .wishlistItem>.wishContainer>.removeWish{
   position: absolute;
-  top: 14%;
+  top: 36%;
   right: 5%;
   font-size: 20px;
   color: #dc3545;
@@ -180,35 +194,39 @@
 }
 @media (max-width:500px){
   .wishlistItem{
-    height: 21vh;
+    height: 22.8vh;
   }
   .wishlistItem>div>.wishlistItemImage img{
     height: 26%; 
   }
-  .wishlistItem>div>.wishlistItemImage{
+  .wishlistItem .wishlistItemImage{
+    height: 120px;
+    width: 110px;
+  }
+  .wishlistItem>.wishContainer>.wishlistItemImage{
     width: 100px;
   }
-  .wishlistItem>.wishContainer>.alongImg>.prodSeller{
+  .wishlistItem>.wishContainer>a>.alongImg>.prodSeller{
     font-size: 12px;
     margin-bottom: 2px;
   }
-  .wishlistItem>.wishContainer>.alongImg>.prodName{
+  .wishlistItem>.wishContainer>a>.alongImg>.prodName{
     font-size: 15px;
   }
-  .wishlistItem>.wishContainer>.alongImg>.prodPrice{
+  .wishlistItem>.wishContainer>a>.alongImg>.prodPrice{
     font-size: 17px;
     margin-top: 8px;
   }
-  .wishlistItem>.wishContainer>.alongImg>.prodMat{
+  .wishlistItem>.wishContainer>a>.alongImg>.prodMat{
     margin-top: 8px;
     margin-bottom: 0px;
   }
-  .wishlistItem>.wishContainer>.alongImg>.prodMat,.prodFit{
+  .wishlistItem>.wishContainer>a>.alongImg>.prodMat,.prodFit{
     font-weight: 450;
   }
   .wishlistItem>.wishContainer>.removeWish{
     position: absolute;
-    top: 9%;
+    top: 35%;
     right: 5%;
     font-size: 20px;
     color: #dc3545;
