@@ -13,6 +13,7 @@ class Login extends Component {
   state = {
     loading : false,
     error: false,
+    notVerified : null,
     redirect : null,
   }
 
@@ -51,8 +52,9 @@ class Login extends Component {
               localStorage.setItem('username',userData.username);
             }
             else{
+              this.setState({notVerified : true});
               this.setState({loading : false});
-              this.setState({error : true})
+              // this.setState({error : true})
             }
             // const history = useHistory();
             // history.push('/');
@@ -88,7 +90,20 @@ class Login extends Component {
           <Navbar/>
           <div className='backdrop'>
             <div className='signup_box error_box'>
-              <Error reload={this.errorReload} content="Username & password doesn't match"/>
+              <Error reload={this.errorReload} showButton={true} content="Username & password doesn't match"/>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    if(this.state.notVerified){
+      return(
+        <div>
+          <Navbar/>
+          <div className='backdrop'>
+            <div className='signup_box error_box'>
+              <Error reload={this.errorReload} showButton={false} content="Your account has not yet been verified!"/>
             </div>
           </div>
         </div>

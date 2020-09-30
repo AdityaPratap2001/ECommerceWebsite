@@ -72,7 +72,7 @@ class SignUp extends Component {
           <Navbar/>
           <div className='backdrop'>
             <div className='signup_box error_box'>
-              <Error reload={this.errorReload} content='Something went wrong!'/>
+              <Error reload={this.errorReload} showButton={true} content='Something went wrong!'/>
             </div>
           </div>
         </div>
