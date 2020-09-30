@@ -18,7 +18,7 @@ class ProductDetails extends Component {
   }
 
   componentDidMount(){
-    axios.get(`http://4876e7ab8c9d.ngrok.io/api/products/productId/${this.state.productId}`)
+    axios.get(`http://e76f6bed94d6.ngrok.io/api/products/productId/${this.state.productId}`)
       .then(response => {
         console.log(response.data[0]);
         this.setState({productDetails : response.data[0]});
@@ -35,6 +35,7 @@ class ProductDetails extends Component {
     console.log(productData);
     axios.post('http://91d7ddfbae13.ngrok.io/doesProductExist',productData)
       .then(res => {
+        console.log(res.data);
         if(res.data){
           this.setState({wishlisted : true});
         }
@@ -205,7 +206,8 @@ class ProductDetails extends Component {
           <div className='productDetailsLeft'> 
             
             <div className='imgCont'>
-              <img className='img-fluid' src={producdImgSrc} alt='product_Img'/>
+              {/* <img className='img-fluid' src={producdImgSrc} alt='product_Img'/> */}
+              <img src={`data:image/jpeg;base64,${this.state.productDetails.picByte}`} />
               {wishIcon}
             </div>
           </div>

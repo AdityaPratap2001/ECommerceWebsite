@@ -21,7 +21,7 @@
   /* position: relative; */
 }
 .imgCont{
-  width: fit-content;
+  /* width: fit-content; */
   margin: auto;
   position: relative;
 }
@@ -31,8 +31,9 @@
   min-width: 300px;
   padding: 2% 1.5%;
 }
-.productDetailsLeft>img{
+.productDetailsLeft img{
   margin: 0% auto;
+  width: 72%;
 }
 .productDeatilsLeft>.productsButton>button{
   margin-top: 20px;
@@ -43,7 +44,7 @@
   position: absolute;
   cursor: pointer;
   top: 2%;
-  right: 2%;
+  right: 16%;
   padding: 4px;
   padding: 4px 8px;
   border: floralwhite 1px solid;
@@ -151,7 +152,7 @@
 
 @media (max-width:1000px){
   .productDetailsLeft>.imgCont{
-    width: 80%;
+    width: 100%;
     margin-right: 20px;
   }
 }
