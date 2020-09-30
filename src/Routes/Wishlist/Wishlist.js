@@ -6,6 +6,7 @@ import './Wishlist.css';
 import { NavLink } from 'react-router-dom';
 import WishlistItem from './WishlistItem/WishlistItem';
 
+const userURL = 'http://91d7ddfbae13.ngrok.io';
 
 class Wishlist extends Component {
 
@@ -17,7 +18,7 @@ class Wishlist extends Component {
   componentDidMount(){
 
     let userId = localStorage.getItem('username');
-    axios.get(`http://91d7ddfbae13.ngrok.io/myWishlist/${userId}`)
+    axios.get(`${userURL}/myWishlist/${userId}`)
       .then(res => {
         console.log(res);
         if(res.data.length === 0){

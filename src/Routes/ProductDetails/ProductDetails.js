@@ -6,6 +6,9 @@ import axios from 'axios';
 import producdImgSrc from '../../assets/sampleProduct.png'; 
 import { Redirect } from 'react-router-dom';
 
+const productURL = 'http://e76f6bed94d6.ngrok.io';
+const userURL = 'http://91d7ddfbae13.ngrok.io';
+
 class ProductDetails extends Component {
 
   state = {
@@ -18,7 +21,7 @@ class ProductDetails extends Component {
   }
 
   componentDidMount(){
-    axios.get(`http://e76f6bed94d6.ngrok.io/api/products/productId/${this.state.productId}`)
+    axios.get(`${productURL}/api/products/productId/${this.state.productId}`)
       .then(response => {
         console.log(response.data[0]);
         this.setState({productDetails : response.data[0]});
@@ -33,7 +36,7 @@ class ProductDetails extends Component {
       productId : this.state.productId
     }
     console.log(productData);
-    axios.post('http://91d7ddfbae13.ngrok.io/doesProductExist',productData)
+    axios.post(`${userURL}/doesProductExist`,productData)
       .then(res => {
         console.log(res.data);
         if(res.data){
@@ -44,7 +47,7 @@ class ProductDetails extends Component {
         console.log('error');
       })
 
-    axios.post('http://91d7ddfbae13.ngrok.io/doesProductExistInCart',productData)
+    axios.post(`${userURL}/doesProductExistInCart`,productData)
       .then(res => {
         if(res.data){
           this.setState({addedToCart : true});
@@ -67,7 +70,7 @@ class ProductDetails extends Component {
         productId : this.state.productId
       }
       console.log(productData);
-      axios.post('http://91d7ddfbae13.ngrok.io/addToWishlist',productData)
+      axios.post(`${userURL}/addToWishlist`,productData)
         .then(response => {
           console.log(response);
           this.setState({wishlisted : true});
@@ -92,7 +95,7 @@ class ProductDetails extends Component {
         productAmt : this.state.quantity
       }
       console.log(productData);
-      axios.post('http://91d7ddfbae13.ngrok.io/addToCart',productData)
+      axios.post(`${userURL}/addToCart`,productData)
         .then(response => {
           console.log(response);
           this.setState({addedToCart : true});
@@ -117,7 +120,7 @@ class ProductDetails extends Component {
         productId : this.state.productId
       }
       console.log(productData);
-      axios.post('http://91d7ddfbae13.ngrok.io/removeFromWishlist',productData)
+      axios.post(`${userURL}/removeFromWishlist`,productData)
         .then(response => {
           console.log(response);
           this.setState({wishlisted : false});
@@ -143,7 +146,7 @@ class ProductDetails extends Component {
         productAmt : this.state.quantity
       }
       console.log(productData);
-      axios.post('http://91d7ddfbae13.ngrok.io/removeFromCart',productData)
+      axios.post(`${userURL}/removeFromCart`,productData)
         .then(response => {
           console.log(response);
           this.setState({addedToCart : false});
@@ -206,8 +209,8 @@ class ProductDetails extends Component {
           <div className='productDetailsLeft'> 
             
             <div className='imgCont'>
-              {/* <img className='img-fluid' src={producdImgSrc} alt='product_Img'/> */}
-              <img src={`data:image/jpeg;base64,${this.state.productDetails.picByte}`} />
+              <img className='img-fluid' src={producdImgSrc} alt='product_Img'/>
+              {/* <img src={`data:image/jpeg;base64,${this.state.productDetails.picByte}`} /> */}
               {wishIcon}
             </div>
           </div>

@@ -7,6 +7,8 @@ import axios from 'axios';
 import ProductsDisplay from './ProductsDisplay/ProductsDisplay';
 import loaderSrc from '../../assets/loader2.gif';
 
+const productsURL = 'http://e76f6bed94d6.ngrok.io';
+
 class SelectedCategory extends Component {
 
   state = {
@@ -75,7 +77,7 @@ class SelectedCategory extends Component {
     
     if(this.state.subcategory){
       // axios.get(`http://fcf486b8eac1.ngrok.io/api/products/productCategory/${mainSearchCategory}/ProductSubCategory/${subSearchCategory}`)
-        axios.get(`http://e76f6bed94d6.ngrok.io/api/products/productCategory/productSubCategory/${mainSearchCategory}/${subSearchCategory}`)
+        axios.get(`${productsURL}/api/products/productCategory/productSubCategory/${mainSearchCategory}/${subSearchCategory}`)
         .then(res => {
           console.log(res);
           this.setState({products : res.data});
@@ -85,7 +87,7 @@ class SelectedCategory extends Component {
         })
     }
     else{
-        axios.get(`http://e76f6bed94d6.ngrok.io/api/products/productCategory/${mainSearchCategory}`)
+        axios.get(`${productsURL}/api/products/productCategory/${mainSearchCategory}`)
         .then(response => {
           console.log(response);
           this.setState({products : response.data});
