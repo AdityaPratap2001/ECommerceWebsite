@@ -30,6 +30,18 @@
 .rightDisplay>.productForm{
   margin-top: 30px;
 }
+
+.rightDisplay>.sellYourOwn h5{
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.searchForSeller{
+  width: 83vw;
+  order: 1;
+  margin-top: 15px;
+  border: #ccc 1.4px solid;
+}
+
 .collapseForm{
   background-color: #fff;
   margin-top: 0px !important;

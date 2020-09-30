@@ -5,6 +5,7 @@ import axios from 'axios';
 import './Wishlist.css';
 import { NavLink } from 'react-router-dom';
 import WishlistItem from './WishlistItem/WishlistItem';
+import emptyWishSRC from '../../assets/emptyWishlist.png';
 
 const userURL = 'http://91d7ddfbae13.ngrok.io';
 
@@ -48,6 +49,13 @@ class Wishlist extends Component {
               return <WishlistItem id={id}/>
             })
           }
+        </div>
+      )
+    }
+    if(this.state.isEmpty){
+      data = (
+        <div className='wishLoader'>
+          <img className='emptyWishlistImg' src={emptyWishSRC} alt='emptyWishlist'/>
         </div>
       )
     }

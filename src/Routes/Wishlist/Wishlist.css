@@ -23,6 +23,11 @@
   min-width: 450px;
   padding: 2% 3%;
 }
+.emptyWishlistImg{
+  width: 85%;
+  height: 85% !important;
+  margin: 0 auto;
+}
 .rightDisplay>.myWishlist{
   font-size: 24px;
   margin-bottom: 16px;

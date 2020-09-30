@@ -6,19 +6,23 @@ import axios from 'axios';
 import './User.css';
 import ProductForm from './ProductForm/ProductForm';
 // import Footer from '../../components/Footer/Footer';
+import SearchSeller from './SearchSeller/SearchSeller'; 
+
+const userURL = 'http://91d7ddfbae13.ngrok.io';
+const productURL = 'http://e76f6bed94d6.ngrok.io';
 
 class User extends Component {
 
   state = {
     details : false,
-    userName : 'User'
+    userName : 'Username'
   }
 
   componentDidMount(){
     let userId = localStorage.getItem('username');
-    axios.get(`http://91d7ddfbae13.ngrok.io/user/${userId}`)
+    axios.get(`${userURL}/user/${userId}`)
       .then(res => {
-        console.log(res.data);
+        console.log(res);
         this.setState({details : res.data});
         this.setState({userName : this.state.details.firstName});
       })
@@ -43,7 +47,7 @@ class User extends Component {
     console.log(prodDetails);
 
     // let userId = localStorage.getItem('username');
-    axios.post(`http://91d7ddfbae13.ngrok.io/api/seller/addProduct`,prodDetails)
+    axios.post(`${productURL}/api/products/addProduct`,prodDetails)
       .then(res => {
         console.log(res);
       })
@@ -59,23 +63,13 @@ class User extends Component {
         <img src={loadSrc} alt='Loader'/>
       </div>
     )
+    let data2 = data;
+
     if(this.state.details){
       let wishItems = this.state.details.wishlist.split(';');
       let wishNum = wishItems.length - 1;
       let cartItems = this.state.details.cart.split(';');
       let cartNum = cartItems.length - 1;
-
-      // wishItems.foreach(element => {
-      //   if(element !== ';'){
-      //     wishNum = wishNum + 1; 
-      //   }
-      // });
-
-      // for(let c in wishItems){
-      //   if(c !== ';' && c !== ''){
-      //     wishNum += 1;
-      //   }
-      // }
 
       data = (
         <div className='userDetailsDisplay'>
@@ -105,6 +99,27 @@ class User extends Component {
           </div>
         </div>
       )
+      data2 = (
+        <div className='productForm'>
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Click to sell your Product!
+                  </button>
+                </h2>
+              </div>
+
+              <div id="collapseOne" class="collapse collapseForm" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <ProductForm submitHandler={this.submit}/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        )
     }
 
     return (
@@ -118,7 +133,7 @@ class User extends Component {
               <i class="fas fa-2x fa-user-circle"></i>
               <div className='helloUser'>
                 <h6 className='hello'>Hello,</h6>
-                <h6 className='username'>Username</h6>
+                <h6 className='username'>{this.state.userName}</h6>
               </div>
             </div>
             
@@ -152,34 +167,17 @@ class User extends Component {
               {data}
             </div>
             
-            <div className='productForm'>
-              <div class="accordion" id="accordionExample">
-                <div class="card">
-                  <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Click to sell your Product!
-                      </button>
-                    </h2>
-                  </div>
-
-                  <div id="collapseOne" class="collapse collapseForm show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                      
-                      <ProductForm submitHandler={this.submit}/>
-
-                    </div>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-            
-            <div>
-              <h1>Search Form</h1>
+            <div className='sellYourOwn'>
+              <h5>Sell your own Products</h5>
+              {data2}
             </div>
 
           </div>
+         
+          <div className='searchForSeller'>
+            <SearchSeller/>
+          </div>
+          
 
         </div>
       </div>
