@@ -28,7 +28,7 @@ const formValid = ({ formErrors, ...rest }) => {
   return valid;
 };
 
-class Form extends Component {
+class App extends Component {
 
   state = {
     firstName: null,
@@ -156,7 +156,7 @@ class Form extends Component {
                 )}
 
                 <h5>Gender :</h5><br></br>
-                <select name='gender' onChange={this.handleChange} class="custom-select">
+                <select name='gender' onChange={this.handleChange} className="custom-select">
                   <option value='ge'>gender</option>
                   <option value='male'>Male</option>
                   <option value='female'>Female</option>
@@ -176,7 +176,7 @@ class Form extends Component {
             <div className='slideshow'>
               <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                 <ol className="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
                   <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                   <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 </ol>
@@ -205,7 +205,9 @@ class Form extends Component {
           </div>
         </div>
       </div>
+     
     );
   }
 }
-export default Form;
+
+export default App;

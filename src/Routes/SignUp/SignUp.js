@@ -6,7 +6,8 @@ import Confirmation from './Confirmation/Confirmation';
 import Error from '../Login/Error/Error';
 import Form from './Form';
 import axios from 'axios';
-// Trying
+
+const userURL = 'http://91d7ddfbae13.ngrok.io';
 
 class SignUp extends Component {
 
@@ -33,7 +34,7 @@ class SignUp extends Component {
     console.log(userData);
 
     const sendData = (userData) =>{
-      axios.post('http://91d7ddfbae13.ngrok.io/registeruser',userData)
+      axios.post(`${userURL}/registeruser`,userData)
         .then((response)=>{
           console.log(response);
           console.log(response.status);
@@ -72,7 +73,7 @@ class SignUp extends Component {
           <Navbar/>
           <div className='backdrop'>
             <div className='signup_box error_box'>
-              <Error reload={this.errorReload} showButton={true} content='Something went wrong!'/>
+              <Error reload={this.errorReload} showExtraText={false} content='Something went wrong!'/>
             </div>
           </div>
         </div>

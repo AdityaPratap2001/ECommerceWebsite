@@ -12,7 +12,7 @@ const Caterories = (props) => {
      <NavLink to={`/category/${category}`}>
       <Category type={category}/>
      </NavLink>
-   )   
+    )   
   });
 
   return (

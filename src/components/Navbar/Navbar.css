@@ -94,9 +94,6 @@
 .collapse i{
   color: black !important;
 }
-.collapse{
-  /* transform: translateY(0px); */
-}
 
 @media (max-width:991.5px){
   .conditional_render i{

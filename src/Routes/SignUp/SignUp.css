@@ -99,3 +99,22 @@ h6:hover{
 .link{
   width: 100%;
 }
+@media (max-width:780px){
+  .signup_box{
+    margin: 0px 30px
+  }
+}
+@media (max-width:610px){
+  .slideshow{
+    display: none;
+  }
+  .signup{
+    width: 70%;
+    margin: auto;
+  }
+}
+@media (max-width:450px){
+  select{
+    width: 44% !important;
+  }
+}

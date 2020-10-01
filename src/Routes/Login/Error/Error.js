@@ -6,11 +6,11 @@ import src from '../../../assets/error3.png';
 const Error = (props) =>{
 
   let data = (
-    <h6>A verification link has been sent to your Email!</h6>
+    null
   )
-  if(props.showButton){
+  if(props.showExtraText){
     data = (
-      <button onClick={()=>{props.reload()}}>Try again</button>
+      <h6 style={{transform : 'translateY(-30px)'}}>A verification link has been sent to your Email!</h6>      
     )
   }
   return (
@@ -18,6 +18,7 @@ const Error = (props) =>{
       <img src={src} alt='error'/>
       <h5>{props.content}</h5>
       {data}
+      <button onClick={()=>{props.reload()}}>Try again</button>
     </div>
   );
 }

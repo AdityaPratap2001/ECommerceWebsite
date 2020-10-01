@@ -23,7 +23,7 @@ class CartItem extends Component {
     // console.log(id +  ' + ' + quantity);
     this.setState({prodId : id,qty : quantity});
     // console.log(this.state); 
-    axios.get(`${userURL}/api/products/productId/${arr[0]}`)
+    axios.get(`${productsURL}/api/products/productId/${arr[0]}`)
       .then(res => {
         console.log(res);
         this.setState({data : res.data[0]});

@@ -108,3 +108,17 @@
   width: 100%;
   text-align: center;
 }
+@media (max-width:780px){
+  .login_box{
+    margin: 0px 30px
+  }
+}
+@media (max-width:610px){
+  .slideshow{
+    display: none;
+  }
+  .login{
+    width: 70%;
+    margin: auto;
+  }
+}

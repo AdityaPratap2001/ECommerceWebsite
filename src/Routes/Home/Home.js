@@ -9,6 +9,8 @@ import Newsletter from '../../components/Newsletter/Newsletter';
 import Footer from '../../components/Footer/Footer';
 import axios from 'axios';
 
+const productsURL = 'http://e76f6bed94d6.ngrok.io';
+
 class Home extends Component {
 
   state = {
@@ -19,16 +21,16 @@ class Home extends Component {
 
   componentDidMount(){
 
-    axios.get('http://4876e7ab8c9d.ngrok.io/api/products/allProducts')
-          .then(response => {
-            console.log(response);
-            this.setState({products : response.data});
-            console.log('items fetched state changed!');
-            // console.log(this.state);
-          })
-          .catch(error =>{
-            console.log(error)
-          })
+    axios.get(`${productsURL}/api/products/allProducts`)
+      .then(response => {
+        console.log(response);
+        this.setState({products : response.data});
+        console.log('items fetched state changed!');
+        // console.log(this.state);
+      })
+      .catch(error =>{
+        console.log(error)
+      })
     console.log(this.state);
 
     // let token = localStorage.getItem('token');
@@ -48,7 +50,6 @@ class Home extends Component {
     // if(this.state.products){
       return (
         <div>
-          {/* <Navbar logStatus={this.state.isLoggedIn}/> */}
           <Navbar/>
           <Carousel/>
           <Categories/>
@@ -69,8 +70,6 @@ class Home extends Component {
           <Footer/>
         </div>
       );
-    // }
-    // return <h4>Loading...</h4>
   
   }
 }

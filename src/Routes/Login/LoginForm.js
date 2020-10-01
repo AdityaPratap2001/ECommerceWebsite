@@ -82,7 +82,7 @@ class LoginForm extends Component {
               <div className='slideshow'>
                 <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                   <ol className="carousel-indicators indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                   </ol>
@@ -139,6 +139,7 @@ class LoginForm extends Component {
                     <span className="errorMessage">{formErrors.password}</span>
                   )}
 
+                  
                   <button type='submit'>Sign In</button>
                   <Link to='/userSignup'className='link'>
                     <h4>Create a new account?</h4>

@@ -5,3 +5,22 @@
 .carousel img{
   height: 400px;
 }
+@media (max-width:800px){
+  .carousel img{
+    height: 330px;
+  }
+}
+@media (max-width:700px){
+  .carousel{
+    margin:  3% 0;
+    margin-top: 17vh;
+  }
+  .carousel img{
+    height: 290px;
+  }
+}
+@media (max-width:550px){
+  .carousel img{
+    height: 240px;
+  }
+}
