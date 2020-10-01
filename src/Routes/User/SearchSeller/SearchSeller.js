@@ -1,20 +1,33 @@
 import React, { Component } from 'react';
+import SellerSearchItem from './SellerSearchItem/SellerSearchItem';
 import './SearchSeller.css';
 import axios from 'axios';
+import noSellerDataImg from '../../../assets/noSellerData.png';
+import searchLoaderSRC from '../../../assets/searchLoader.gif';
 
 class SearchSeller extends Component {
 
   state = {
     userID : null,
     data : null,
+    loading : null,
+    isEmpty : null
   }
 
   submitHandler = (e) => {
     e.preventDefault();
-    console.log(this.state);
-    axios.get(`http://91d7ddfbae13.ngrok.io/api/products/productSellerUsername/${this.state.userID}`)
+    // console.log(this.state);
+    this.setState({loading : true,isEmpty : null});
+    axios.get(`http://e76f6bed94d6.ngrok.io/api/products/productSellerUsername/${this.state.userID}`)
       .then(res => {
-        console.log(res);
+        this.setState({loading : false});
+        console.log(res.data);
+        if(res.data.length === 0){
+          this.setState({isEmpty : true});
+        }
+        else{
+          this.setState({data : res.data});
+        }
       })
       .catch(err => {
         console.log(err);
@@ -26,9 +39,26 @@ class SearchSeller extends Component {
     let results = (
       null
     )
-    if(this.state.data){
+    if(this.state.data && !this.state.isEmpty){
+    results = (
+        <div className='sellerSearchResults'>
+          {
+            this.state.data.map(item => {
+              return <SellerSearchItem item={item}/>
+              // <SellerSearchItem/>
+            })
+          }
+        </div>
+      )
+    }
+    if(this.state.loading){
       results = (
-        <h5>Results...</h5>
+        <img src={searchLoaderSRC} alt='loading...' style={{width : '50%'}}/>
+      )
+    }
+    if(this.state.isEmpty){
+      results = (
+        <img src={noSellerDataImg} alt='noDetailsAvailable' style={{width : '50%'}}/>
       )
     }
 

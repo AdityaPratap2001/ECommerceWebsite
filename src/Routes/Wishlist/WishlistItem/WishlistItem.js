@@ -4,7 +4,7 @@ import '../Wishlist.css';
 import imgSRC from '../../../assets/sampleProduct.png';
 import { NavLink } from 'react-router-dom';
 
-const productURL = 'http://e76f6bed94d6.ngrok.io/';
+const productURL = 'http://e76f6bed94d6.ngrok.io';
 const userURL = 'http://91d7ddfbae13.ngrok.io';
 
 class WishlistItem extends Component {
@@ -14,7 +14,7 @@ class WishlistItem extends Component {
   }
 
   componentDidMount(){
-    axios.get(`${userURL}/api/products/productId/${this.props.id}`)
+    axios.get(`${productURL}/api/products/productId/${this.props.id}`)
       .then(res => {
         console.log(res);
         this.setState({loadedData : res.data[0]});

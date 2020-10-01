@@ -21,7 +21,7 @@ class ProductDetails extends Component {
   }
 
   componentDidMount(){
-    axios.get(`${productURL}/api/products/productId/${this.state.productId}`)
+    axios.get(`${userURL}/api/products/productId/${this.state.productId}`)
       .then(response => {
         console.log(response.data[0]);
         this.setState({productDetails : response.data[0]});
@@ -95,7 +95,7 @@ class ProductDetails extends Component {
         productAmt : this.state.quantity
       }
       console.log(productData);
-      axios.post(`${userURL}/addToCart`,productData)
+      axios.post(`${productURL}/addToCart`,productData)
         .then(response => {
           console.log(response);
           this.setState({addedToCart : true});

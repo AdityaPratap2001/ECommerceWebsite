@@ -1,7 +1,7 @@
 .searchModule{
   margin-top : 30px;
   text-align : center;
-  padding-bottom : 30px
+  padding-bottom : 30px;
 }
 .searchModule>p{
   margin-top : 20px;
@@ -25,6 +25,12 @@
   margin-top : 20px;
   width : 12%;
   margin-bottom: 30px;
+}
+.sellerSearchResults{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width:765px){
