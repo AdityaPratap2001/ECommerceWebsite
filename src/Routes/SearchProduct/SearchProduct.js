@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import './SearchProduct.css';
-import Sidebar from '../../components/Sidebar/Sidebar';
 import SearchSidebar from '../../components/SearchSidebar/SearchSidebar';
 import axios from 'axios';
+import ProductBlock from '../../components/ProductBlock/ProductBlock';
+import searchLoaderSRC from '../../assets/searchLoader.gif';
+import searchEmptySRC from '../../assets/searchEmpty.gif';
 
 class SearchProduct extends Component {
 
@@ -11,6 +13,7 @@ class SearchProduct extends Component {
     searchTerm : this.props.match.params.searchTerm,
     gender : this.props.match.params.gender,
     products : null,
+    noItems : null
   }
 
   componentDidMount(){
@@ -18,7 +21,13 @@ class SearchProduct extends Component {
     if(this.state.gender){
       axios.get(`http://e76f6bed94d6.ngrok.io/api/products/productCategory/productType/${this.state.gender}/${this.state.searchTerm}`)
         .then(res => {
-          console.log(res);
+          console.log(res.data);
+          if(res.data.length === 0){
+            this.setState({noItems : true});
+          }
+          else{
+            this.setState({products : res.data});
+          }
         })
         .catch(err => {
           console.log(err);
@@ -28,6 +37,12 @@ class SearchProduct extends Component {
       axios.get(`http://e76f6bed94d6.ngrok.io/api/products/productType/${this.state.searchTerm}`)
         .then(res => {
           console.log(res);
+          if(res.data.length === 0){
+            this.setState({noItems : true});
+          }
+          else{
+            this.setState({products : res.data});
+          }
         })
         .catch(err => {
           console.log(err);
@@ -37,7 +52,22 @@ class SearchProduct extends Component {
 
   render() {
 
-    console.log(this.state);
+    let data = (
+      // <h2>Loading...</h2>
+      <img src={searchLoaderSRC} className='searchLoadImg' alt='searchLoader'/>
+    )
+    if(this.state.products){
+      data = (
+        this.state.products.map(item => {
+          return <ProductBlock item={item}/>
+        })
+      )
+    }
+    if(this.state.noItems){
+      data = (
+        <img src={searchEmptySRC} className='searchEmpty' alt='noItemsFound'/>
+      )
+    }
 
     return (
       <div>
@@ -49,10 +79,11 @@ class SearchProduct extends Component {
               <SearchSidebar term={this.state.searchTerm}/>
             </div>
             
-            <div className='products_display'>
-              <h5>{`Items related to your search : '${this.state.searchTerm}'`}</h5>
-              <h5>{this.state.searchTerm}</h5>
-              <h5>{this.state.gender}</h5>
+            <div className='products_display searchDisplayCont'>
+              <h5>{`Items related to your search : "${this.state.searchTerm}"`}</h5>
+              <div className='displayContainer searchLoad'>
+                {data}
+              </div>
             </div>
           </div>
 

@@ -8,6 +8,8 @@ import Error from './Error/Error';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
+const userURL = 'http://91d7ddfbae13.ngrok.io';
+
 class Login extends Component {
 
   state = {
@@ -18,7 +20,7 @@ class Login extends Component {
   }
 
   errorReload = () =>{
-    this.setState({loading : false,error : false});
+    this.setState({loading : false,error : false,notVerified : false});
   }
 
   onSubmit = (details) =>{
@@ -27,20 +29,11 @@ class Login extends Component {
       username : details.email,
       password : details.password
     }
-    // const userConfig = {
-    //   headers: {
-    //     'Content-type' : 'application/json',
-    //   },
-    //   data: {
-    //     username : details.email,
-    //     password : details.password
-    //   }
-    // }
     
-    console.log('Userdata : ' +userData);
+    // console.log('Userdata : ' +userData);
 
     const sendData = (userData) =>{
-      axios.post('http://91d7ddfbae13.ngrok.io/login',userData)
+      axios.post(`${userURL}/login`,userData)
         .then((response)=>{
           console.log(response);
           console.log(response.data.jwt);
@@ -54,18 +47,7 @@ class Login extends Component {
             else{
               this.setState({notVerified : true});
               this.setState({loading : false});
-              // this.setState({error : true})
             }
-            // const history = useHistory();
-            // history.push('/');
-
-            // axios.post('http://06e75fbe8e59.ngrok.io/authenticate',userConfig)
-            //   .then((res)=>{
-            //     console.log('Authenticate :'+res)
-            //   })
-            //   .catch((err)=>{
-            //     console.log(err);
-            //   })
           }
         })
         .catch(error => {
@@ -90,7 +72,7 @@ class Login extends Component {
           <Navbar/>
           <div className='backdrop'>
             <div className='signup_box error_box'>
-              <Error reload={this.errorReload} showButton={true} content="Username & password doesn't match"/>
+              <Error reload={this.errorReload} showExtraText={false} content="Username & password doesn't match"/>
             </div>
           </div>
         </div>
@@ -103,7 +85,7 @@ class Login extends Component {
           <Navbar/>
           <div className='backdrop'>
             <div className='signup_box error_box'>
-              <Error reload={this.errorReload} showButton={false} content="Your account has not yet been verified!"/>
+              <Error reload={this.errorReload} showExtraText={true} content="Your account has not yet been verified!"/>
             </div>
           </div>
         </div>

@@ -1,3 +1,13 @@
 .searchCont>.sidebar{
   height: 70vh;
 }
+.searchCont>.searchDisplayCont h5{
+  /* padding: 4% 3%; */
+  padding-left: 3%;
+}
+.searchLoad>.searchLoadImg{
+  width: 50%;
+}
+.searchLoad>.searchEmpty{
+  width: 50%;
+}
