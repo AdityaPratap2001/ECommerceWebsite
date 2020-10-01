@@ -75,3 +75,27 @@
   background-color: #fff;
   font-weight: 400;
 }
+
+@media (max-width:700px){
+  .newsletter h5{
+    font-size: 14px;
+  }
+  .newsletter h4{
+    font-size: 20px;
+  }
+  .newsletter input{
+    height: 30px;
+  }
+  .newsletter div{
+    padding: 15% 0;
+  }
+  .newsletter button{
+    height: 40px;
+    font-size: 15px;
+  }
+}
+@media (max-width:700px) and (min-width:520px){
+  .newsletter div{
+    padding: 10% 0;
+  }
+}

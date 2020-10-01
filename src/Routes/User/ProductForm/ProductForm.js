@@ -74,10 +74,11 @@ class ProductForm extends Component {
           : "invalid email address";
         break;
       case "sellerBrand":
-        formErrors.sellerBrand = value.length < 3 ? "select an option" : "";
+        formErrors.sellerBrand = value.length < 3 ? "minimum 3 characaters required" : "";
         break;
       case "category":
-        formErrors.category = value.length < 3 ? "select an option" : "";
+        console.log('kndjkd - '+value.length);
+        formErrors.category = value.length < 2 ? "select an option" : "";
         break;
       case "subcategory":
         formErrors.subcategory = value.length < 3 ? "select an option" : "";

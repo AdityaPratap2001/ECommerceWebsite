@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import './SearchSeller.css';
+import axios from 'axios';
 
 class SearchSeller extends Component {
 
   state = {
     userID : null,
-    data : true,
+    data : null,
   }
 
   submitHandler = (e) => {
     e.preventDefault();
     console.log(this.state);
+    axios.get(`http://91d7ddfbae13.ngrok.io/api/products/productSellerUsername/${this.state.userID}`)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   render() {
