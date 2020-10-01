@@ -9,7 +9,7 @@ class Navbar extends Component {
 
   state = {
     isLoggedIn : false,
-    searchTerm : null
+    // searchTerm : null
   }
 
   componentDidMount(){
@@ -27,28 +27,12 @@ class Navbar extends Component {
     }
   }
 
-  searchSubmit = (term) => {
-    this.setState({searchTerm : term})
-    console.log(this.state.searchTerm);
-  }
+  // searchSubmit = (term) => {
+  //   this.setState({searchTerm : term})
+  //   console.log(this.state.searchTerm);
+  // }
 
   render() {
-
-    // let data = (
-    //   <ConditinalRender isLoggedIn={false}/>
-    // )
-    // let token = localStorage.getItem('token');
-    // if(token !== null){
-    //   data = (
-    //     <ConditinalRender isLoggedIn={true}/>
-    //   )
-    //   console.log(token);
-    //   console.log('token exists!');
-    //   console.log(this.state);
-    // }
-    // else{
-    //   console.log("token doesn't exist!");
-    // }
 
     return(
       <div className="Navbar navbar navbar-expand-lg navbar-light bg-light">
@@ -90,7 +74,8 @@ class Navbar extends Component {
             </li>
           </ul>
           <div className='SearchContainer'>
-            <SearchBar search={this.searchSubmit}/>
+            {/* <SearchBar search={this.searchSubmit}/> */}
+            <SearchBar/>
           </div>
           <div className='conditional'>
             <ConditinalRender isLoggedIn={this.state.isLoggedIn}/>

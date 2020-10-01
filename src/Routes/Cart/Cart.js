@@ -7,6 +7,8 @@ import './Cart.css';
 import transactionSrc from '../../assets/transaction2.gif';
 import emptyImg from '../../assets/emptyCart.png';
 
+const userURL = 'http://91d7ddfbae13.ngrok.io';
+
 class Cart extends Component {
 
   state = {
@@ -17,7 +19,7 @@ class Cart extends Component {
 
   componentDidMount(){
     let userId = localStorage.getItem('username');
-    axios.get(`http://91d7ddfbae13.ngrok.io/myCart/${userId}`)
+    axios.get(`${userURL}/myCart/${userId}`)
       .then(res => {
         console.log(res);
         if(res.data.length === 1){
@@ -35,7 +37,7 @@ class Cart extends Component {
   placeOrder = () => {
     let userId = localStorage.getItem('username');
     console.log(userId);
-    axios.get(`http://91d7ddfbae13.ngrok.io/orderPlaced/${userId}`)
+    axios.get(`${userURL}/orderPlaced/${userId}`)
       .then(res => {
         console.log(res);
         if(res.status === 200){

@@ -9,6 +9,7 @@ import ProductDetails from './Routes/ProductDetails/ProductDetails';
 import Wishlist from './Routes/Wishlist/Wishlist';
 import Cart from './Routes/Cart/Cart';
 import User from './Routes/User/User';
+import SearchProduct from './Routes/SearchProduct/SearchProduct';
 
 function App() {
   return (
@@ -35,6 +36,12 @@ function App() {
         />
         <Route path='/user' exact 
           render={props => <User/>}
+        />
+        <Route path='/search/:searchTerm' exact
+          render={props => <SearchProduct key={props.location.pathname} {...props}/>}
+        />
+        <Route path='/search/:searchTerm/:gender' exact
+          render={props => <SearchProduct key={props.location.pathname} {...props}/>}
         />
       </BrowserRouter>
     </div>

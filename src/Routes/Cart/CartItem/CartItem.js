@@ -4,6 +4,9 @@ import srlCartImg from '../../../assets/sampleProduct.png';
 import '../Cart.css';
 import { NavLink } from 'react-router-dom';
 
+const userURL = 'http://91d7ddfbae13.ngrok.io';
+const productsURL = 'http://e76f6bed94d6.ngrok.io';
+
 class CartItem extends Component {
 
   state = {
@@ -20,7 +23,7 @@ class CartItem extends Component {
     // console.log(id +  ' + ' + quantity);
     this.setState({prodId : id,qty : quantity});
     // console.log(this.state); 
-    axios.get(`http://4876e7ab8c9d.ngrok.io/api/products/productId/${arr[0]}`)
+    axios.get(`${userURL}/api/products/productId/${arr[0]}`)
       .then(res => {
         console.log(res);
         this.setState({data : res.data[0]});
@@ -35,7 +38,7 @@ class CartItem extends Component {
       productId : id
     }
     console.log(productData);
-    axios.post('http://91d7ddfbae13.ngrok.io/doesProductExist',productData)
+    axios.post(`${userURL}/doesProductExist`,productData)
     .then(res => {
       console.log(res.data);
       if(res.data){
@@ -61,7 +64,7 @@ class CartItem extends Component {
       productAmt : '3'
     }
     console.log(productData);
-    axios.post('http://91d7ddfbae13.ngrok.io/removeFromCart',productData)
+    axios.post(`${userURL}/removeFromCart`,productData)
       .then(res => {
         console.log(res);
         window.location.reload();
@@ -82,7 +85,7 @@ class CartItem extends Component {
       productAmt : '3'
     }
     
-    axios.post('http://91d7ddfbae13.ngrok.io/cartToWishlist',productData)
+    axios.post(`${userURL}/cartToWishlist`,productData)
       .then(res => {
         console.log(res);
         window.location.reload();
@@ -120,6 +123,7 @@ class CartItem extends Component {
           <NavLink to={`/product/id/${this.state.data.id}`}>
             <div className='cartImgCont'>
               <img src={srlCartImg} alt='cartProductImg'/>
+              {/* <img src={`data:image/jpeg;base64,${this.state.data.picByte}`} />  */}
             </div>
 
             <div className='cartItemProp'>
