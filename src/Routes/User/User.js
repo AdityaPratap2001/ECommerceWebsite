@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import {NavLink} from 'react-router-dom';
 import loadSrc from '../../assets/loader2.gif';
-import axios from 'axios';
+import axios from '../../API/baseURL/baseURL';
 import './User.css';
 import ProductForm from './ProductForm/ProductForm';
-// import Footer from '../../components/Footer/Footer';
 import SearchSeller from './SearchSeller/SearchSeller'; 
-
-const userURL = 'http://91d7ddfbae13.ngrok.io';
-const productURL = 'http://e76f6bed94d6.ngrok.io';
 
 class User extends Component {
 
@@ -20,7 +16,7 @@ class User extends Component {
 
   componentDidMount(){
     let userId = localStorage.getItem('username');
-    axios.get(`${userURL}/user/${userId}`)
+    axios.get(`/user/${userId}`)
       .then(res => {
         console.log(res);
         this.setState({details : res.data});
@@ -47,7 +43,7 @@ class User extends Component {
     console.log(prodDetails);
 
     // let userId = localStorage.getItem('username');
-    axios.post(`${productURL}/api/products/addProduct`,prodDetails)
+    axios.post(`/api/products/addProduct`,prodDetails)
       .then(res => {
         console.log(res);
       })

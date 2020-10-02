@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-// import {Redirect,useHistory} from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner';
 import Navbar from '../../components/Navbar/Navbar';
 import './Login.css';
 import LoginForm from './LoginForm';
 import Error from './Error/Error';
-import axios from 'axios';
+import axios from '../../API/baseURL/baseURL';
 import { Redirect } from 'react-router-dom';
-
-const userURL = 'http://91d7ddfbae13.ngrok.io';
 
 class Login extends Component {
 
@@ -33,7 +30,7 @@ class Login extends Component {
     // console.log('Userdata : ' +userData);
 
     const sendData = (userData) =>{
-      axios.post(`${userURL}/login`,userData)
+      axios.post(`/login`,userData)
         .then((response)=>{
           console.log(response);
           console.log(response.data.jwt);

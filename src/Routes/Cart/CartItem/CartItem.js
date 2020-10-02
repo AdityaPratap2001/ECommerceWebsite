@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../../API/baseURL/baseURL';
 import srlCartImg from '../../../assets/sampleProduct.png';
 import '../Cart.css';
 import { NavLink } from 'react-router-dom';
-
-const userURL = 'http://91d7ddfbae13.ngrok.io';
-const productsURL = 'http://e76f6bed94d6.ngrok.io';
 
 class CartItem extends Component {
 
@@ -23,7 +20,7 @@ class CartItem extends Component {
     // console.log(id +  ' + ' + quantity);
     this.setState({prodId : id,qty : quantity});
     // console.log(this.state); 
-    axios.get(`${productsURL}/api/products/productId/${arr[0]}`)
+    axios.get(`/api/products/productId/${arr[0]}`)
       .then(res => {
         console.log(res);
         this.setState({data : res.data[0]});
@@ -38,7 +35,7 @@ class CartItem extends Component {
       productId : id
     }
     console.log(productData);
-    axios.post(`${userURL}/doesProductExist`,productData)
+    axios.post(`/doesProductExist`,productData)
     .then(res => {
       console.log(res.data);
       if(res.data){
@@ -64,7 +61,7 @@ class CartItem extends Component {
       productAmt : '3'
     }
     console.log(productData);
-    axios.post(`${userURL}/removeFromCart`,productData)
+    axios.post(`/removeFromCart`,productData)
       .then(res => {
         console.log(res);
         window.location.reload();
@@ -85,7 +82,7 @@ class CartItem extends Component {
       productAmt : '3'
     }
     
-    axios.post(`${userURL}/cartToWishlist`,productData)
+    axios.post(`/cartToWishlist`,productData)
       .then(res => {
         console.log(res);
         window.location.reload();

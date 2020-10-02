@@ -7,9 +7,7 @@ import FeaturedSection from '../../components/FeaturedSection/FeaturedSection';
 import BankOffers from '../../components/BankOffers/BankOffers';
 import Newsletter from '../../components/Newsletter/Newsletter';
 import Footer from '../../components/Footer/Footer';
-import axios from 'axios';
-
-const productsURL = 'http://e76f6bed94d6.ngrok.io';
+import axios from '../../API/baseURL/baseURL';
 
 class Home extends Component {
 
@@ -21,7 +19,7 @@ class Home extends Component {
 
   componentDidMount(){
 
-    axios.get(`${productsURL}/api/products/allProducts`)
+    axios.get(`/api/products/allProducts`)
       .then(response => {
         console.log(response);
         this.setState({products : response.data});

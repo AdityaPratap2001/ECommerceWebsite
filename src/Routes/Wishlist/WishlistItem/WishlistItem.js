@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../../API/baseURL/baseURL';
 import '../Wishlist.css';
 import imgSRC from '../../../assets/sampleProduct.png';
 import { NavLink } from 'react-router-dom';
 
-const productURL = 'http://e76f6bed94d6.ngrok.io';
-const userURL = 'http://91d7ddfbae13.ngrok.io';
 
 class WishlistItem extends Component {
 
@@ -14,7 +12,7 @@ class WishlistItem extends Component {
   }
 
   componentDidMount(){
-    axios.get(`${productURL}/api/products/productId/${this.props.id}`)
+    axios.get(`/api/products/productId/${this.props.id}`)
       .then(res => {
         console.log(res);
         this.setState({loadedData : res.data[0]});
@@ -31,7 +29,7 @@ class WishlistItem extends Component {
       productId : this.props.id
     }
     console.log(productData);
-    axios.post(`${userURL}/removeFromWishlist`,productData)
+    axios.post(`/removeFromWishlist`,productData)
     .then(response => {
       // alert('Item Deleted!');
       window.location.reload();

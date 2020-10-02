@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import './ProductDetails.css';
 import Navbar from '../../components/Navbar/Navbar';
 import Product_Loader from './Product_Loader/Product_Loader';
-import axios from 'axios';
+import axios from '../../API/baseURL/baseURL';
 import producdImgSrc from '../../assets/sampleProduct.png'; 
 import { Redirect } from 'react-router-dom';
-
-const productURL = 'http://e76f6bed94d6.ngrok.io';
-const userURL = 'http://91d7ddfbae13.ngrok.io';
 
 class ProductDetails extends Component {
 
@@ -21,7 +18,7 @@ class ProductDetails extends Component {
   }
 
   componentDidMount(){
-    axios.get(`${userURL}/api/products/productId/${this.state.productId}`)
+    axios.get(`/api/products/productId/${this.state.productId}`)
       .then(response => {
         console.log(response.data[0]);
         this.setState({productDetails : response.data[0]});
@@ -36,7 +33,7 @@ class ProductDetails extends Component {
       productId : this.state.productId
     }
     console.log(productData);
-    axios.post(`${userURL}/doesProductExist`,productData)
+    axios.post(`/doesProductExist`,productData)
       .then(res => {
         console.log(res.data);
         if(res.data){
@@ -47,7 +44,7 @@ class ProductDetails extends Component {
         console.log('error');
       })
 
-    axios.post(`${userURL}/doesProductExistInCart`,productData)
+    axios.post(`/doesProductExistInCart`,productData)
       .then(res => {
         if(res.data){
           this.setState({addedToCart : true});
@@ -70,7 +67,7 @@ class ProductDetails extends Component {
         productId : this.state.productId
       }
       console.log(productData);
-      axios.post(`${userURL}/addToWishlist`,productData)
+      axios.post(`/addToWishlist`,productData)
         .then(response => {
           console.log(response);
           this.setState({wishlisted : true});
@@ -95,7 +92,7 @@ class ProductDetails extends Component {
         productAmt : this.state.quantity
       }
       console.log(productData);
-      axios.post(`${productURL}/addToCart`,productData)
+      axios.post(`/addToCart`,productData)
         .then(response => {
           console.log(response);
           this.setState({addedToCart : true});
@@ -120,7 +117,7 @@ class ProductDetails extends Component {
         productId : this.state.productId
       }
       console.log(productData);
-      axios.post(`${userURL}/removeFromWishlist`,productData)
+      axios.post(`/removeFromWishlist`,productData)
         .then(response => {
           console.log(response);
           this.setState({wishlisted : false});
@@ -146,7 +143,7 @@ class ProductDetails extends Component {
         productAmt : this.state.quantity
       }
       console.log(productData);
-      axios.post(`${userURL}/removeFromCart`,productData)
+      axios.post(`/removeFromCart`,productData)
         .then(response => {
           console.log(response);
           this.setState({addedToCart : false});

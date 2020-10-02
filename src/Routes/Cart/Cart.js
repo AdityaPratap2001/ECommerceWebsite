@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import loadSrc from '../../assets/loader2.gif';
-import axios from 'axios';
+import axios from '../../API/baseURL/baseURL';
 import CartItem from './CartItem/CartItem';
 import './Cart.css';
 import transactionSrc from '../../assets/transaction2.gif';
 import emptyImg from '../../assets/emptyCart.png';
 
-const userURL = 'http://91d7ddfbae13.ngrok.io';
 
 class Cart extends Component {
 
@@ -19,7 +18,7 @@ class Cart extends Component {
 
   componentDidMount(){
     let userId = localStorage.getItem('username');
-    axios.get(`${userURL}/myCart/${userId}`)
+    axios.get(`/myCart/${userId}`)
       .then(res => {
         console.log(res);
         if(res.data.length === 1){
@@ -37,7 +36,7 @@ class Cart extends Component {
   placeOrder = () => {
     let userId = localStorage.getItem('username');
     console.log(userId);
-    axios.get(`${userURL}/orderPlaced/${userId}`)
+    axios.get(`/orderPlaced/${userId}`)
       .then(res => {
         console.log(res);
         if(res.status === 200){

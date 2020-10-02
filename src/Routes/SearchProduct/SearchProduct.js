@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import './SearchProduct.css';
 import SearchSidebar from '../../components/SearchSidebar/SearchSidebar';
-import axios from 'axios';
+import axios from '../../API/baseURL/baseURL';
 import ProductBlock from '../../components/ProductBlock/ProductBlock';
 import searchLoaderSRC from '../../assets/searchLoader.gif';
 import searchEmptySRC from '../../assets/searchEmpty.gif';
@@ -19,7 +19,7 @@ class SearchProduct extends Component {
   componentDidMount(){
     console.log(this.state);
     if(this.state.gender){
-      axios.get(`http://e76f6bed94d6.ngrok.io/api/products/productCategory/productType/${this.state.gender}/${this.state.searchTerm}`)
+      axios.get(`/api/products/productCategory/productType/${this.state.gender}/${this.state.searchTerm}`)
         .then(res => {
           console.log(res.data);
           if(res.data.length === 0){
@@ -34,7 +34,7 @@ class SearchProduct extends Component {
         })
     }
     else{
-      axios.get(`http://e76f6bed94d6.ngrok.io/api/products/productType/${this.state.searchTerm}`)
+      axios.get(`/api/products/productType/${this.state.searchTerm}`)
         .then(res => {
           console.log(res);
           if(res.data.length === 0){

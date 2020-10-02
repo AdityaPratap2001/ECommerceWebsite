@@ -5,9 +5,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import Confirmation from './Confirmation/Confirmation';
 import Error from '../Login/Error/Error';
 import Form from './Form';
-import axios from 'axios';
-
-const userURL = 'http://91d7ddfbae13.ngrok.io';
+import axios from '../../API/baseURL/baseURL';
 
 class SignUp extends Component {
 
@@ -34,7 +32,7 @@ class SignUp extends Component {
     console.log(userData);
 
     const sendData = (userData) =>{
-      axios.post(`${userURL}/registeruser`,userData)
+      axios.post(`/registeruser`,userData)
         .then((response)=>{
           console.log(response);
           console.log(response.status);

@@ -15,7 +15,7 @@ class Notsubmitted extends Component {
       return;
     }
     else{
-      axios.get(`http://91d7ddfbae13.ngrok.io/addService/${this.state.signUpEmail}`)
+      axios.get(`/addService/${this.state.signUpEmail}`)
         .then(res => {
           console.log(res);
         })

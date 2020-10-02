@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SellerSearchItem from './SellerSearchItem/SellerSearchItem';
 import './SearchSeller.css';
-import axios from 'axios';
+import axios from '../../../API/baseURL/baseURL';
 import noSellerDataImg from '../../../assets/noSellerData.png';
 import searchLoaderSRC from '../../../assets/searchLoader.gif';
 
@@ -18,7 +18,7 @@ class SearchSeller extends Component {
     e.preventDefault();
     // console.log(this.state);
     this.setState({loading : true,isEmpty : null});
-    axios.get(`http://e76f6bed94d6.ngrok.io/api/products/productSellerUsername/${this.state.userID}`)
+    axios.get(`/api/products/productSellerUsername/${this.state.userID}`)
       .then(res => {
         this.setState({loading : false});
         console.log(res.data);
