@@ -13,10 +13,10 @@
   margin: 20px 55px;
 }
 .shift_right{
-  transform: translateX(33%);
+  transform: translateX(40%);
 }
 .shift_left{
-  transform: translateX(-33%);
+  transform: translateX(-40%);
 }
 
 @media (max-width:1143px){
