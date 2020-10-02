@@ -12,7 +12,8 @@ class Cart extends Component {
   state = {
     list : null,
     isEmpty : null,
-    transactionComplete : null
+    transactionComplete : null,
+    loading : null
   }
 
   componentDidMount(){
@@ -36,11 +37,13 @@ class Cart extends Component {
   placeOrder = () => {
     let userId = localStorage.getItem('username');
     console.log(userId);
+    this.setState({loading : true});
     ServerService.placeOrder(userId)
       .then(res => {
         console.log(res);
         if(res.status === 200){
           // alert('Order Placed!');
+          this.setState({loading : false});
           this.setState({transactionComplete : true});
           // setTimeout(function(){
           //   window.location.reload();
@@ -143,6 +146,13 @@ class Cart extends Component {
             <img src={transactionSrc} alt='transactionCompleted'/>
             <h6>Your Order will be delivered to you, within 7 working days</h6>
             <button onClick={this.transactionCompleted} type="button" class="btn btn-outline-dark">Back To Cart!</button>
+          </div>
+        )
+      }
+      if(this.state.loading){
+        data = (
+          <div className='wishLoader'>
+            <img src={loadSrc} alt='Loader'/>
           </div>
         )
       }
