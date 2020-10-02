@@ -41,6 +41,7 @@ class Login extends Component {
               this.setState({redirect : '/'});
               localStorage.setItem('token',response.data.jwt);
               localStorage.setItem('username',userData.username);
+              window.location.reload();
             }
             else{
               this.setState({notVerified : true});

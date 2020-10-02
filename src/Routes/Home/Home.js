@@ -21,7 +21,7 @@ class Home extends Component {
 
     ServerService.fetchAllProducts()
       .then(response => {
-        console.log(response);
+        console.log(response.data);
         this.setState({products : response.data});
         console.log('items fetched state changed!');
         // console.log(this.state);
@@ -53,14 +53,16 @@ class Home extends Component {
           <Categories/>
           <FeaturedSection
             products={this.state.products} 
+            personalized={false}
             sectionTitle='Featured Products' 
             subHead1='Choose from our best products'
             subHead2='These products are worth adding to your cart!'
           />
           <FeaturedSection
             products={this.state.products}
+            personalized={true}
             sectionTitle='Personalized for You' 
-            subHead1='Choose from our best products'
+            subHead1="We've picked some items for you"
             subHead2='These products are worth adding to your cart!'
           />
           <BankOffers/>

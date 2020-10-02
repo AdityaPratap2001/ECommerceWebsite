@@ -1,8 +1,8 @@
 .Navbar img{
   height: 10vh;
   /* margin-top: 10%; */
-  padding: 0.7%;
-  transform: scale(1.8);
+  /* padding: 0.7%; */
+  transform: scale(0.8);
 }
 .Navbar{
   display: flex;
@@ -125,7 +125,7 @@
     margin: 5px 0;
   }
   .Navbar img{
-    transform: scale(1.9);
+    transform: scale(0.85) translateY(-13%);
   }
   .SearchContainer input{
     margin-top: 2.5px;
@@ -169,7 +169,8 @@
     transform: translateY(-6px)
   }
   .Navbar img{
-    height: 7.2vh;
+    height: 7vh;
+    transform: translateY(-8.6px);
   }
 }
 @media (max-width:536px){

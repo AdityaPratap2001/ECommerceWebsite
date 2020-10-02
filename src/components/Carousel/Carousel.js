@@ -2,7 +2,7 @@ import React from 'react';
 import './Carousel.css';
 import src1 from '../../assets/banner1.png';
 import src2 from '../../assets/banner10.png';
-import src3 from '../../assets/banner11.png';
+import src3 from '../../assets/banner12.png';
 
 const Carousel = () => {
   return (

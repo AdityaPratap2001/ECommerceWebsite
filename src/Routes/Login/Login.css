@@ -41,7 +41,7 @@
 }
 .login img{
   height: 10vh;
-  transform: scale(2.2);
+  /* transform: scale(2.2); */
 }
 .login h6{
   color: rgb(3, 55, 150);

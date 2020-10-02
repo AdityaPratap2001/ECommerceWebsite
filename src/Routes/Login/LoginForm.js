@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import src1 from '../../assets/login8.jpg';
 import src2 from '../../assets/login6.jpg';
 import src3 from '../../assets/login7.jpg';
-import logoSrc from '../../assets/logo.png'
+import logoSrc from '../../assets/logggo.png'
 import Navbar from '../../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
 import './Login.css';
@@ -110,7 +110,7 @@ class LoginForm extends Component {
               
               <div className='login'>
                 <img src={logoSrc} alt='logo'/>
-                <h6>We've missed you!</h6>
+                <h6>Welcome to Click N Ship!</h6>
                 <form onSubmit={this.handleSubmit}>
 
                   <h5>E-Mail :</h5><br></br>
