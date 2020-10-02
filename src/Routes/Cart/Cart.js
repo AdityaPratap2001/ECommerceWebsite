@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import loadSrc from '../../assets/loader2.gif';
-import axios from '../../API/baseURL/baseURL';
 import CartItem from './CartItem/CartItem';
 import './Cart.css';
 import transactionSrc from '../../assets/transaction2.gif';
 import emptyImg from '../../assets/emptyCart.png';
-
+import ServerService from '../../API/ServerService';
 
 class Cart extends Component {
 
@@ -18,7 +17,8 @@ class Cart extends Component {
 
   componentDidMount(){
     let userId = localStorage.getItem('username');
-    axios.get(`/myCart/${userId}`)
+    
+    ServerService.fetchCartDetailsByID(userId)
       .then(res => {
         console.log(res);
         if(res.data.length === 1){
@@ -36,7 +36,7 @@ class Cart extends Component {
   placeOrder = () => {
     let userId = localStorage.getItem('username');
     console.log(userId);
-    axios.get(`/orderPlaced/${userId}`)
+    ServerService.placeOrder(userId)
       .then(res => {
         console.log(res);
         if(res.status === 200){

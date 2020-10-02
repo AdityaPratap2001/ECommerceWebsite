@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from '../../../API/baseURL/baseURL';
 import srlCartImg from '../../../assets/sampleProduct.png';
 import '../Cart.css';
 import { NavLink } from 'react-router-dom';
+import ServerService from '../../../API/ServerService';
 
 class CartItem extends Component {
 
@@ -19,8 +19,8 @@ class CartItem extends Component {
     let quantity = arr[1];
     // console.log(id +  ' + ' + quantity);
     this.setState({prodId : id,qty : quantity});
-    // console.log(this.state); 
-    axios.get(`/api/products/productId/${arr[0]}`)
+
+    ServerService.getProductByID(arr[0])
       .then(res => {
         console.log(res);
         this.setState({data : res.data[0]});
@@ -35,19 +35,20 @@ class CartItem extends Component {
       productId : id
     }
     console.log(productData);
-    axios.post(`/doesProductExist`,productData)
-    .then(res => {
-      console.log(res.data);
-      if(res.data){
-        this.setState({inMyWishlist : true});
-      }
-      else{
-        this.setState({inMyWishlist: false});
-      }
-    })
-    .catch(err => {
-      console.log('error');
-    })
+
+    ServerService.doesProductExistInWishlist(productData)
+      .then(res => {
+        console.log(res.data);
+        if(res.data){
+          this.setState({inMyWishlist : true});
+        }
+        else{
+          this.setState({inMyWishlist: false});
+        }
+      })
+      .catch(err => {
+        console.log('error');
+      })
 
   }
 
@@ -61,7 +62,8 @@ class CartItem extends Component {
       productAmt : '3'
     }
     console.log(productData);
-    axios.post(`/removeFromCart`,productData)
+
+    ServerService.removeFromCart(productData)
       .then(res => {
         console.log(res);
         window.location.reload();
@@ -82,7 +84,7 @@ class CartItem extends Component {
       productAmt : '3'
     }
     
-    axios.post(`/cartToWishlist`,productData)
+    ServerService.moveFromCartToWishlist(productData)
       .then(res => {
         console.log(res);
         window.location.reload();

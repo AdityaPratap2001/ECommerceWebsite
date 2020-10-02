@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import loadSrc from '../../assets/loader2.gif';
-import axios from '../../API/baseURL/baseURL';
 import './Wishlist.css';
 import { NavLink, Redirect } from 'react-router-dom';
 import WishlistItem from './WishlistItem/WishlistItem';
 import emptyWishSRC from '../../assets/emptyWishlist.png';
+import ServerService from '../../API/ServerService';
 
 class Wishlist extends Component {
 
@@ -18,7 +18,8 @@ class Wishlist extends Component {
   componentDidMount(){
 
     let userId = localStorage.getItem('username');
-    axios.get(`/myWishlist/${userId}`)
+    
+    ServerService.fetchWishlistDetailsByID(userId)
       .then(res => {
         console.log(res);
         if(res.data.length === 0){

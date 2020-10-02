@@ -3,10 +3,9 @@ import {NavLink} from 'react-router-dom';
 import './SelectedCategory.css';
 import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import axios from '../../API/baseURL/baseURL';
 import ProductsDisplay from './ProductsDisplay/ProductsDisplay';
 import loaderSrc from '../../assets/loader2.gif';
-
+import ServerService from '../../API/ServerService';
 
 class SelectedCategory extends Component {
 
@@ -75,7 +74,7 @@ class SelectedCategory extends Component {
     console.log('MC-'+ mainSearchCategory + ' SC-' + subSearchCategory);
     
     if(this.state.subcategory){
-        axios.get(`/api/products/productCategory/productSubCategory/${mainSearchCategory}/${subSearchCategory}`)
+      ServerService.fetchBySubcat(mainSearchCategory,subSearchCategory)  
         .then(res => {
           console.log(res);
           this.setState({products : res.data});
@@ -85,7 +84,7 @@ class SelectedCategory extends Component {
         })
     }
     else{
-        axios.get(`/api/products/productCategory/${mainSearchCategory}`)
+      ServerService.fetchByCat(mainSearchCategory)
         .then(response => {
           console.log(response);
           this.setState({products : response.data});

@@ -7,7 +7,7 @@ import FeaturedSection from '../../components/FeaturedSection/FeaturedSection';
 import BankOffers from '../../components/BankOffers/BankOffers';
 import Newsletter from '../../components/Newsletter/Newsletter';
 import Footer from '../../components/Footer/Footer';
-import axios from '../../API/baseURL/baseURL';
+import ServerService from '../../API/ServerService';
 
 class Home extends Component {
 
@@ -19,7 +19,7 @@ class Home extends Component {
 
   componentDidMount(){
 
-    axios.get(`/api/products/allProducts`)
+    ServerService.fetchAllProducts()
       .then(response => {
         console.log(response);
         this.setState({products : response.data});

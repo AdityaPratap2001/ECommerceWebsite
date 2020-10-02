@@ -5,7 +5,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import Confirmation from './Confirmation/Confirmation';
 import Error from '../Login/Error/Error';
 import Form from './Form';
-import axios from '../../API/baseURL/baseURL';
+import ServerService from '../../API/ServerService';
 
 class SignUp extends Component {
 
@@ -32,7 +32,8 @@ class SignUp extends Component {
     console.log(userData);
 
     const sendData = (userData) =>{
-      axios.post(`/registeruser`,userData)
+      
+      ServerService.register(userData)
         .then((response)=>{
           console.log(response);
           console.log(response.status);

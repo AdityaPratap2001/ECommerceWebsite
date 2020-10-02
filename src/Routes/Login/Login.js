@@ -4,8 +4,8 @@ import Navbar from '../../components/Navbar/Navbar';
 import './Login.css';
 import LoginForm from './LoginForm';
 import Error from './Error/Error';
-import axios from '../../API/baseURL/baseURL';
 import { Redirect } from 'react-router-dom';
+import ServerService from '../../API/ServerService';
 
 class Login extends Component {
 
@@ -30,7 +30,8 @@ class Login extends Component {
     // console.log('Userdata : ' +userData);
 
     const sendData = (userData) =>{
-      axios.post(`/login`,userData)
+
+      ServerService.login(userData)
         .then((response)=>{
           console.log(response);
           console.log(response.data.jwt);

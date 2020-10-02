@@ -1,40 +1,61 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
+import {NavLink, Redirect} from 'react-router-dom';
 import loadSrc from '../../assets/loader2.gif';
-import axios from '../../API/baseURL/baseURL';
-import './Wishlist.css';
-import { NavLink, Redirect } from 'react-router-dom';
-import WishlistItem from './WishlistItem/WishlistItem';
-import emptyWishSRC from '../../assets/emptyWishlist.png';
+import './User.css';
+import ProductForm from './ProductForm/ProductForm';
+import SearchSeller from './SearchSeller/SearchSeller'; 
+import ServerService from '../../API/ServerService';
 
-class Wishlist extends Component {
+class User extends Component {
 
   state = {
-    list : null,
-    isEmpty : null,
+    details : false,
+    userName : 'Username',
     redirect : null,
   }
 
   componentDidMount(){
-
     let userId = localStorage.getItem('username');
-    axios.get(`/myWishlist/${userId}`)
+    // axios.get(`/user/${userId}`)
+    ServerService.fetchDetailsByUserID(userId)
       .then(res => {
         console.log(res);
-        if(res.data.length === 0){
-          this.setState({isEmpty : true})
-        }
-        else{
-          this.setState({list : res.data});
-        }
+        this.setState({details : res.data});
+        this.setState({userName : this.state.details.firstName});
       })
       .catch(err => {
         console.log(err);
       })
-
+    
     if(userId === null){
       this.setState({redirect : '/'});
     }
+  }
+
+  submit = (details) => {
+    const prodDetails = {
+      name : details.title,
+      price : Number(details.price),
+      stock : Number(details.stock),
+      seller : details.sellerBrand,
+      category : details.category,
+      subCategory : details.subcategory,
+      fit : details.fit,
+      material : details.material,
+      prodType : details.type,
+      sellerUsername : details.sellerID
+    }
+    console.log(prodDetails);
+
+    // let userId = localStorage.getItem('username');
+    ServerService.pushProduct(prodDetails)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   logOut = (e) => {
@@ -53,23 +74,63 @@ class Wishlist extends Component {
         <img src={loadSrc} alt='Loader'/>
       </div>
     )
-    if(this.state.list){
+    let data2 = data;
+
+    if(this.state.details){
+      let wishItems = this.state.details.wishlist.split(';');
+      let wishNum = wishItems.length - 1;
+      let cartItems = this.state.details.cart.split(';');
+      let cartNum = cartItems.length - 1;
+
       data = (
-        <div className='wishlistDisplay'>
-          {
-            this.state.list.map(id => {
-              return <WishlistItem id={id}/>
-            })
-          }
+        <div className='userDetailsDisplay'>
+          <div>
+            <div>First-Name : </div>
+            <div className='details'>{this.state.details.firstName}</div>
+          </div>
+          <div>
+            <div>Last-Name : </div>
+            <div className='details'>{this.state.details.lastName}</div>
+          </div>
+          <div>
+            <div>Gender : </div>
+            <div className='details gender'>{this.state.details.gender}</div>
+          </div>
+          <div>
+            <div>Registered Email :</div>
+            <div className='details'>{this.state.details.username}</div>
+          </div>
+          <div>
+            <div>Items in Wishlist :</div>
+            <div className='details'>{wishNum}</div>
+          </div>
+          <div>
+            <div>Items in Cart :</div>
+            <div className='details'>{cartNum}</div>
+          </div>
         </div>
       )
-    }
-    if(this.state.isEmpty){
-      data = (
-        <div className='wishLoader'>
-          <img className='emptyWishlistImg' src={emptyWishSRC} alt='emptyWishlist'/>
+      data2 = (
+        <div className='productForm'>
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Click to sell your Product!
+                  </button>
+                </h2>
+              </div>
+
+              <div id="collapseOne" class="collapse collapseForm" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <ProductForm submitHandler={this.submit}/>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      )
+        )
     }
 
     return (
@@ -83,7 +144,7 @@ class Wishlist extends Component {
               <i class="fas fa-2x fa-user-circle"></i>
               <div className='helloUser'>
                 <h6 className='hello'>Hello,</h6>
-                <h6 className='username'>Username</h6>
+                <h6 className='username'>{this.state.userName}</h6>
               </div>
             </div>
             
@@ -109,14 +170,30 @@ class Wishlist extends Component {
             </div>
 
           </div>
+
           <div className='rightDisplay'>
-            <h5 className='myWishlist'>My Wishlist</h5>
-            {data}
+            
+            <div>
+              <h5 className='myWishlist'>Profile Details</h5>
+              {data}
+            </div>
+            
+            <div className='sellYourOwn'>
+              <h5>Sell your own Products</h5>
+              {data2}
+            </div>
+
           </div>
+         
+          <div className='searchForSeller'>
+            <SearchSeller/>
+          </div>
+          
+
         </div>
       </div>
     );
   }
 }
 
-export default Wishlist;
+export default User;

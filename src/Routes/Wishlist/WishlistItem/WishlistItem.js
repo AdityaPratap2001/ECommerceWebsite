@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import axios from '../../../API/baseURL/baseURL';
 import '../Wishlist.css';
 import imgSRC from '../../../assets/sampleProduct.png';
 import { NavLink } from 'react-router-dom';
-
+import ServerService from '../../../API/ServerService';
 
 class WishlistItem extends Component {
 
@@ -12,7 +11,8 @@ class WishlistItem extends Component {
   }
 
   componentDidMount(){
-    axios.get(`/api/products/productId/${this.props.id}`)
+    
+    ServerService.getProductByID(this.props.id)
       .then(res => {
         console.log(res);
         this.setState({loadedData : res.data[0]});
@@ -29,7 +29,8 @@ class WishlistItem extends Component {
       productId : this.props.id
     }
     console.log(productData);
-    axios.post(`/removeFromWishlist`,productData)
+    
+    ServerService.removeFromWishlist(productData)
     .then(response => {
       // alert('Item Deleted!');
       window.location.reload();

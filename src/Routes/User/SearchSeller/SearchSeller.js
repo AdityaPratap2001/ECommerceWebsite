@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import SellerSearchItem from './SellerSearchItem/SellerSearchItem';
 import './SearchSeller.css';
-import axios from '../../../API/baseURL/baseURL';
 import noSellerDataImg from '../../../assets/noSellerData.png';
 import searchLoaderSRC from '../../../assets/searchLoader.gif';
+import SellerService from '../../../API/ServerService';
 
 class SearchSeller extends Component {
 
@@ -18,7 +18,8 @@ class SearchSeller extends Component {
     e.preventDefault();
     // console.log(this.state);
     this.setState({loading : true,isEmpty : null});
-    axios.get(`/api/products/productSellerUsername/${this.state.userID}`)
+    
+    SellerService.searchBySellerID(this.state.userID)
       .then(res => {
         this.setState({loading : false});
         console.log(res.data);
