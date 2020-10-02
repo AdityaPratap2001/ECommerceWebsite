@@ -12,12 +12,22 @@ class Wishlist extends Component {
   state = {
     list : null,
     isEmpty : null,
+    userName : 'Username',
     redirect : null,
   }
 
   componentDidMount(){
 
     let userId = localStorage.getItem('username');
+
+    ServerService.fetchDetailsByUserID(userId)
+      .then(res => {
+        console.log(res);
+        this.setState({userName : res.data.firstName});
+      })
+      .catch(err => {
+        console.log(err);
+      })
     
     ServerService.fetchWishlistDetailsByID(userId)
       .then(res => {
@@ -84,7 +94,7 @@ class Wishlist extends Component {
               <i class="fas fa-2x fa-user-circle"></i>
               <div className='helloUser'>
                 <h6 className='hello'>Hello,</h6>
-                <h6 className='username'>Username</h6>
+                <h6 className='username'>{this.state.userName}</h6>
               </div>
             </div>
             
