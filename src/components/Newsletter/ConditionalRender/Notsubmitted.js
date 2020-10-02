@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import axios from 'axios';
+import axios from '../../../API/baseURL/baseURL';
 import '../Newsletter.css';
 
 class Notsubmitted extends Component {
@@ -11,6 +13,15 @@ class Notsubmitted extends Component {
     event.preventDefault();
     if(this.state.signUpEmail === ''){
       return;
+    }
+    else{
+      axios.get(`http://91d7ddfbae13.ngrok.io/addService/${this.state.signUpEmail}`)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        })
     }
     console.log(this.state);
     this.props.submitHandler();
