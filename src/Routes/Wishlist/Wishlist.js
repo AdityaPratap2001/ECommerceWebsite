@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import loadSrc from '../../assets/loader2.gif';
 import axios from '../../API/baseURL/baseURL';
 import './Wishlist.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import WishlistItem from './WishlistItem/WishlistItem';
 import emptyWishSRC from '../../assets/emptyWishlist.png';
 
@@ -12,6 +12,7 @@ class Wishlist extends Component {
   state = {
     list : null,
     isEmpty : null,
+    redirect : null,
   }
 
   componentDidMount(){
@@ -30,9 +31,22 @@ class Wishlist extends Component {
       .catch(err => {
         console.log(err);
       })
+
+    if(userId === null){
+      this.setState({redirect : '/'});
+    }
+  }
+
+  logOut = (e) => {
+    localStorage.clear();
+    window.location.reload();
   }
 
   render() {
+
+    if(this.state.redirect){
+      return <Redirect to={this.state.redirect}/>
+    }
 
     let data = (
       <div className='wishLoader'>
@@ -89,7 +103,7 @@ class Wishlist extends Component {
             </div>
 
             <div className='logoutBtn'>
-              <button type="button" class="btn btn-dark logoutButton">
+              <button type="button" onClick={this.logOut} class="btn btn-dark logoutButton">
                 Logout
               </button>
             </div>
