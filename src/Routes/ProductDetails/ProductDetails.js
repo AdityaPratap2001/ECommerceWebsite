@@ -95,9 +95,10 @@ class ProductDetails extends Component {
       axios.post(`/addToCart`,productData)
         .then(response => {
           console.log(response);
-          this.setState({addedToCart : true});
+          this.setState({addedToCart : true})
         })
         .catch(error => {
+          alert('Items out of stock, trying adding less quantity!');
           console.log(error);
         })
     }
