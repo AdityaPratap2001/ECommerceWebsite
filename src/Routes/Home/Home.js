@@ -12,7 +12,7 @@ import ServerService from '../../API/ServerService';
 class Home extends Component {
 
   state = {
-    // isLoggedIn : false,
+    isLoggedIn : null,
     searchTerm : null,
     products : null
   }
@@ -31,21 +31,24 @@ class Home extends Component {
       })
     console.log(this.state);
 
-    // let token = localStorage.getItem('token');
-    // if(token !== null){
-    //   this.setState({isLoggedIn : true});
-    //   // console.log(token);
-    //   console.log('token exists!');
-    //   console.log(this.state);
-    // }
-    // else{
-    //   console.log("token doesn't exist!");
-    // }
+    let token = localStorage.getItem('token');
+    if(token !== null){
+      this.setState({isLoggedIn : true});
+      console.log('token exists!');
+      console.log(this.state);
+    }
+    else{
+      console.log("token doesn't exist!");
+    }
   }
 
   render() {
 
-    // if(this.state.products){
+    let tagLine = 'Trending Products';
+    if(this.state.isLoggedIn){
+      tagLine = 'Personalized for You'
+    }
+
       return (
         <div>
           <Navbar/>
@@ -61,7 +64,7 @@ class Home extends Component {
           <FeaturedSection
             products={this.state.products}
             personalized={true}
-            sectionTitle='Personalized for You' 
+            sectionTitle={tagLine} 
             subHead1="We've picked some items for you"
             subHead2='These products are worth adding to your cart!'
           />
