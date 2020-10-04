@@ -23,7 +23,7 @@ const SellerSearchItem = ({item}) => {
           </div>
           <div className='dataFields'>
             <div className='dataLabel'>Price : </div>
-            <div className='dataAns'>{item.price}</div>
+            <div className='dataAns'> Rs. {item.price}</div>
           </div>
           <div className='dataFields'>
             <div className='dataLabel'>Material : </div>

@@ -86,6 +86,14 @@ class ServerService{
     return axios.post(`/registeruser`,data)
   }
 
+  editProfileDetails(newUserData){
+    return axios.post(`/editUser`,newUserData)
+  }
+
+  changePassword(newPassData){
+    return axios.post('/editPassword',newPassData)
+  }
+
 }
 
 export default new ServerService();
