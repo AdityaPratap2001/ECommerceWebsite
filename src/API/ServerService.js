@@ -94,6 +94,10 @@ class ServerService{
     return axios.post('/editPassword',newPassData)
   }
 
+  getPastOrders(userID){
+    return axios.get(`/orderHistory/${userID}`)
+  }
+
 }
 
 export default new ServerService();

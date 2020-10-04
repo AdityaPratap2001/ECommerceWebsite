@@ -6,6 +6,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import ProductsDisplay from './ProductsDisplay/ProductsDisplay';
 import loaderSrc from '../../assets/loader2.gif';
 import ServerService from '../../API/ServerService';
+import axios from 'axios';
 
 class SelectedCategory extends Component {
 
@@ -74,7 +75,8 @@ class SelectedCategory extends Component {
     console.log('MC-'+ mainSearchCategory + ' SC-' + subSearchCategory);
     
     if(this.state.subcategory){
-      ServerService.fetchBySubcat(mainSearchCategory,subSearchCategory)  
+      // ServerService.fetchBySubcat(mainSearchCategory,subSearchCategory) 
+      axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/productCategory/productSubCategory/${mainSearchCategory}/${subSearchCategory}`) 
         .then(res => {
           console.log(res);
           this.setState({products : res.data});
@@ -84,7 +86,8 @@ class SelectedCategory extends Component {
         })
     }
     else{
-      ServerService.fetchByCat(mainSearchCategory)
+      // ServerService.fetchByCat(mainSearchCategory)
+      axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/productCategory/${mainSearchCategory}`)
         .then(response => {
           console.log(response);
           this.setState({products : response.data});

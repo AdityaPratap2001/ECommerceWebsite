@@ -8,6 +8,7 @@ import SearchSeller from './SearchSeller/SearchSeller';
 import ServerService from '../../API/ServerService';
 import ProfileDetails from './ProfileDetails/ProfileDetails';
 import ChangePassword from './ChangePassword/ChangePassword';
+import PastOrders from './PastOrders/PastOrders';
 
 class User extends Component {
 
@@ -208,7 +209,7 @@ class User extends Component {
           </div>
          
           <div className='searchForSeller'>
-            <SearchSeller/>
+            <PastOrders/>
           </div>
           
 

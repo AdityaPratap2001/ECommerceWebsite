@@ -5,6 +5,7 @@ import Product_Loader from './Product_Loader/Product_Loader';
 import producdImgSrc from '../../assets/sampleProduct.png'; 
 import { NavLink, Redirect } from 'react-router-dom';
 import ServerService from '../../API/ServerService';
+import axios from 'axios';
 
 class ProductDetails extends Component {
 
@@ -19,7 +20,8 @@ class ProductDetails extends Component {
 
   componentDidMount(){
     
-    ServerService.getProductByID(this.state.productId)
+    // ServerService.getProductByID(this.state.productId)
+    axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/productId/${this.state.productId}`)
       .then(response => {
         console.log(response.data[0]);
         this.setState({productDetails : response.data[0]});
@@ -297,8 +299,11 @@ class ProductDetails extends Component {
           <div className='productDetailsLeft'> 
             
             <div className='imgCont'>
-              <img className='img-fluid' src={producdImgSrc} alt='product_Img'/>
+              {/* <img className='img-fluid' src={producdImgSrc} alt='product_Img'/> */}
+              {/* <img className='img-fluid' src={this.state.productDetails.picByte.data} alt='product_Img'/> */}
+              {/* <img src={URL.createObjectURL(this.state.productDetails.picByte)} /> */}
               {/* <img src={`data:image/jpeg;base64,${this.state.productDetails.picByte}`} /> */}
+              <img src={`data:image/png[jpg];base64,${this.state.productDetails.picByte}`}/>
               {wishIcon}
             </div>
           </div>

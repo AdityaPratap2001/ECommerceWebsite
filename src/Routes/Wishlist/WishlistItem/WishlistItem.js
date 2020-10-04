@@ -3,6 +3,7 @@ import '../Wishlist.css';
 import imgSRC from '../../../assets/sampleProduct.png';
 import { NavLink } from 'react-router-dom';
 import ServerService from '../../../API/ServerService';
+import axios from 'axios';
 
 class WishlistItem extends Component {
 
@@ -12,7 +13,8 @@ class WishlistItem extends Component {
 
   componentDidMount(){
     
-    ServerService.getProductByID(this.props.id)
+    // ServerService.getProductByID(this.props.id)
+    axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/productId/${this.props.id}`)
       .then(res => {
         console.log(res);
         this.setState({loadedData : res.data[0]});
@@ -51,7 +53,8 @@ class WishlistItem extends Component {
           <div className='wishContainer'>
             <NavLink to={`/product/id/${this.state.loadedData.id}`}>
               <div className='wishlistItemImage'>
-                <img src={imgSRC} alt='product_Img'/>
+                {/* <img src={imgSRC} alt='product_Img'/> */}
+                <img src={`data:image/png[jpg];base64,${this.state.loadedData.picByte}`}/>
               </div>
               <div className='alongImg'>
                 <h6 className='prodSeller'>{this.state.loadedData.seller}</h6>

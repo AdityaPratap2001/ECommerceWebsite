@@ -4,7 +4,7 @@
 }
 .productDetails{
   /* border: chartreuse 2px solid; */
-  padding: 1.5% 5%;
+  padding: 0.5% 5%;
   display: flex;
   /* justify-content: space-around; */
   justify-content: center;
@@ -14,7 +14,7 @@
 .productBreadcrumb{
   width: 100%;
   padding-left: 5%;
-  margin-bottom: 7px;
+  /* margin-bottom: 7px; */
 }
 .productBreadcrumb h6{
   font-size: 15px;
