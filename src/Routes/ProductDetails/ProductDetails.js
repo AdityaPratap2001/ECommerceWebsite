@@ -3,7 +3,7 @@ import './ProductDetails.css';
 import Navbar from '../../components/Navbar/Navbar';
 import Product_Loader from './Product_Loader/Product_Loader';
 import producdImgSrc from '../../assets/sampleProduct.png'; 
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import ServerService from '../../API/ServerService';
 
 class ProductDetails extends Component {
@@ -169,6 +169,65 @@ class ProductDetails extends Component {
 
   render() {
 
+    let mainLink = '';
+    let subLink = '';
+
+    if(this.state.productDetails){
+      switch(this.state.productDetails.category){
+        case 'Men' : mainLink = 'Men';
+                    break;
+        case 'Women' : mainLink = 'Women';
+                      break;
+        case 'Kids' : mainLink = 'Kids';
+                      break;
+        case 'Home and Living' : mainLink = 'Home_&_Living';
+                              break;
+        case 'Travel Trolley' : mainLink = 'Travel_Bags';
+                            break;
+        default : break;
+      }
+      if(this.state.productDetails.subCategory){
+        switch(this.state.productDetails.subCategory){
+          case 'Top-wear' : subLink = 'Topwear';
+                      break;
+          case 'Bottom-wear' : subLink = 'Bottomwear';
+                        break;
+          case 'Foot-wear' : subLink = 'Footwear';
+                        break;
+          case 'Boys Clothing' : subLink = 'Boys';
+                                break;
+          case 'Girls Clothing' : subLink = 'Girls';
+                              break;
+          default : break;
+          
+        }
+        if(this.state.productDetails.category === 'Kids' && this.state.productDetails.subCategory){
+          if(this.state.productDetails.subCategory === 'Kids Footwear'){
+            subLink = 'Footwear';
+          }
+          else if(this.state.productDetails.subCategory === 'Boys Clothing'){
+            subLink = 'Boys';
+          }
+          else if(this.state.productDetails.subCategory === 'Girls Clothing'){
+            subLink = 'Girls';
+          }
+        }
+        if(this.state.productDetails.category === 'Home and Living' && this.state.productDetails.subCategory){
+          if(this.state.productDetails.subCategory === 'Home Decor'){
+            subLink = 'Decor';
+          }
+          else if(this.state.productDetails.subCategory === 'Bed and Furnishing'){
+            subLink = 'Furnishing';
+          }
+        }
+      
+        if(this.state.productDetails.category === 'Travel Trolley'){
+          subLink = '';
+        }
+      }
+    }
+    
+
     if(this.state.redirect){
       return <Redirect to={this.state.redirect}/>
     }
@@ -209,8 +268,31 @@ class ProductDetails extends Component {
       </div>
     )
     if(this.state.productDetails){
+      let direct = `/category/${mainLink}`;
+      let subDirect = `/category/${mainLink}/${subLink}`;
+      if(this.state.productDetails.category === 'Travel Trolley'){
+        subDirect =  `/category/${mainLink}`;
+      }
       data = (
         <div className='productDetails'>
+
+          <div className='productBreadcrumb'>
+          <h6>
+            <NavLink to='/' className='breadLink'>
+              Home
+            </NavLink> 
+            >
+            <NavLink to={direct} className='breadLink'>
+              {/* {this.state.productDetails.category} */}
+              {mainLink}
+            </NavLink> 
+            >
+            <NavLink to={subDirect} className='breadLink'>
+              {/* {this.state.productDetails.subCategory} */}
+              {subLink}
+            </NavLink>
+          </h6>
+          </div>
           
           <div className='productDetailsLeft'> 
             
