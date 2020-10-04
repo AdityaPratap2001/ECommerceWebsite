@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import ConditinalRender from './ConditionalRender'; 
-import logoSrc from '../../assets/logggo.png';
+import logoSrc from '../../assets/logo.png';
 import './Navbar.css';
 import SearchBar from './SearchBar';
 

@@ -1,99 +1,59 @@
-import React, { Component } from 'react';
-import SellerSearchItem from './SellerSearchItem/SellerSearchItem';
-import './SearchSeller.css';
-import noSellerDataImg from '../../../assets/noSellerData.png';
-import searchLoaderSRC from '../../../assets/searchLoader.gif';
-import SellerService from '../../../API/ServerService';
+import React from 'react';
+import './SellerSearchItem.css';
 
-class SearchSeller extends Component {
-
-  state = {
-    userID : null,
-    data : null,
-    loading : null,
-    isEmpty : null
-  }
-
-  submitHandler = (e) => {
-    e.preventDefault();
-    // console.log(this.state);
-    this.setState({loading : true,isEmpty : null});
-    
-    SellerService.searchBySellerID(this.state.userID)
-      .then(res => {
-        this.setState({loading : false});
-        console.log(res.data);
-        if(res.data.length === 0){
-          this.setState({isEmpty : true});
-        }
-        else{
-          this.setState({data : res.data});
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-
-  render() {
-
-    let results = (
-      null
-    )
-    if(this.state.data && !this.state.isEmpty){
-    results = (
-        <div className='sellerSearchResults'>
-          {
-            this.state.data.map(item => {
-              return <SellerSearchItem item={item}/>
-              // <SellerSearchItem/>
-            })
-          }
-        </div>
-      )
-    }
-    if(this.state.loading){
-      results = (
-        <img src={searchLoaderSRC} alt='loading...' style={{width : '50%'}}/>
-      )
-    }
-    if(this.state.isEmpty){
-      results = (
-        <img src={noSellerDataImg} alt='noDetailsAvailable' style={{width : '50%'}}/>
-      )
-    }
-
-    return (
-      <div className='searchModule'>
-        <h5>Seller Search</h5>
-        <p>
-          See how your product is doing! <br></br>
-          Search to see the current stock of various products sold by various seller! 
-        </p>
-
-        <form onSubmit={this.submitHandler}>
-          <div className='formDivision'>
-            <div style={{fontWeight : '500'}}>Enter Seller ID :</div>
-            <div>
-              <input 
-                placeholder='Enter SellerID' 
-                type='email' 
-                value={this.state.userID} 
-                onChange={(e)=>{this.setState({userID : e.target.value})}}
-                className='sellerID'
-              />
-            </div>
+const SellerSearchItem = ({item}) => {
+  return (
+    <div className='sellerSearchItem'>
+      
+      <div className='sellerSearchItemHeader'>Product ID : #{item.id}</div>
+      
+      <div className='sellerSearchItemBody'>
+        <div className='sellerItemLeft'>
+          <div className='dataFields'>
+            <div className='dataLabel'>Seller : </div>
+            <div className='dataAns'>{item.seller}</div>
           </div>
-          <button className="btn btn-primary" type='submit'>Search</button>
-        </form>
-
-        <div>
-          {results}
+          <div className='dataFields'>
+            <div className='dataLabel'>Title : </div>
+            <div className='dataAns'>{item.name}</div>
+          </div>
+          <div className='dataFields'>
+            <div className='dataLabel'>Product Type : </div>
+            <div className='dataAns'>{item.prodType}</div>
+          </div>
+          <div className='dataFields'>
+            <div className='dataLabel'>Price : </div>
+            <div className='dataAns'> Rs. {item.price}</div>
+          </div>
+          <div className='dataFields'>
+            <div className='dataLabel'>Material : </div>
+            <div className='dataAns'>{item.material}</div>
+          </div>
+        </div>
+        
+        <div className='sellerItemRight'>
+          <div className='dataFields'>
+            <div className='dataLabel'>Category : </div>
+            <div className='dataAns'>{item.category}</div>
+          </div>
+          <div className='dataFields'>
+            <div className='dataLabel'>Sub-Category :</div>
+            <div className='dataAns'>{item.subCategory}</div>
+          </div>
+          <div className='dataFields'>
+            <div className='dataLabel'>Stock : </div>
+            <div className='dataAns'>{item.stock}</div>
+          </div>
+          <div className='dataFields'>
+            <div className='dataLabel'>Fit : </div>
+            <div className='dataAns'>{item.fit}</div>
+          </div>
         </div>
 
       </div>
-    );
-  }
+    
+    </div>
+  );
 }
 
-export default SearchSeller;
+export default SellerSearchItem;
