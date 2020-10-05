@@ -36,12 +36,14 @@ class App extends Component {
     email: null,
     password: null,
     gender: null,
+    user: null,
     formErrors: {
       firstName: "",
       lastName: "",
       email: "",
       password: "",
       gender: "",
+      user: "",
     }
   }
 
@@ -83,6 +85,10 @@ class App extends Component {
         formErrors.gender =
           value.length < 3 ? "select an option" : "";
         break;
+      case "user":
+        formErrors.user =
+          value.length < 3 ? "select an option" : "";
+        break;
       default:
         break;
     }
@@ -100,71 +106,107 @@ class App extends Component {
           <div className='signup_box'>
 
             <div className='signup'>
-              <img src={logoSrc} alt='logo'/>
+              {/* <img src={logoSrc} alt='logo'/> */}
               
-              <form onSubmit={this.handleSubmit}>
-                <h5>Firstname : </h5><br></br>
-                <input 
-                  type='text' 
-                  className={formErrors.firstName.length > 0 ? "error" : null}
-                  name='firstName'
-                  placeholder='First Name'
-                  onChange={this.handleChange}
-                  required
-                />
-                {formErrors.firstName.length > 0 && (
-                  <span className="errorMessage">{formErrors.firstName}</span>
-                )}
-            
-                <h5>Lastname :</h5><br></br>
-                <input 
-                  type='text'
-                  className={formErrors.lastName.length > 0 ? "error" : null} 
-                  name='lastName'
-                  placeholder='Last Name'
-                  onChange={this.handleChange}
-                  required
-                />
-                {formErrors.lastName.length > 0 && (
-                  <span className="errorMessage">{formErrors.lastName}</span>
-                )}
+              <form className='signupFormForm' onSubmit={this.handleSubmit}>
+                
+                <div>
+                  <div>
+                    <h5>Firstname : </h5>
+                    <input 
+                      type='text' 
+                      className={formErrors.firstName.length > 0 ? "error" : null}
+                      name='firstName'
+                      placeholder='First Name'
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </div>
+                  {formErrors.firstName.length > 0 && (
+                    <span className="errorMessage">{formErrors.firstName}</span>
+                  )}
+                </div>
+          
+                <div>
+                  <div>
+                    <h5>Lastname :</h5><br></br>
+                    <input 
+                      type='text'
+                      className={formErrors.lastName.length > 0 ? "error" : null} 
+                      name='lastName'
+                      placeholder='Last Name'
+                      onChange={this.handleChange}
+                      required
+                  />
+                  </div>
+                  {formErrors.lastName.length > 0 && (
+                    <span className="errorMessage">{formErrors.lastName}</span>
+                  )}
+                </div>
+                    
+                <div>
+                  <div>
+                  <h5>E-Mail :</h5><br></br>
+                  <input 
+                    type='email'
+                    className={formErrors.email.length > 0 ? "error" : null} 
+                    name='email'
+                    placeholder='Enter your email'
+                    onChange={this.handleChange}
+                    required
+                  />
+                  </div>
+                  {formErrors.email.length > 0 && (
+                    <span className="errorMessage">{formErrors.email}</span>
+                  )}
+                </div>
 
-                <h5>E-Mail :</h5><br></br>
-                <input 
-                  type='email'
-                  className={formErrors.email.length > 0 ? "error" : null} 
-                  name='email'
-                  placeholder='Enter your email'
-                  onChange={this.handleChange}
-                  required
-                />
-                {formErrors.email.length > 0 && (
-                  <span className="errorMessage">{formErrors.email}</span>
-                )}
+              
+                <div>
+                  <div>
+                    <h5>Password :</h5><br></br>
+                    <input 
+                      type='password'
+                      className={formErrors.password.length > 0 ? "error" : null} 
+                      name='password'
+                      placeholder='Password'
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </div>
+                  {formErrors.password.length > 0 && (
+                    <span className="errorMessage">{formErrors.password}</span>
+                  )}
+                </div>
+              
+                <div className='selectContainerDiv'>
+                  <div>
+                    <h5>Gender :</h5>
+                    <select name='gender' onChange={this.handleChange} className="custom-select">
+                      <option value='ge'>gender</option>
+                      <option value='male'>Male</option>
+                      <option value='female'>Female</option>
+                    </select>
+                  </div>
+                  {formErrors.gender.length > 0 && (
+                    <span className="errorMessage genderError">{formErrors.gender}</span>
+                  )}
+                </div>
 
-                <h5>Password :</h5><br></br>
-                <input 
-                  type='password'
-                  className={formErrors.password.length > 0 ? "error" : null} 
-                  name='password'
-                  placeholder='Password'
-                  onChange={this.handleChange}
-                  required
-                />
-                {formErrors.password.length > 0 && (
-                  <span className="errorMessage">{formErrors.password}</span>
-                )}
-
-                <h5>Gender :</h5><br></br>
-                <select name='gender' onChange={this.handleChange} className="custom-select">
-                  <option value='ge'>gender</option>
-                  <option value='male'>Male</option>
-                  <option value='female'>Female</option>
-                </select>
-                {formErrors.gender.length > 0 && (
-                  <span className="errorMessage genderError">{formErrors.gender}</span>
-                )}
-                <br></br>
+                <div className='selectContainerDiv'>
+                  <div>
+                    <h5>SignUp as :</h5>
+                    <select name='user' onChange={this.handleChange} className="custom-select">
+                      <option value='ge'>user</option>
+                      <option value='Seller'>Seller</option>
+                      <option value='buyer'>Buyer</option>
+                    </select>
+                  </div>
+                  {formErrors.user.length > 0 && (
+                    <span className="errorMessage genderError">{formErrors.gender}</span>
+                  )}
+                </div>
+              
 
                 <button type='submit'>Sign up</button>
                 <Link to='/userLogin' className='link'>

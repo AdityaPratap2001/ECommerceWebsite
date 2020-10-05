@@ -9,8 +9,19 @@ light green: #A3C4BC
 
 form {
   width: 100%;
-  display: flex;
+  /* display: flex; */
   flex-wrap: wrap;
+}
+.signupFormForm{
+  height: 100%;
+}
+.signupFormForm > div{
+  margin-bottom: 3px;
+  position: relative;
+  margin-bottom: 12px;
+}
+.signupFormForm span{
+  position: absolute;
 }
 label {
   font-size: 0.8em;
@@ -52,7 +63,7 @@ form{
 }
 .genderError{
   justify-content: flex-start;
-  margin-left: 20%;
+  margin-left: 23%;
 }
 .signup img{
   height: 8vh;
@@ -64,6 +75,12 @@ form{
 button{
   margin: auto;
 }
-/* .link{
-  transform: translateX(39%);
-} */
+.selectContainerDiv{
+  text-align: left;
+}
+
+
+
+
+
+

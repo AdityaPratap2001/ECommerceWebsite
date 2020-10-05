@@ -37,11 +37,30 @@ class Login extends Component {
           console.log(response.data.jwt);
           if(response.status === 200){
             if(response.data !== 'Not Verified!'){
-              this.setState({loading : false});
-              this.setState({redirect : '/'});
+
               localStorage.setItem('token',response.data.jwt);
               localStorage.setItem('username',userData.username);
-              window.location.reload();
+
+              ServerService.fetchDetailsByUserID(userData.username)
+                .then(res => {
+                  console.log(res);
+                  if(res.data.roles === 'Seller'){
+                    this.setState({loading : false});
+                    this.setState({redirect : '/Seller'});
+                    localStorage.setItem('role','seller');
+                    window.location.reload();
+                  }
+                  else{
+                    this.setState({loading : false});
+                    this.setState({redirect : '/'});
+                    window.location.reload();
+                  }
+                })
+                .catch(err => {
+                  console.log(err);
+                })
+              
+              
             }
             else{
               this.setState({notVerified : true});

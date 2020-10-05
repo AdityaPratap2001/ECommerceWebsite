@@ -27,7 +27,7 @@ class SignUp extends Component {
       password : details.password,
       confirmPassword : details.password,
       gender : details.gender,
-      roles : 'user'
+      roles : details.user,
     }
     console.log(userData);
 
