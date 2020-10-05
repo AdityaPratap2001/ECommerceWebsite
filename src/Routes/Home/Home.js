@@ -38,7 +38,7 @@ class Home extends Component {
 
       return (
         <div>
-          <Navbar/>
+          <Navbar shadow={true}/>
           <Carousel/>
           <Categories/>
           <FeaturedSection

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {NavLink} from 'react-router-dom';
 import './OrderItem.css';
+import ServerService from '../../../../../API/ServerService';
 
 class OrderItem extends Component {
 
@@ -10,7 +11,8 @@ class OrderItem extends Component {
   }
 
   componentDidMount(){
-    axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/productId/${this.props.id}`)
+    // axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/productId/${this.props.id}`)
+    ServerService.getProductByID(this.props.id)
       .then(res => {
         console.log(res.data);
         this.setState({prodDetails : res.data[0]});

@@ -75,8 +75,7 @@ class SelectedCategory extends Component {
     console.log('MC-'+ mainSearchCategory + ' SC-' + subSearchCategory);
     
     if(this.state.subcategory){
-      // ServerService.fetchBySubcat(mainSearchCategory,subSearchCategory) 
-      axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/productCategory/productSubCategory/${mainSearchCategory}/${subSearchCategory}`) 
+      ServerService.fetchBySubcat(mainSearchCategory,subSearchCategory) 
         .then(res => {
           console.log(res);
           this.setState({products : res.data});
@@ -86,8 +85,7 @@ class SelectedCategory extends Component {
         })
     }
     else{
-      // ServerService.fetchByCat(mainSearchCategory)
-      axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/productCategory/${mainSearchCategory}`)
+      ServerService.fetchByCat(mainSearchCategory)
         .then(response => {
           console.log(response);
           this.setState({products : response.data});
@@ -148,7 +146,7 @@ class SelectedCategory extends Component {
     
     return (
       <div>
-        <Navbar/>
+        <Navbar shadow={true}/>
         <div className='selected_page'>
 
           {navContent}

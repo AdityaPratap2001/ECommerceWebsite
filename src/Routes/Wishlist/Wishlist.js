@@ -85,7 +85,7 @@ class Wishlist extends Component {
 
     return (
       <div>
-        <Navbar/>
+        <Navbar shadow={true}/>
         <div className='wishlistContainer'>
           
           <div className='accountBlock'>

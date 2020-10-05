@@ -3,6 +3,7 @@ import srlCartImg from '../../../assets/sampleProduct.png';
 import '../Cart.css';
 import { NavLink } from 'react-router-dom';
 import ServerService from '../../../API/ServerService';
+import axios from 'axios';
 
 class CartItem extends Component {
 
@@ -121,8 +122,8 @@ class CartItem extends Component {
 
           <NavLink to={`/product/id/${this.state.data.id}`}>
             <div className='cartImgCont'>
-              <img src={srlCartImg} alt='cartProductImg'/>
-              {/* <img src={`data:image/jpeg;base64,${this.state.data.picByte}`} />  */}
+              {/* <img src={srlCartImg} alt='cartProductImg'/> */}
+              <img src={`data:image/jpeg;base64,${this.state.data.picByte}`} /> 
             </div>
 
             <div className='cartItemProp'>

@@ -73,7 +73,7 @@ class SearchProduct extends Component {
 
     return (
       <div>
-        <Navbar/>
+        <Navbar shadow={true}/>
         <div className='selected_page'>
 
           <div className='display_category searchCont'>

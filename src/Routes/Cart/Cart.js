@@ -160,7 +160,7 @@ class Cart extends Component {
 
     return (
       <div>
-        <Navbar/>
+        <Navbar shadow={true}/>
         <div className='cart_container'>
 
           {data}

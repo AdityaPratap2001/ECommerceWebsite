@@ -82,7 +82,7 @@ class SignUp extends Component {
     if(this.state.loading){
       return(
         <div>
-          <Navbar/>
+          <Navbar shadow={false}/>
           <div className='backdrop'>
             <div className='signup_box'>
               <Spinner/>

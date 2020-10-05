@@ -20,8 +20,7 @@ class ProductDetails extends Component {
 
   componentDidMount(){
     
-    // ServerService.getProductByID(this.state.productId)
-    axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/productId/${this.state.productId}`)
+    ServerService.getProductByID(this.state.productId)
       .then(response => {
         console.log(response.data[0]);
         this.setState({productDetails : response.data[0]});
@@ -361,7 +360,7 @@ class ProductDetails extends Component {
 
     return (
       <div>
-        <Navbar/>
+        <Navbar shadow={true}/>
         <div className='displayProduct'>
           {data}
         </div>

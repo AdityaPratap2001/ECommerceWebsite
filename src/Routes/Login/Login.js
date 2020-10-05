@@ -87,7 +87,7 @@ class Login extends Component {
     if(this.state.error){
       return(
         <div>
-          <Navbar/>
+          <Navbar shadow={false}/>
           <div className='backdrop'>
             <div className='signup_box error_box'>
               <Error reload={this.errorReload} showExtraText={false} content="Username & password doesn't match"/>

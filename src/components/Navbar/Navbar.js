@@ -9,7 +9,6 @@ class Navbar extends Component {
 
   state = {
     isLoggedIn : false,
-    // searchTerm : null
   }
 
   componentDidMount(){
@@ -27,15 +26,17 @@ class Navbar extends Component {
     }
   }
 
-  // searchSubmit = (term) => {
-  //   this.setState({searchTerm : term})
-  //   console.log(this.state.searchTerm);
-  // }
-
   render() {
 
+    let navStyle = null;
+    if(this.props.shadow){
+      navStyle = {
+        boxShadow : '0px 3px 9px #c6c6cc',
+      }
+    }
+
     return(
-      <div className="Navbar navbar navbar-expand-lg navbar-light bg-light">
+      <div className="Navbar navbar navbar-expand-lg navbar-light bg-light" style={navStyle}>
         <div className="navbar-brand">
           <NavLink to='/'>
             <img src={logoSrc} alt='logo'/>
