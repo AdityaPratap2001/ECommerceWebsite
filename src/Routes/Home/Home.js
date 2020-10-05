@@ -14,22 +14,9 @@ class Home extends Component {
   state = {
     isLoggedIn : null,
     searchTerm : null,
-    products : null
   }
 
   componentDidMount(){
-
-    ServerService.fetchAllProducts()
-      .then(response => {
-        console.log(response.data);
-        this.setState({products : response.data});
-        console.log('items fetched state changed!');
-        // console.log(this.state);
-      })
-      .catch(error =>{
-        console.log(error)
-      })
-    console.log(this.state);
 
     let token = localStorage.getItem('token');
     if(token !== null){
@@ -55,14 +42,12 @@ class Home extends Component {
           <Carousel/>
           <Categories/>
           <FeaturedSection
-            products={this.state.products} 
             personalized={false}
             sectionTitle='Featured Products' 
             subHead1='Choose from our best products'
             subHead2='These products are worth adding to your cart!'
           />
           <FeaturedSection
-            products={this.state.products}
             personalized={true}
             sectionTitle={tagLine} 
             subHead1="We've picked some items for you"

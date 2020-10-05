@@ -16,7 +16,7 @@ class PastOrders extends Component {
     let userID = localStorage.getItem('username');
     ServerService.getPastOrders(userID)
       .then(res => {
-        // console.log(res);
+        console.log(res);
         this.setState({pastOrders : res.data , loading : false});
         console.log(this.state.pastOrders);
         if(this.state.pastOrders.length == 0){
@@ -42,7 +42,9 @@ class PastOrders extends Component {
 
     if(this.state.isEmpty){
       data = (
-        <img src={emptySrc} alt='No items ordered yet!' style={{width : '50%'}}/>
+        <div className='noOrders'>
+          <img src={emptySrc} alt='No items ordered yet!' style={{width : '50%'}}/>
+        </div>
       )
     }
 
