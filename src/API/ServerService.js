@@ -98,6 +98,10 @@ class ServerService{
     return axios.get(`/orderHistory/${userID}`)
   }
 
+  userForgotPassword(userID){
+    return axios.get(`/forgotPassword/${userID}`)
+  }
+
 }
 
 export default new ServerService();

@@ -6,6 +6,8 @@ import LoginForm from './LoginForm';
 import Error from './Error/Error';
 import { Redirect } from 'react-router-dom';
 import ServerService from '../../API/ServerService';
+import Confirmation from '../SignUp/Confirmation/Confirmation';
+import '../SignUp/Confirmation/Confirmation.css';
 
 class Login extends Component {
 
@@ -14,6 +16,7 @@ class Login extends Component {
     error: false,
     notVerified : null,
     redirect : null,
+    sentMail : null,
   }
 
   errorReload = () =>{
@@ -78,7 +81,39 @@ class Login extends Component {
     this.setState({loading : true});
   }
 
+  sendPass = (email) => {
+    if(email === null || email==='' || email===' '){
+      alert('Enter emailID!');
+      return
+    }
+    this.setState({loading : true});
+    ServerService.userForgotPassword(email)
+      .then(res => {
+        console.log(res);
+        if(res.status === 200){
+          this.setState({loading : false , sentMail : true});
+          // alert('Mail sent to your registered E-mail!');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   render() {
+
+    if(this.state.sentMail){
+      return(
+        <div>
+          <Navbar/>
+          <div className='backdrop'>
+            <div className='signup_box confirmation_box'>
+              <Confirmation content="We've sent you an email!"/>
+            </div>
+          </div>
+        </div>
+      )
+    }
     
     if(this.state.redirect){
       return <Redirect to={this.state.redirect}/>
@@ -124,7 +159,7 @@ class Login extends Component {
     }
     return(
       <div>
-        <LoginForm submitHandler={this.onSubmit}/>
+        <LoginForm forgot={this.sendPass} submitHandler={this.onSubmit}/>
       </div>
     )
   }

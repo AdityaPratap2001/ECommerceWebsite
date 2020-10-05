@@ -70,6 +70,10 @@ class LoginForm extends Component {
     this.setState({ formErrors, [name]: value });
   };
 
+  forgotPass = () => {
+    this.props.forgot(this.state.email);
+  }
+
   render() {
 
     const { formErrors } = this.state;
@@ -135,6 +139,8 @@ class LoginForm extends Component {
                     onChange={this.handleChange}
                     required
                   />
+                  <h4 className='forgotPass' onClick={this.forgotPass}>Forgot password?</h4>
+                  
                   {formErrors.password.length > 0 && (
                     <span className="errorMessage">{formErrors.password}</span>
                   )}

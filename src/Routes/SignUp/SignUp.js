@@ -60,7 +60,7 @@ class SignUp extends Component {
           <Navbar/>
           <div className='backdrop'>
             <div className='signup_box confirmation_box'>
-              <Confirmation/>
+              <Confirmation content="We've sent you an confirmation link!"/>
             </div>
           </div>
         </div>
