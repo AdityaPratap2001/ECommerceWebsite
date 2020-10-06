@@ -3,7 +3,6 @@ import Navbar from '../../components/Navbar/Navbar';
 import {NavLink, Redirect} from 'react-router-dom';
 import loadSrc from '../../assets/loader2.gif';
 import './User.css';
-import SearchSeller from './SearchSeller/SearchSeller'; 
 import ServerService from '../../API/ServerService';
 import ProfileDetails from './ProfileDetails/ProfileDetails';
 import ChangePassword from './ChangePassword/ChangePassword';

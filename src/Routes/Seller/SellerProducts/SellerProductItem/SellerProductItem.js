@@ -1,7 +1,7 @@
 import React from 'react';
-import './SellerSearchItem.css';
+import './SellerProductItem.css';
 
-const SellerSearchItem = ({item}) => {
+const SellerProductItem = ({item}) => {
   return (
     <div className='sellerSearchItem'>
       
@@ -56,4 +56,4 @@ const SellerSearchItem = ({item}) => {
   );
 }
 
-export default SellerSearchItem;
+export default SellerProductItem;

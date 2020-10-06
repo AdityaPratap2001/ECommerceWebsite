@@ -55,7 +55,7 @@ class ServerService{
   }
 
   searchBySellerID(ID){
-    return axios.get(`/api/products/productSellerUsername/${ID}`)
+    return axios.get(`/api/products/getSellerProduct/${ID}`)
   }
 
   fetchDetailsByUserID(ID){

@@ -24,7 +24,6 @@ const formValid = ({ formErrors, ...rest }) => {
 
 class ProductForm extends Component {
   state = {
-    sellerID: null,
     sellerBrand: null,
     category: null,
     subcategory: null,
@@ -34,9 +33,8 @@ class ProductForm extends Component {
     stock: null,
     fit: null,
     material: null,
-    // img : null,
+    selectedFile : null,
     formErrors: {
-      sellerID: "",
       sellerBrand: "",
       category: "",
       subcategory:"",
@@ -57,7 +55,6 @@ class ProductForm extends Component {
       // this.setState({img : e.target.files[0]});
       this.props.submitHandler(this.state);
       this.setState({
-        sellerID: null,
         sellerBrand: null,
         category: null,
         subcategory: null,
@@ -67,8 +64,8 @@ class ProductForm extends Component {
         stock: null,
         fit: null,
         material: null,
+        selectedFile: null,
         formErrors: {
-          sellerID: "",
           sellerBrand: "",
           category: "",
           subcategory:"",
@@ -87,17 +84,16 @@ class ProductForm extends Component {
     }
   };
 
+  fileChangedHandler = event => {
+    this.setState({ selectedFile: event.target.files[0] })
+  }
+
   handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
-      case "sellerID":
-        formErrors.sellerID = emailRegex.test(value)
-          ? ""
-          : "invalid email address";
-        break;
       case "sellerBrand":
         formErrors.sellerBrand = value.length < 3 ? "minimum 3 characaters required" : "";
         break;
@@ -145,9 +141,9 @@ class ProductForm extends Component {
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit} className='productform'>
+        <form  encType="multipart/form-data" onSubmit={this.handleSubmit} className='productform'>
 
-          <div>
+          {/* <div>
             <div>Seller ID :</div>
             <div className='dataEntryDivs'>
               <input
@@ -162,7 +158,7 @@ class ProductForm extends Component {
                 <span className="errorMessage">{formErrors.sellerID}</span>
               )}
             </div>
-          </div>
+          </div> */}
 
           <div>
             <div>Seller Brand :</div>
@@ -335,12 +331,12 @@ class ProductForm extends Component {
             </div>
           </div> 
 
-          {/* <div>
+          <div>
             <div>Upload Img : </div>
             <div className='dataEntryDivs imgUpload'>
-              <input name='img' type='file'></input>
+              <input name='img' required onChange={this.fileChangedHandler} type='file'></input>
             </div>
-          </div> */}
+          </div>
 
           <button type="submit" style={{width : '50%',marginTop : '10px'}} class="btn btn-primary">Submit</button>
         

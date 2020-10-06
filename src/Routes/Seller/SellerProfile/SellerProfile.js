@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Redirect} from 'react-router-dom';
 import logoSrc from '../../../assets/logo.png';
 import './SellerProfile.css';
 import ServerService from '../../../API/ServerService';
@@ -7,6 +7,8 @@ import loadSrc from '../../../assets/loader2.gif';
 import ProfileDetails from '../../User/ProfileDetails/ProfileDetails';
 import ChangePassword from '../../User/ChangePassword/ChangePassword';
 import ProductForm from '../ProductForm/ProductForm';
+import axios from '../../../API/baseURL/baseURL';
+import SellerProducts from '../SellerProducts/SellerProducts';
 
 
 class SellerProfile extends Component {
@@ -14,6 +16,7 @@ class SellerProfile extends Component {
   state = {
     details : null,
     username : null,
+    redirect : null,
   }
 
   submit = (newPass) => {
@@ -39,6 +42,8 @@ class SellerProfile extends Component {
   }
 
   submitProduct = (details) => {
+  
+    let userId = localStorage.getItem('username');
     const prodDetails = {
       name : details.title,
       price : Number(details.price),
@@ -49,11 +54,10 @@ class SellerProfile extends Component {
       fit : details.fit,
       material : details.material,
       prodType : details.type,
-      sellerUsername : details.sellerID
+      sellerUsername : userId
     }
     console.log(prodDetails);
 
-    // let userId = localStorage.getItem('username');
     ServerService.pushProduct(prodDetails)
       .then(res => {
         console.log(res);
@@ -61,11 +65,27 @@ class SellerProfile extends Component {
       .catch(err => {
         console.log(err)
       })
+
+    // let fd = new FormData();
+    // fd.append('image',details.selectedFile);
+    // console.log(details.title);
+    // console.log(fd);
+    const imgDetail = {
+      image : details.selectedFile,
+    }
+    // console.log(imgDetail);
+    axios.post(`/image/${details.title}`,imgDetail)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   logOut = (e) => {
     localStorage.clear();
-    window.location.reload();
+    this.setState({redirect : '/'})
   }
 
   componentDidMount(){
@@ -87,6 +107,10 @@ class SellerProfile extends Component {
   }
 
   render() {
+
+    if(this.state.redirect){
+      return <Redirect to='/'/>
+    }
 
     let data = (
       <div className='wishLoader'>
@@ -207,6 +231,11 @@ class SellerProfile extends Component {
           <div className='searchForSeller'>
             <h5 style={{margin:'24px'}}>Sell your product</h5>
             {data3}
+          </div>
+
+          <div className='searchForSeller'>
+            <h5 style={{margin:'24px'}}>Products you've sold :</h5>
+            <SellerProducts/>
           </div>
           
 
