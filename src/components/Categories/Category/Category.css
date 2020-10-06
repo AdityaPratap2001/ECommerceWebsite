@@ -18,6 +18,32 @@
 .shift_left{
   transform: translateX(-40%);
 }
+.display_categories .Men{
+  background-image: url('../../../assets/Men.png');
+  background-size: cover;
+  background-position: center;
+}
+.display_categories .Women{
+  background-image: url('../../../assets/Women.png');
+  background-size: cover;
+  background-position: center;
+}
+.display_categories .Kids{
+  background-image: url('../../../assets/Kids.png');
+  background-size: cover;
+  background-position: center;
+}
+.display_categories .HomeLiving{
+  background-image: url('../../../assets/home.png');
+  background-size: cover;
+  background-position: center;
+}
+.display_categories .Bags{
+  background-image: url('../../../assets/bags.png');
+  background-size: cover;
+  background-position: center;
+}
+
 
 @media (max-width:1143px){
   .category{
