@@ -10,6 +10,8 @@ import Wishlist from './Routes/Wishlist/Wishlist';
 import Cart from './Routes/Cart/Cart';
 import User from './Routes/User/User';
 import SearchProduct from './Routes/SearchProduct/SearchProduct';
+import Seller from './Routes/Seller/Seller';
+import SellerProfile from './Routes/Seller/SellerProfile/SellerProfile';
 
 function App() {
   return (
@@ -42,6 +44,12 @@ function App() {
         />
         <Route path='/search/:searchTerm/:gender' exact
           render={props => <SearchProduct key={props.location.pathname} {...props}/>}
+        />
+        <Route path='/Seller' exact 
+          render={props => <Seller/>}
+        />
+        <Route path='/Seller/user' exact
+          render={props => <SellerProfile/>}
         />
       </BrowserRouter>
     </div>

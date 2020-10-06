@@ -52,7 +52,7 @@ class ProfileDetails extends Component {
       )
     }
 
-    return (
+    let extraData = (
       <div className='userDetailsDisplay'>
         
         <h6 className = 'editProf' onClick={this.editDetails}>Edit Details</h6>
@@ -73,7 +73,31 @@ class ProfileDetails extends Component {
           <div>Registered Email :</div>
           <div className='details'>{this.props.detail.username}</div>
         </div>
+      </div>
+    );
+    if(this.props.showExtra){
+      extraData = (
+        <div className='userDetailsDisplay'>
+        
+        <h6 className = 'editProf' onClick={this.editDetails}>Edit Details</h6>
+        
         <div>
+          <div>First-Name : </div>
+          <div className='details'>{this.props.detail.firstName}</div>
+        </div>
+        <div>
+          <div>Last-Name : </div>
+          <div className='details'>{this.props.detail.lastName}</div>
+        </div>
+        <div>
+          <div>Gender : </div>
+          <div className='details gender'>{this.props.detail.gender}</div>
+        </div>
+        <div>
+          <div>Registered Email :</div>
+          <div className='details'>{this.props.detail.username}</div>
+        </div>
+        <div> 
           <div>Items in Wishlist :</div>
           <div className='details'>{this.props.wishElem}</div>
         </div>
@@ -82,6 +106,40 @@ class ProfileDetails extends Component {
           <div className='details'>{this.props.cartElem}</div>
         </div>
       </div>
+      )
+    }
+
+    return (
+      extraData
+      // <div className='userDetailsDisplay'>
+        
+      //   <h6 className = 'editProf' onClick={this.editDetails}>Edit Details</h6>
+        
+      //   <div>
+      //     <div>First-Name : </div>
+      //     <div className='details'>{this.props.detail.firstName}</div>
+      //   </div>
+      //   <div>
+      //     <div>Last-Name : </div>
+      //     <div className='details'>{this.props.detail.lastName}</div>
+      //   </div>
+      //   <div>
+      //     <div>Gender : </div>
+      //     <div className='details gender'>{this.props.detail.gender}</div>
+      //   </div>
+      //   <div>
+      //     <div>Registered Email :</div>
+      //     <div className='details'>{this.props.detail.username}</div>
+      //   </div>
+      //   <div> 
+      //     <div>Items in Wishlist :</div>
+      //     <div className='details'>{this.props.wishElem}</div>
+      //   </div>
+      //   <div>
+      //     <div>Items in Cart :</div>
+      //     <div className='details'>{this.props.cartElem}</div>
+      //   </div>
+      // </div>
     );
   }
 }

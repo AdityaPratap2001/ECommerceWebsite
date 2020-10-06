@@ -56,8 +56,33 @@ class ProductForm extends Component {
     if (formValid(this.state)) {
       // this.setState({img : e.target.files[0]});
       this.props.submitHandler(this.state);
+      this.setState({
+        sellerID: null,
+        sellerBrand: null,
+        category: null,
+        subcategory: null,
+        title: null,
+        type: null,
+        price: null,
+        stock: null,
+        fit: null,
+        material: null,
+        formErrors: {
+          sellerID: "",
+          sellerBrand: "",
+          category: "",
+          subcategory:"",
+          title: "",
+          type: "",
+          price: "",
+          stock: "",
+          fit: "",
+          material: "",
+        },
+      })
       alert('successful!');
-    } else {
+    } 
+    else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };

@@ -3,7 +3,6 @@ import Navbar from '../../components/Navbar/Navbar';
 import {NavLink, Redirect} from 'react-router-dom';
 import loadSrc from '../../assets/loader2.gif';
 import './User.css';
-import ProductForm from './ProductForm/ProductForm';
 import SearchSeller from './SearchSeller/SearchSeller'; 
 import ServerService from '../../API/ServerService';
 import ProfileDetails from './ProfileDetails/ProfileDetails';
@@ -109,7 +108,7 @@ class User extends Component {
       let cartNum = cartItems.length - 1;
 
       data = (
-        <ProfileDetails detail={this.state.details} wishElem={wishNum} cartElem={cartNum}/>
+        <ProfileDetails detail={this.state.details} showExtra={true} wishElem={wishNum} cartElem={cartNum}/>
       )
 
       data2 = (
@@ -134,31 +133,31 @@ class User extends Component {
         </div>
       )
       // data2 = (
-        // <div className='productForm'>
-        //   <div class="accordion" id="accordionExample">
-        //     <div class="card">
-        //       <div class="card-header" id="headingOne">
-        //         <h2 class="mb-0">
-        //           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        //             Click to sell your Product!
-        //           </button>
-        //         </h2>
-        //       </div>
+      //   <div className='productForm'>
+      //     <div class="accordion" id="accordionExample">
+      //       <div class="card">
+      //         <div class="card-header" id="headingOne">
+      //           <h2 class="mb-0">
+      //             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+      //               Click to sell your Product!
+      //             </button>
+      //           </h2>
+      //         </div>
 
-        //       <div id="collapseOne" class="collapse collapseForm" aria-labelledby="headingOne" data-parent="#accordionExample">
-        //         <div class="card-body">
-        //           <ProductForm submitHandler={this.submit}/>
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </div>
-        // </div>
+      //         <div id="collapseOne" class="collapse collapseForm" aria-labelledby="headingOne" data-parent="#accordionExample">
+      //           <div class="card-body">
+      //             <ProductForm submitHandler={this.submit}/>
+      //           </div>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
       //   )
     }
 
     return (
       <div>
-        <Navbar/>
+        <Navbar shadow={true}/>
         <div className='wishlistContainer'>
           
           <div className='accountBlock'>

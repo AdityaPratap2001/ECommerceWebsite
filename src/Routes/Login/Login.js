@@ -14,13 +14,14 @@ class Login extends Component {
   state = {
     loading : false,
     error: false,
+    wrongEmail : null,
     notVerified : null,
     redirect : null,
     sentMail : null,
   }
 
   errorReload = () =>{
-    this.setState({loading : false,error : false,notVerified : false});
+    this.setState({loading : false,error : false,notVerified : false,wrongEmail : false});
   }
 
   onSubmit = (details) =>{
@@ -97,6 +98,7 @@ class Login extends Component {
       })
       .catch(err => {
         console.log(err);
+        this.setState({loading : false , wrongEmail : true})
       })
   }
 
@@ -117,6 +119,19 @@ class Login extends Component {
     
     if(this.state.redirect){
       return <Redirect to={this.state.redirect}/>
+    }
+
+    if(this.state.wrongEmail){
+      return(
+        <div>
+          <Navbar shadow={false}/>
+          <div className='backdrop'>
+            <div className='signup_box error_box'>
+              <Error reload={this.errorReload} showExtraText={false} content="Couldn't find any account linked to that E-mail!"/>
+            </div>
+          </div>
+        </div>
+      )
     }
 
     if(this.state.error){
