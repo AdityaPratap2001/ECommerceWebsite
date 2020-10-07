@@ -18,6 +18,10 @@ class User extends Component {
 
   componentDidMount(){
     let userId = localStorage.getItem('username');
+    let role = localStorage.getItem('role');
+    if(role !== null){
+      this.setState({redirect : '/'});
+    }
 
     ServerService.fetchDetailsByUserID(userId)
       .then(res => {
@@ -57,34 +61,10 @@ class User extends Component {
       })
   }
 
-  // submit = (details) => {
-  //   const prodDetails = {
-  //     name : details.title,
-  //     price : Number(details.price),
-  //     stock : Number(details.stock),
-  //     seller : details.sellerBrand,
-  //     category : details.category,
-  //     subCategory : details.subcategory,
-  //     fit : details.fit,
-  //     material : details.material,
-  //     prodType : details.type,
-  //     sellerUsername : details.sellerID
-  //   }
-  //   console.log(prodDetails);
-
-  //   // let userId = localStorage.getItem('username');
-  //   ServerService.pushProduct(prodDetails)
-  //     .then(res => {
-  //       console.log(res);
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }
-
   logOut = (e) => {
     localStorage.clear();
-    window.location.reload();
+    this.setState({redirect : '/'});
+    // window.location.reload();
   }
 
   render() {
@@ -131,27 +111,6 @@ class User extends Component {
           </div>
         </div>
       )
-      // data2 = (
-      //   <div className='productForm'>
-      //     <div class="accordion" id="accordionExample">
-      //       <div class="card">
-      //         <div class="card-header" id="headingOne">
-      //           <h2 class="mb-0">
-      //             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-      //               Click to sell your Product!
-      //             </button>
-      //           </h2>
-      //         </div>
-
-      //         <div id="collapseOne" class="collapse collapseForm" aria-labelledby="headingOne" data-parent="#accordionExample">
-      //           <div class="card-body">
-      //             <ProductForm submitHandler={this.submit}/>
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </div>
-      //   )
     }
 
     return (

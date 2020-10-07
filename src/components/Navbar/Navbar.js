@@ -14,7 +14,8 @@ class Navbar extends Component {
   componentDidMount(){
     // this.setState({isLoggedIn : this.props.logStatus})
     let token = localStorage.getItem('token');
-    if(token !== null){
+    let role = localStorage.getItem('role');
+    if(token !== null && role === null){
       this.setState({isLoggedIn : true});
       console.log(token);
       // window.location.reload(true);

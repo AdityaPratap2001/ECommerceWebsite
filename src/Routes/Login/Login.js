@@ -52,12 +52,10 @@ class Login extends Component {
                     this.setState({loading : false});
                     this.setState({redirect : '/Seller'});
                     localStorage.setItem('role','seller');
-                    window.location.reload();
                   }
                   else{
                     this.setState({loading : false});
                     this.setState({redirect : '/'});
-                    window.location.reload();
                   }
                 })
                 .catch(err => {

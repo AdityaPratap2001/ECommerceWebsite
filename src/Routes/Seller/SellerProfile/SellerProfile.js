@@ -19,6 +19,28 @@ class SellerProfile extends Component {
     redirect : null,
   }
 
+  componentDidMount(){
+    let userId = localStorage.getItem('username');
+    let role = localStorage.getItem('role');
+    if(role === null){
+      this.setState({redirect : '/'});
+    }
+
+    ServerService.fetchDetailsByUserID(userId)
+      .then(res => {
+        console.log(res);
+        this.setState({details : res.data});
+        this.setState({userName : this.state.details.firstName});
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    
+    if(userId === null){
+      this.setState({redirect : '/Seller'});
+    }
+  }
+
   submit = (newPass) => {
     let userId = localStorage.getItem('username');
     let newPassDetails = {
@@ -61,6 +83,7 @@ class SellerProfile extends Component {
     ServerService.pushProduct(prodDetails)
       .then(res => {
         console.log(res);
+        alert('Product uploaded successfully!');
       })
       .catch(err => {
         console.log(err)
@@ -85,25 +108,7 @@ class SellerProfile extends Component {
 
   logOut = (e) => {
     localStorage.clear();
-    this.setState({redirect : '/'})
-  }
-
-  componentDidMount(){
-    let userId = localStorage.getItem('username');
-
-    ServerService.fetchDetailsByUserID(userId)
-      .then(res => {
-        console.log(res);
-        this.setState({details : res.data});
-        this.setState({userName : this.state.details.firstName});
-      })
-      .catch(err => {
-        console.log(err);
-      })
-    
-    if(userId === null){
-      this.setState({redirect : '/Seller'});
-    }
+    this.setState({redirect : '/'});
   }
 
   render() {

@@ -30,7 +30,8 @@ class FeaturedSection extends Component {
     else{
       console.log('PERSONALIZED PRODUCTS!');
       let userID = localStorage.getItem('username');
-      if(userID !== null){
+      let role = localStorage.getItem('role');
+      if(userID !== null && role===null){
         ServerService.fetchDetailsByUserID(userID)
           .then(res => {
             console.log(res);

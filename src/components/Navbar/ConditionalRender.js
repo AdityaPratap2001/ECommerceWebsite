@@ -4,7 +4,10 @@ import LoggedOut from './LoggedOut/LoggedOut';
 
 const ConditionalRender = (props) => {
 
-  // let content = <LoggedOut/>
+  let role = localStorage.getItem('role');
+  if(role !== null){
+   return(<LoggedOut/>);
+  }
 
   if(props.isLoggedIn){
     return(<LoggedIn/>)

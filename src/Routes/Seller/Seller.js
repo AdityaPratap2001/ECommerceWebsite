@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Redirect} from 'react-router-dom';
 import logoSrc from '../../assets/logo.png';
 import sellerBanner from '../../assets/sellerBanner2.png';
 import './Seller.css';
 import Footer from '../../components/Footer/Footer';
 
 class Seller extends Component {
+
+  state = {
+    redirect : null,
+  }
+
+  componentDidMount(){
+    let role = localStorage.getItem('role');
+    if(role === null){
+      this.setState({redirect : '/'});
+    }
+  }
+
   render() {
+
+    if(this.state.redirect){
+      return <Redirect to='/'/>
+    }
+
     return (
       <div className='sellerPage'>
         

@@ -6,6 +6,7 @@ import './Cart.css';
 import transactionSrc from '../../assets/transaction2.gif';
 import emptyImg from '../../assets/emptyCart.png';
 import ServerService from '../../API/ServerService';
+import { Redirect } from 'react-router-dom';
 
 class Cart extends Component {
 
@@ -13,11 +14,16 @@ class Cart extends Component {
     list : null,
     isEmpty : null,
     transactionComplete : null,
-    loading : null
+    loading : null,
+    redirect : null,
   }
 
   componentDidMount(){
     let userId = localStorage.getItem('username');
+    let role = localStorage.getItem('role');
+    if(role !== null){
+      this.setState({redirect : '/'});
+    }
     
     ServerService.fetchCartDetailsByID(userId)
       .then(res => {
@@ -60,6 +66,10 @@ class Cart extends Component {
   }
 
   render() {
+
+    if(this.state.redirect){
+      return <Redirect to='/'/>
+    }
 
     if(this.state.list){
       if(this.state.list.length > 1){

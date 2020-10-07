@@ -19,6 +19,10 @@ class Wishlist extends Component {
   componentDidMount(){
 
     let userId = localStorage.getItem('username');
+    let role = localStorage.getItem('role');
+    if(role !== null){
+      this.setState({redirect : '/'});
+    }
 
     ServerService.fetchDetailsByUserID(userId)
       .then(res => {
@@ -50,7 +54,7 @@ class Wishlist extends Component {
 
   logOut = (e) => {
     localStorage.clear();
-    window.location.reload();
+    this.setState({redirect : '/'});
   }
 
   render() {

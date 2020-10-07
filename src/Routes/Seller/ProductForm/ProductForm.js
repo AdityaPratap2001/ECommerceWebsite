@@ -25,8 +25,8 @@ const formValid = ({ formErrors, ...rest }) => {
 class ProductForm extends Component {
   state = {
     sellerBrand: null,
-    category: null,
-    subcategory: null,
+    category: 'Men',
+    subcategory: 'Top-wear',
     title: null,
     type: null,
     price: null,
@@ -52,12 +52,12 @@ class ProductForm extends Component {
     e.preventDefault();
 
     if (formValid(this.state)) {
-      // this.setState({img : e.target.files[0]});
+
       this.props.submitHandler(this.state);
       this.setState({
         sellerBrand: null,
-        category: null,
-        subcategory: null,
+        category: 'Men',
+        subcategory: 'Top-wear',
         title: null,
         type: null,
         price: null,
@@ -77,7 +77,6 @@ class ProductForm extends Component {
           material: "",
         },
       })
-      alert('successful!');
     } 
     else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
@@ -267,7 +266,7 @@ class ProductForm extends Component {
             <div>Price :</div>
             <div className='dataEntryDivs'>
             <input
-              type="text"
+              type="number"
               className={formErrors.price.length > 0 ? "error" : null}
               name="price"
               placeholder="Product Price"
@@ -284,7 +283,7 @@ class ProductForm extends Component {
             <div>Stock :</div>
             <div className='dataEntryDivs'>
             <input
-              type="text"
+              type="number"
               className={formErrors.stock.length > 0 ? "error" : null}
               name="stock"
               placeholder="Number of Products available"
