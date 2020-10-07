@@ -11,12 +11,12 @@ class Seller extends Component {
     redirect : null,
   }
 
-  componentDidMount(){
-    let role = localStorage.getItem('role');
-    if(role === null){
-      this.setState({redirect : '/'});
-    }
-  }
+  // componentWillMount(){
+  //   let role = localStorage.getItem('role');
+  //   if(role === null){
+  //     this.setState({redirect : '/'});
+  //   }
+  // }
 
   render() {
 
