@@ -61,7 +61,8 @@ class ProductDetails extends Component {
   addToWishlist = () => {
     // console.log('Wishlisted!');
     let token = localStorage.getItem('token');
-    if(token === null){
+    let role = localStorage.getItem('role');
+    if(token === null || role !== null){
       this.setState({redirect : '/userLogin'})
     }
     else{
@@ -86,7 +87,8 @@ class ProductDetails extends Component {
   addToCart = () => {
     console.log('Add to cart!');
     let token = localStorage.getItem('token');
-    if(token === null){
+    let role = localStorage.getItem('role');
+    if(token === null || role !== null){
       this.setState({redirect : '/userLogin'})
     }
     else{

@@ -32,14 +32,11 @@ class ProfileDetails extends Component {
        console.log(res);
        if(res.status === 200){
          window.location.reload();
-         alert('Details changed Successfully!');
        }
      })
      .catch(err => {
        console.log(err);
-       alert('Something went wrong!');
      })
-    // this.setState({edit : false})
   }
 
   render() {
@@ -111,35 +108,6 @@ class ProfileDetails extends Component {
 
     return (
       extraData
-      // <div className='userDetailsDisplay'>
-        
-      //   <h6 className = 'editProf' onClick={this.editDetails}>Edit Details</h6>
-        
-      //   <div>
-      //     <div>First-Name : </div>
-      //     <div className='details'>{this.props.detail.firstName}</div>
-      //   </div>
-      //   <div>
-      //     <div>Last-Name : </div>
-      //     <div className='details'>{this.props.detail.lastName}</div>
-      //   </div>
-      //   <div>
-      //     <div>Gender : </div>
-      //     <div className='details gender'>{this.props.detail.gender}</div>
-      //   </div>
-      //   <div>
-      //     <div>Registered Email :</div>
-      //     <div className='details'>{this.props.detail.username}</div>
-      //   </div>
-      //   <div> 
-      //     <div>Items in Wishlist :</div>
-      //     <div className='details'>{this.props.wishElem}</div>
-      //   </div>
-      //   <div>
-      //     <div>Items in Cart :</div>
-      //     <div className='details'>{this.props.cartElem}</div>
-      //   </div>
-      // </div>
     );
   }
 }

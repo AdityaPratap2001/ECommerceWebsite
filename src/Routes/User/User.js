@@ -7,6 +7,7 @@ import ServerService from '../../API/ServerService';
 import ProfileDetails from './ProfileDetails/ProfileDetails';
 import ChangePassword from './ChangePassword/ChangePassword';
 import PastOrders from './PastOrders/PastOrders';
+import CustomAlert from '../../components/CustomAlert/CustomAlert';
 
 class User extends Component {
 
@@ -14,6 +15,9 @@ class User extends Component {
     details : false,
     userName : 'Username',
     redirect : null,
+    showPopup : null,
+    popupData : null,
+    popupColor : null,
   }
 
   componentDidMount(){
@@ -53,24 +57,33 @@ class User extends Component {
       .then(res => {
         console.log(res);
         if(res.status === 200){
-          alert('password changed successfully!');
+          this.setState({showPopup : true,popupData : 'Password changed successfully!',popupColor : 'success'});
         }
       })
       .catch(err => {
-        alert('You entered wrong password!');
+          this.setState({showPopup : true,popupData : 'You entered wrong old password!',popupColor : 'danger'});
       })
+  }
+
+  hidePopup = () => {
+    this.setState({showPopup : null});
   }
 
   logOut = (e) => {
     localStorage.clear();
     this.setState({redirect : '/'});
-    // window.location.reload();
   }
 
   render() {
 
     if(this.state.redirect){
       return <Redirect to={this.state.redirect}/>
+    }
+    let showPopup = null;
+    if(this.state.showPopup){
+      showPopup = (
+        <CustomAlert hidePop={this.hidePopup} color={this.state.popupColor} content={this.state.popupData}/>
+      )
     }
 
     let data = (
@@ -116,6 +129,7 @@ class User extends Component {
     return (
       <div>
         <Navbar shadow={true}/>
+        {showPopup}
         <div className='wishlistContainer'>
           
           <div className='accountBlock'>

@@ -9,7 +9,7 @@ import ChangePassword from '../../User/ChangePassword/ChangePassword';
 import ProductForm from '../ProductForm/ProductForm';
 import axios from '../../../API/baseURL/baseURL';
 import SellerProducts from '../SellerProducts/SellerProducts';
-
+import CustomAlert from '../../../components/CustomAlert/CustomAlert';
 
 class SellerProfile extends Component {
 
@@ -17,6 +17,9 @@ class SellerProfile extends Component {
     details : null,
     username : null,
     redirect : null,
+    showPopup : null,
+    popupData : null,
+    popupColor : null,
   }
 
   componentDidMount(){
@@ -55,11 +58,13 @@ class SellerProfile extends Component {
       .then(res => {
         console.log(res);
         if(res.status === 200){
-          alert('password changed successfully!');
+          // alert('password changed successfully!');
+          this.setState({showPopup : true,popupData : 'Password changed successfully!',popupColor : 'success'});
+          // window.location.reload();
         }
       })
       .catch(err => {
-        alert('You entered wrong password!');
+          this.setState({showPopup : true,popupData : 'You entered wrong old password!',popupColor : 'danger'})
       })
   }
 
@@ -83,27 +88,33 @@ class SellerProfile extends Component {
     ServerService.pushProduct(prodDetails)
       .then(res => {
         console.log(res);
-        alert('Product uploaded successfully!');
+        
+        this.setState({showPopup : true,popupData : 'Product uploaded successfully!',popupColor : 'success'});
+        // window.location.reload();
       })
       .catch(err => {
         console.log(err)
       })
 
-    // let fd = new FormData();
-    // fd.append('image',details.selectedFile);
-    // console.log(details.title);
-    // console.log(fd);
-    const imgDetail = {
-      image : details.selectedFile,
-    }
+    let fd = new FormData();
+    fd.append('image',details.selectedFile);
+    console.log(details.title);
+    console.log(fd);
+    // const imgDetail = {
+    //   image : details.selectedFile,
+    // }
     // console.log(imgDetail);
-    axios.post(`/image/${details.title}`,imgDetail)
+    axios.post(`/image/${details.title}`,fd)
       .then(res => {
         console.log(res);
       })
       .catch(err => {
         console.log(err);
       })
+  }
+
+  hidePopup = () => {
+    this.setState({showPopup : null});
   }
 
   logOut = (e) => {
@@ -115,6 +126,13 @@ class SellerProfile extends Component {
 
     if(this.state.redirect){
       return <Redirect to='/'/>
+    }
+
+    let showPopup = null;
+    if(this.state.showPopup){
+      showPopup = (
+        <CustomAlert hidePop={this.hidePopup} color={this.state.popupColor} content={this.state.popupData}/>
+      )
     }
 
     let data = (
@@ -192,6 +210,8 @@ class SellerProfile extends Component {
             </div>
           </div>
         </nav>
+
+        {showPopup}
 
         <div className='wishlistContainer'>
   
