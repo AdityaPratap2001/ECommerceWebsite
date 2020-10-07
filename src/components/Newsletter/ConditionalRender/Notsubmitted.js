@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
-import axios from '../../../API/baseURL/baseURL';
 import '../Newsletter.css';
+import ServerService from '../../../API/ServerService';
 
 class Notsubmitted extends Component {
 
@@ -15,7 +14,7 @@ class Notsubmitted extends Component {
       return;
     }
     else{
-      axios.get(`/addService/${this.state.signUpEmail}`)
+      ServerService.addService(this.state.signUpEmail)
         .then(res => {
           console.log(res);
         })

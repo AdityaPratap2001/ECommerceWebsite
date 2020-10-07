@@ -22,7 +22,9 @@
 .userDetailsDisplay>div>.gender{
   text-transform: capitalize;
 }
-
+.rightDisplay{
+  overflow-x: hidden;
+}
 .rightDisplay>.productForm{
   margin-top: 30px;
 }

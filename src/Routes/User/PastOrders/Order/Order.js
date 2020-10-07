@@ -30,11 +30,13 @@ class Order extends Component {
       )
     }
 
+    let totalAmt = this.props.details.billingAmt + 50;
+
     return (
       <div className='order'>
         <h6 className='orderDate'>ORDER DATE : {this.props.details.createdDate}</h6>
         {data}
-        <h6 className='amtPaid'>AMOUNT PAID : Rs {this.props.details.billingAmt}</h6>
+        <h6 className='amtPaid'>AMOUNT PAID : Rs. {totalAmt}</h6>
       </div>
     );
   }

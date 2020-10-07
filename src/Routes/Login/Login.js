@@ -42,6 +42,7 @@ class Login extends Component {
           if(response.status === 200){
             if(response.data !== 'Not Verified!'){
 
+              localStorage.clear();
               localStorage.setItem('token',response.data.jwt);
               localStorage.setItem('username',userData.username);
 

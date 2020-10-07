@@ -1,14 +1,24 @@
 .offerSection{
-  height: auto;
+  height: fit-content;
   margin-bottom: 14px;
   height: 140px;
 }
 .offers_carousel img{
-  height: 140px;
+  height: 20vh;
 } 
 .offers_carousel{
   margin: 0px auto;
 } 
 .offers_carousel li{
   display: none;
+}
+@media (max-width:700px){
+  .offers_carousel img{
+    height: 15vh;
+  }
+}
+@media (max-width:400px){
+  .offers_carousel img{
+    height: 12vh;
+  }
 }

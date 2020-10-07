@@ -102,6 +102,10 @@ class ServerService{
     return axios.get(`/forgotPassword/${userID}`)
   }
 
+  addService(email){
+    return axios.get(`/addService/${email}`)
+  }
+
 }
 
 export default new ServerService();

@@ -56,8 +56,8 @@ class ProductForm extends Component {
       this.props.submitHandler(this.state);
       this.setState({
         sellerBrand: null,
-        category: 'Men',
-        subcategory: 'Top-wear',
+        category: null,
+        subcategory: null,
         title: null,
         type: null,
         price: null,
@@ -121,7 +121,7 @@ class ProductForm extends Component {
         break;
       case "fit":
         formErrors.fit =
-          value.length < 3 ? "minimum 3 characaters required" : "";
+          value.length < 1 ? "minimum 1 characaters required" : "";
         break;
       case "material":
         formErrors.material =

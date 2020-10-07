@@ -4,7 +4,7 @@ import './SearchProduct.css';
 import SearchSidebar from '../../components/SearchSidebar/SearchSidebar';
 import ProductBlock from '../../components/ProductBlock/ProductBlock';
 import searchLoaderSRC from '../../assets/searchLoader.gif';
-import searchEmptySRC from '../../assets/searchEmpty.gif';
+import searchEmptySRC from '../../assets/searchEmpty2.gif';
 import ServerService from '../../API/ServerService';
 
 class SearchProduct extends Component {

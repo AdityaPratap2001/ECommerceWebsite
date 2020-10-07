@@ -76,6 +76,12 @@
   font-weight: 400;
 }
 
+
+@media (max-width:400px){
+  .newsletter button{
+    width: 50%;
+  }
+}
 @media (max-width:700px){
   .newsletter h5{
     font-size: 14px;
@@ -97,5 +103,13 @@
 @media (max-width:700px) and (min-width:520px){
   .newsletter div{
     padding: 10% 0;
+  }
+}
+@media (max-width:700px){
+  .newsletter{
+    height: 300px;
+  }
+  .newsletter div{
+    padding: 1.4% 5%;
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {NavLink, Redirect} from 'react-router-dom';
-import logoSrc from '../../../assets/logo.png';
+import logoSrc from '../../../assets/log.png';
 import './SellerProfile.css';
 import ServerService from '../../../API/ServerService';
 import loadSrc from '../../../assets/loader2.gif';
@@ -90,7 +90,9 @@ class SellerProfile extends Component {
         console.log(res);
         
         this.setState({showPopup : true,popupData : 'Product uploaded successfully!',popupColor : 'success'});
-        // window.location.reload();
+        setTimeout(function(){
+          window.location.reload();
+        },1000)
       })
       .catch(err => {
         console.log(err)

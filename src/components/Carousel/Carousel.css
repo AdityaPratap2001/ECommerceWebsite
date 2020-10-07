@@ -24,3 +24,8 @@
     height: 240px;
   }
 }
+@media (max-width:400px){
+  .carousel img{
+    height: 170px;
+  }
+}

@@ -5,6 +5,7 @@ import Product_Loader from './Product_Loader/Product_Loader';
 import producdImgSrc from '../../assets/sampleProduct.png'; 
 import { NavLink, Redirect } from 'react-router-dom';
 import ServerService from '../../API/ServerService';
+import CustomAlert from '../../components/CustomAlert/CustomAlert';
 import axios from 'axios';
 
 class ProductDetails extends Component {
@@ -16,6 +17,9 @@ class ProductDetails extends Component {
     wishlisted : null,
     addedToCart : null,
     quantity : 1,
+    showPopup : null,
+    popupData : null,
+    popupColor : null,
   }
 
   componentDidMount(){
@@ -107,7 +111,7 @@ class ProductDetails extends Component {
           this.setState({addedToCart : true})
         })
         .catch(error => {
-          alert('Items out of stock, trying adding less quantity!');
+          this.setState({showPopup : true,popupData : 'Items out of stock, trying adding less quantity!',popupColor : 'danger'})
           console.log(error);
         })
     }
@@ -166,11 +170,22 @@ class ProductDetails extends Component {
     }
   }
 
+  hidePopup = () => {
+    this.setState({showPopup : null});
+  }
+
   qtyChange = (e) => {
     this.setState({quantity : e.target.value});
   }
 
   render() {
+
+    let showPopup = null;
+    if(this.state.showPopup){
+      showPopup = (
+        <CustomAlert hidePop={this.hidePopup} color={this.state.popupColor} content={this.state.popupData}/>
+      )
+    }
 
     let mainLink = '';
     let subLink = '';
@@ -363,6 +378,7 @@ class ProductDetails extends Component {
     return (
       <div>
         <Navbar shadow={true}/>
+        {showPopup}
         <div className='displayProduct'>
           {data}
         </div>
