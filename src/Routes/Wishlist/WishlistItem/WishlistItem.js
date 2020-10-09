@@ -12,9 +12,22 @@ class WishlistItem extends Component {
     classes : 'show', 
   }
 
-  componentDidMount(){
-    
-    ServerService.getProductByID(this.props.id)
+  // componentDidMount(){
+  //   console.log(this.props.id);
+  //   ServerService.getProductByID(this.props.id)
+  //     .then(res => {
+  //       console.log(res);
+  //       this.setState({loadedData : res.data[0]});
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }
+
+  componentWillReceiveProps(arg){
+    console.log('Arg==='+arg.id);
+    console.log('in wishlistItem : ' + this.props.id +' ' + this.props.index);
+    ServerService.getProductByID(arg.id)
       .then(res => {
         console.log(res);
         this.setState({loadedData : res.data[0]});
@@ -23,6 +36,17 @@ class WishlistItem extends Component {
         console.log(err);
       })
   }
+
+  // componentWillUpdate(){
+  //   ServerService.getProductByID(this.props.id)
+  //     .then(res => {
+  //       console.log(res);
+  //       this.setState({loadedData : res.data[0]});
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  // }
 
   removeWish = () => {
     let userId = localStorage.getItem('username');
@@ -37,7 +61,9 @@ class WishlistItem extends Component {
       // alert('Item Deleted!');
 
       // this.setState({classes : 'hide'});
-      window.location.reload();
+      console.log('Removing : '+this.props.index);
+      this.props.remove(this.props.index);
+      // window.location.reload();
     })
     .catch(error => {
       console.log(error);

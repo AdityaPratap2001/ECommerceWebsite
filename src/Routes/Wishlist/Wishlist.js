@@ -23,7 +23,7 @@ class Wishlist extends Component {
     if(role !== null){
       this.setState({redirect : '/'});
     }
-
+    
     ServerService.fetchDetailsByUserID(userId)
       .then(res => {
         console.log(res);
@@ -41,6 +41,7 @@ class Wishlist extends Component {
         }
         else{
           this.setState({list : res.data});
+          console.log(this.state.list);
         }
       })
       .catch(err => {
@@ -50,6 +51,27 @@ class Wishlist extends Component {
     if(userId === null){
       this.setState({redirect : '/'});
     }
+  }
+
+  removeWishItem = (id) => { 
+    if(this.state.list){
+      alert('entered!' + id);
+      let oldItems = this.state.list;
+      console.log(oldItems);
+      let newItems = [];
+      // for(let i=0 ; i<oldItems.length ; i++){
+      //   if(i !== id){
+      //     newItems.push(oldItems[i]);
+      //   }
+      // }
+      oldItems.splice(id,1);
+      console.log(oldItems);
+      this.setState({list : oldItems});
+    }
+    else{
+      alert('jkdcbdhjcbj');
+    }
+    console.log(this.state.list);
   }
 
   logOut = (e) => {
@@ -72,8 +94,9 @@ class Wishlist extends Component {
       data = (
         <div className='wishlistDisplay'>
           {
-            this.state.list.map(id => {
-              return <WishlistItem id={id}/>
+            this.state.list.map((id,index) => {
+              console.log('In Map : '+ id +' '+index);
+              return <WishlistItem index={index} remove={this.removeWishItem} id={id}/>
             })
           }
         </div>
