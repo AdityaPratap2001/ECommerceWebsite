@@ -32,6 +32,7 @@
 .fontIcon i{
   font-size: 23px;
   margin: 15px 10px;
+  cursor: pointer;
 }
 .footer h6{
   font-weight: 350;

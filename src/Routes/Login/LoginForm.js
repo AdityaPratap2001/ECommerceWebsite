@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import src1 from '../../assets/login8.jpg';
 import src2 from '../../assets/login6.jpg';
 import src3 from '../../assets/login7.jpg';
-import logoSrc from '../../assets/logggo.png'
+import logoSrc from '../../assets/log.png'
 import Navbar from '../../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
 import './Login.css';

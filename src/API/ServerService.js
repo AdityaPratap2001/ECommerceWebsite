@@ -5,6 +5,14 @@ class ServerService{
   fetchAllProducts(){
     return axios.get(`/api/products/allProducts`)
   }
+  
+  fetchFeaturedProducts(){
+    return axios.get('/api/products/featuredProducts')
+  }
+
+  fetchPersonalizedProducts(gender){
+    return axios.get(`/api/products/personalisedProducts/${gender}`)
+  }
 
   getProductByID(ID){
     return axios.get(`/api/products/productId/${ID}`)

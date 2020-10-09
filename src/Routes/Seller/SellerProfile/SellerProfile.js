@@ -92,10 +92,14 @@ class SellerProfile extends Component {
         this.setState({showPopup : true,popupData : 'Product uploaded successfully!',popupColor : 'success'});
         setTimeout(function(){
           window.location.reload();
-        },1000)
+        },1400)
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
+        this.setState({showPopup : true,popupData : 'Something went wrong! Trying reducing image size',popupColor : 'danger'});
+        setTimeout(function(){
+          window.location.reload();
+        },1400)
       })
 
     let fd = new FormData();

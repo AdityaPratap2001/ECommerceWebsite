@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ProductBlock from '../ProductBlock/ProductBlock';
 import './FeaturedSection.css';
 import ServerService from '../../API/ServerService';
-import axios from 'axios';
 
 
 class FeaturedSection extends Component {
@@ -18,7 +17,7 @@ class FeaturedSection extends Component {
 
     if(!this.props.personalized){
       console.log('FEATURED PRODUCTS!');
-      axios.get('http://0d8c55b48a6d.ngrok.io/api/products/featuredProducts')
+      ServerService.fetchFeaturedProducts()
         .then(res => {
           console.log(res.data);
           this.setState({items : res.data});
@@ -39,7 +38,7 @@ class FeaturedSection extends Component {
             console.log(this.state.gender);
           }).then(() => {
               if(this.state.gender === 'male'){
-                axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/personalisedProducts/Men`)
+                ServerService.fetchPersonalizedProducts('Men')
                   .then(res => {
                     console.log(res);
                     this.setState({items : res.data});
@@ -49,7 +48,7 @@ class FeaturedSection extends Component {
                   })
               }
               else if(this.state.gender === 'female'){
-                axios.get(`http://0d8c55b48a6d.ngrok.io/api/products/personalisedProducts/Women`)
+                ServerService.fetchPersonalizedProducts('Women')
                   .then(res => {
                     console.log(res);
                     this.setState({items : res.data});
@@ -64,7 +63,7 @@ class FeaturedSection extends Component {
           // })
       }
       else{
-        axios.get('http://0d8c55b48a6d.ngrok.io/api/products/featuredProducts')
+        ServerService.fetchFeaturedProducts()
         .then(res => {
           console.log(res);
           this.setState({items : res.data});

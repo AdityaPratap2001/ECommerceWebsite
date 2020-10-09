@@ -181,8 +181,9 @@
   }
   .cartValue{
     margin-top: 20px;
-    width: 70vw;
+    width: 85vw !important;
     margin-bottom: 30px;
+    margin-left: 0px !important;
   }
 }
 @media (max-width:700px){

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'reactstrap';
 import paypalSrc from '../../assets/paypal2.png';
 import './Footer.css';
 

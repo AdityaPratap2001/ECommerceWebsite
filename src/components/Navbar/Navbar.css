@@ -125,10 +125,6 @@
   .NavLink li{
     margin: 5px 0;
   }
-  .Navbar img{
-    /* transform: scale(0.85) translateY(-13%); */
-    /* transform: scale(1.4); */
-  }
   .SearchContainer input{
     margin-top: 2.5px;
   }

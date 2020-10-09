@@ -7,6 +7,7 @@ import transactionSrc from '../../assets/transaction2.gif';
 import emptyImg from '../../assets/emptyCart.png';
 import ServerService from '../../API/ServerService';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 class Cart extends Component {
 
@@ -44,7 +45,8 @@ class Cart extends Component {
     let userId = localStorage.getItem('username');
     console.log(userId);
     this.setState({loading : true});
-    ServerService.placeOrder(userId)
+    // ServerService.placeOrder(userId)
+    axios.get(`http://445a2038d9d1.ngrok.io/checkout/${userId}`)
       .then(res => {
         console.log(res);
         if(res.status === 200){

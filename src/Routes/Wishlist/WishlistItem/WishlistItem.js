@@ -9,6 +9,7 @@ class WishlistItem extends Component {
 
   state = {
     loadedData : null,
+    classes : 'show', 
   }
 
   componentDidMount(){
@@ -34,6 +35,8 @@ class WishlistItem extends Component {
     ServerService.removeFromWishlist(productData)
     .then(response => {
       // alert('Item Deleted!');
+
+      // this.setState({classes : 'hide'});
       window.location.reload();
     })
     .catch(error => {
@@ -71,7 +74,7 @@ class WishlistItem extends Component {
     }
 
     return (
-      <div className='wishlistItem'>
+      <div className={`wishlistItem ${this.state.classes}`}>
         {showData}
       </div>
     );
