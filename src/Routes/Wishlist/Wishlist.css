@@ -170,12 +170,12 @@
   top: 36%;
   right: 5%;
   font-size: 20px;
-  color: #dc3545;
+  color: black;
   padding: 5px;
 }
 .wishlistItem>.wishContainer>.removeWish:hover{
   cursor: pointer;
-  color: black;
+  color: #dc3545;
 }
 
 
