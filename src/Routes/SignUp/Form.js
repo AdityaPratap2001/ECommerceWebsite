@@ -15,7 +15,7 @@ const nameRegex = RegExp(
   /^[a-zA-Z_-]{0,30}$/
 )
 const lastnameRegex = RegExp(
-  /^[a-zA-Z-]{0,30}$/
+  /^[a-zA-Z\s]+$/
 )
 
 const formValid = ({ formErrors, ...rest }) => {
@@ -92,8 +92,8 @@ class App extends Component {
           }
         }
         formErrors.lastName = (spaceNum > 1 ? "more than one space prohibited" : "")||
-                              (value.length < 3 ? "minimum 3 characaters required" : "")
-                              // (formErrors.lastName = lastnameRegex.test(value) ? "":"only characters allowed!");                              
+                              (value.length < 3 ? "minimum 3 characaters required" : "")||
+                              (formErrors.lastName = lastnameRegex.test(value) ? "":"only characters allowed!");                              
         break;
       case "email":
         formErrors.email = emailRegex.test(value)
@@ -174,6 +174,7 @@ class App extends Component {
                   <h5>E-Mail :</h5><br></br>
                   <input 
                     type='email'
+                    autoComplete='off'
                     className={formErrors.email.length > 0 ? "error" : null} 
                     name='email'
                     placeholder='Enter your email'

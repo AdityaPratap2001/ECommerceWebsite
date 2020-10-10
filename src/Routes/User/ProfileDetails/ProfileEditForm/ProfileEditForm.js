@@ -3,9 +3,12 @@ import "../../../SignUp/Form.css";
 import "../../../SignUp/SignUp.css";
 import './ProfileEditForm.css';
 
-const emailRegex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
+const nameRegex = RegExp(
+  /^[a-zA-Z_-]{0,30}$/
+)
+const lastnameRegex = RegExp(
+  /^[a-zA-Z\s]+$/
+)
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -53,18 +56,26 @@ class App extends Component {
 
     switch (name) {
       case "firstName":
-        formErrors.firstName =
-          value.length < 3 && value.length > 0
-            ? "minimum 3 characaters required"
-            : "";
+        formErrors.firstName = (value.length < 3 && value.length > 0? "minimum 3 characaters required" : "")||
+                              (formErrors.firstName = nameRegex.test(value) ? "":"only characters allowed!");
         break;
+      
       case "lastName":
-        formErrors.lastName =
-          value.length < 3 ? "minimum 3 characaters required" : "";
+        let spaceNum = 0;
+        for(let ch in value){
+          if(value[ch] == ' '){
+            spaceNum = spaceNum + 1;
+          }
+        }
+        formErrors.lastName = (spaceNum > 1 ? "more than one space prohibited" : "")||
+                              (value.length < 3 ? "minimum 3 characaters required" : "")||
+                              (formErrors.lastName = lastnameRegex.test(value) ? "":"only characters allowed!");                              
         break;
+      
       case "gender":
         formErrors.gender = value.length < 3 ? "select an option" : "";
         break;
+      
       default:
         break;
     }
@@ -89,6 +100,7 @@ class App extends Component {
               <br></br>
               <input
                 type="text"
+                autoComplete='off'
                 className={formErrors.firstName.length > 0 ? "error" : null}
                 name="firstName"
                 placeholder="First Name"
@@ -107,6 +119,7 @@ class App extends Component {
               <br></br>
               <input
                 type="text"
+                autoComplete='off'
                 className={formErrors.lastName.length > 0 ? "error" : null}
                 name="lastName"
                 placeholder="Last Name"
