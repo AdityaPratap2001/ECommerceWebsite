@@ -45,7 +45,7 @@ class LoginForm extends Component {
       this.props.submitHandler(this.state);
     } 
     else {
-      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+      // console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
 

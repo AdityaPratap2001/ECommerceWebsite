@@ -11,7 +11,7 @@ class SearchSidebar extends Component {
   changeHandler = (e) => {
     // let newState = e.target.value
     this.setState({gender : e.target.value});
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   render() {

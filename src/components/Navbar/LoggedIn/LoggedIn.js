@@ -5,13 +5,13 @@ const Login = (props) => {
   return (
     <div className='conditional_render logged_in'>
       <NavLink to='/wishlist'>
-        <i class="fas fa-heart"></i>
+        <i className="fas fa-heart"></i>
       </NavLink>
       <NavLink to='/cart'>
-        <i class="fas fa-shopping-cart"></i>
+        <i className="fas fa-shopping-cart"></i>
       </NavLink>
       <NavLink to='/user'>
-        <i class="fas fa-user"></i>
+        <i className="fas fa-user"></i>
       </NavLink>
     </div>
   );

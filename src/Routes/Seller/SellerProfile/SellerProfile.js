@@ -31,12 +31,12 @@ class SellerProfile extends Component {
 
     ServerService.fetchDetailsByUserID(userId)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.setState({details : res.data});
         this.setState({userName : this.state.details.firstName});
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
     
     if(userId === null){
@@ -52,11 +52,11 @@ class SellerProfile extends Component {
       newPassword : newPass.password,
       newConfirmPassword : newPass.confirm_password
     }
-    console.log(newPassDetails);
+    // console.log(newPassDetails);
 
     ServerService.changePassword(newPassDetails)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if(res.status === 200){
           // alert('password changed successfully!');
           this.setState({showPopup : true,popupData : 'Password changed successfully!',popupColor : 'success'});
@@ -83,11 +83,11 @@ class SellerProfile extends Component {
       prodType : details.type,
       sellerUsername : userId
     }
-    console.log(prodDetails);
+    // console.log(prodDetails);
 
     ServerService.pushProduct(prodDetails)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         
         this.setState({showPopup : true,popupData : 'Product uploaded successfully!',popupColor : 'success'});
         setTimeout(function(){
@@ -95,7 +95,7 @@ class SellerProfile extends Component {
         },1400)
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
         this.setState({showPopup : true,popupData : 'Something went wrong! Trying reducing image size',popupColor : 'danger'});
         setTimeout(function(){
           window.location.reload();
@@ -104,18 +104,18 @@ class SellerProfile extends Component {
 
     let fd = new FormData();
     fd.append('image',details.selectedFile);
-    console.log(details.title);
-    console.log(fd);
+    // console.log(details.title);
+    // console.log(fd);
     // const imgDetail = {
     //   image : details.selectedFile,
     // }
     // console.log(imgDetail);
     axios.post(`/image/${details.title}`,fd)
       .then(res => {
-        console.log(res);
+        // console.log(res);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
   }
 
@@ -156,18 +156,18 @@ class SellerProfile extends Component {
 
       data2 = (
         <div className='productForm'>
-          <div class="accordion" id="accordionExample">
-            <div class="card">
-              <div class="card-header" id="headingOne">
-                <h2 class="mb-0">
-                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <div className="accordion" id="accordionExample">
+            <div className="card">
+              <div className="card-header" id="headingOne">
+                <h2 className="mb-0">
+                  <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     Click to change your password!
                   </button>
                 </h2>
               </div>
 
-              <div id="collapseOne" class="collapse collapseForm" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
+              <div id="collapseOne" className="collapse collapseForm" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div className="card-body">
                   <ChangePassword submitHandler={this.submit}/>
                 </div>
               </div>
@@ -179,19 +179,19 @@ class SellerProfile extends Component {
       data3 = (
     
         <div className='productForm'>
-          <div class="accordion" id="accordionExample">
-            <div class="card">
-              <div class="card-header" id="headingOne">
-                <h2 class="mb-0">
+          <div className="accordion" id="accordionExample">
+            <div className="card">
+              <div className="card-header" id="headingOne">
+                <h2 className="mb-0">
                 {/* <h5>Sell your product</h5> */}
-                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                  <button className="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
                     Click to sell your Product!
                   </button>
                 </h2>
               </div>
   
-                <div id="collapseTwo" class="collapse collapseForm" aria-labelledby="headingOne" data-parent="#accordionExample">
-                  <div class="card-body">
+                <div id="collapseTwo" className="collapse collapseForm" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div className="card-body">
                     <ProductForm submitHandler={this.submitProduct}/>
                   </div>
                 </div>
@@ -211,7 +211,7 @@ class SellerProfile extends Component {
             </div>
             <div style={{position: 'absolute',right : '5%'}}>
               <NavLink to='/Seller/user'>
-                <i class="fas fa-user"></i>
+                <i className="fas fa-user"></i>
               </NavLink>
             </div>
           </div>
@@ -223,7 +223,7 @@ class SellerProfile extends Component {
   
           <div className='accountBlock'>         
             <div className='user'>
-              <i class="fas fa-2x fa-user-circle"></i>
+              <i className="fas fa-2x fa-user-circle"></i>
               <div className='helloUser'>
                 <h6 className='hello'>Hello,</h6>
                 <h6 className='username'>{this.state.userName}</h6>
@@ -232,13 +232,13 @@ class SellerProfile extends Component {
             
             <div className='accountLinks'>
               <NavLink to='/user'>
-                <i class="fas fa-user-cog"></i>
+                <i className="fas fa-user-cog"></i>
                 Profile Details
               </NavLink>
             </div>
 
             <div className='logoutBtn'>
-              <button type="button" onClick={this.logOut} class="btn btn-dark logoutButton">
+              <button type="button" onClick={this.logOut} className="btn btn-dark logoutButton">
                 Logout
               </button>
             </div>

@@ -7,7 +7,6 @@ import FeaturedSection from '../../components/FeaturedSection/FeaturedSection';
 import BankOffers from '../../components/BankOffers/BankOffers';
 import Newsletter from '../../components/Newsletter/Newsletter';
 import Footer from '../../components/Footer/Footer';
-import ServerService from '../../API/ServerService';
 
 class Home extends Component {
 
@@ -22,11 +21,11 @@ class Home extends Component {
     let role = localStorage.getItem('role');
     if(token !== null && role===null){
       this.setState({isLoggedIn : true});
-      console.log('token exists!');
-      console.log(this.state);
+      // console.log('token exists!');
+      // console.log(this.state);
     }
     else{
-      console.log("token doesn't exist!");
+      // console.log("token doesn't exist!");
     }
   }
 

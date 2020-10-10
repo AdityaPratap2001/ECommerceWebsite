@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import '../Wishlist.css';
-import imgSRC from '../../../assets/sampleProduct.png';
 import { NavLink } from 'react-router-dom';
 import ServerService from '../../../API/ServerService';
-import axios from 'axios';
+
 
 class WishlistItem extends Component {
 
@@ -40,11 +39,11 @@ class WishlistItem extends Component {
   componentDidUpdate(){
     ServerService.getProductByID(this.props.id)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.setState({loadedData : res.data[0]});
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
   }
 
@@ -54,19 +53,19 @@ class WishlistItem extends Component {
       username : userId,
       productId : this.props.id
     }
-    console.log(productData);
+    // console.log(productData);
     
     ServerService.removeFromWishlist(productData)
     .then(response => {
       // alert('Item Deleted!');
 
       // this.setState({classes : 'hide'});
-      console.log('Removing : '+this.props.index);
+      // console.log('Removing : '+this.props.index);
       this.props.remove(this.props.index);
       // window.location.reload();
     })
     .catch(error => {
-      console.log(error);
+      // console.log(error);
     })
   }
 
@@ -82,7 +81,7 @@ class WishlistItem extends Component {
             <NavLink to={`/product/id/${this.state.loadedData.id}`}>
               <div className='wishlistItemImage'>
                 {/* <img src={imgSRC} alt='product_Img'/> */}
-                <img src={`data:image/png[jpg];base64,${this.state.loadedData.picByte}`}/>
+                <img alt='productImg' src={`data:image/png[jpg];base64,${this.state.loadedData.picByte}`}/>
               </div>
               <div className='alongImg'>
                 <h6 className='prodSeller'>{this.state.loadedData.seller}</h6>

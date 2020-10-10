@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import './ProductDetails.css';
 import Navbar from '../../components/Navbar/Navbar';
-import Product_Loader from './Product_Loader/Product_Loader';
-import producdImgSrc from '../../assets/sampleProduct.png'; 
+import Product_Loader from './Product_Loader/Product_Loader'; 
 import { NavLink, Redirect } from 'react-router-dom';
 import ServerService from '../../API/ServerService';
 import CustomAlert from '../../components/CustomAlert/CustomAlert';
-import axios from 'axios';
+
 
 class ProductDetails extends Component {
 
@@ -26,11 +25,11 @@ class ProductDetails extends Component {
     
     ServerService.getProductByID(this.state.productId)
       .then(response => {
-        console.log(response.data[0]);
+        // console.log(response.data[0]);
         this.setState({productDetails : response.data[0]});
       })
       .catch(error =>{
-        console.log(error)
+        // console.log(error)
       })
 
     let userId = localStorage.getItem('username');
@@ -38,18 +37,18 @@ class ProductDetails extends Component {
       username : userId,
       productId : this.state.productId
     }
-    console.log(productData);
+    // console.log(productData);
     
 
     ServerService.doesProductExistInWishlist(productData)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         if(res.data){
           this.setState({wishlisted : true});
         }
       })
       .catch(err => {
-        console.log('error');
+        // console.log('error');
       })
 
 
@@ -76,20 +75,20 @@ class ProductDetails extends Component {
         username : userId,
         productId : this.state.productId
       }
-      console.log(productData);
+      // console.log(productData);
       
       ServerService.addToWishlist(productData)
         .then(response => {
-          console.log(response);
+          // console.log(response);
           this.setState({wishlisted : true});
         })
         .catch(error => {
-          console.log(error);
+          // console.log(error);
         })
     }
   }
   addToCart = () => {
-    console.log('Add to cart!');
+    // console.log('Add to cart!');
     let token = localStorage.getItem('token');
     let role = localStorage.getItem('role');
     if(token === null || role !== null){
@@ -103,22 +102,22 @@ class ProductDetails extends Component {
         productId : this.state.productId,
         productAmt : this.state.quantity
       }
-      console.log(productData);
+      // console.log(productData);
       
       ServerService.addToCart(productData)
         .then(response => {
-          console.log(response);
+          // console.log(response);
           this.setState({addedToCart : true})
         })
         .catch(error => {
           this.setState({showPopup : true,popupData : 'Items out of stock, trying adding less quantity!',popupColor : 'danger'})
-          console.log(error);
+          // console.log(error);
         })
     }
   }
 
   removeItemFromWishlist = () => {
-    console.log('will remove from wishlist!');
+    // console.log('will remove from wishlist!');
     let token = localStorage.getItem('token');
     if(token === null){
       this.setState({redirect : '/userLogin'})
@@ -130,21 +129,21 @@ class ProductDetails extends Component {
         username : userId,
         productId : this.state.productId
       }
-      console.log(productData);
+      // console.log(productData);
 
       ServerService.removeFromWishlist(productData)
         .then(response => {
-          console.log(response);
+          // console.log(response);
           this.setState({wishlisted : false});
         })
         .catch(error => {
-          console.log(error);
+          // console.log(error);
         })
     }
   }
 
   removeFromCart = () => {
-    console.log('will delete item from cart!');
+    // console.log('will delete item from cart!');
     let token = localStorage.getItem('token');
     if(token === null){
       this.setState({redirect : '/userLogin'})
@@ -157,15 +156,15 @@ class ProductDetails extends Component {
         productId : this.state.productId,
         productAmt : this.state.quantity
       }
-      console.log(productData);
+      // console.log(productData);
       
       ServerService.removeFromCart(productData)
         .then(response => {
-          console.log(response);
+          // console.log(response);
           this.setState({addedToCart : false});
         })
         .catch(error => {
-          console.log(error);
+          // console.log(error);
         })
     }
   }
@@ -256,12 +255,12 @@ class ProductDetails extends Component {
       </div>
     )
     let wishlistButton = (
-      <button type="button" onClick={this.addToWishlist} class="btn btn-outline-danger">Add to Wishlist</button>
+      <button type="button" onClick={this.addToWishlist} className="btn btn-outline-danger">Add to Wishlist</button>
     )
 
     if(this.state.wishlisted){
       wishlistButton = (
-        <button type="button" onClick={this.removeItemFromWishlist} class="btn btn-outline-danger activeBtnn">Remove from Wishlist</button>
+        <button type="button" onClick={this.removeItemFromWishlist} className="btn btn-outline-danger activeBtnn">Remove from Wishlist</button>
       )
       wishIcon = (
         <div className='heart acttive' onClick={this.removeItemFromWishlist}>
@@ -272,11 +271,11 @@ class ProductDetails extends Component {
     }
 
     let cartButton = (
-      <button type="button" onClick={this.addToCart} class="btn btn-outline-danger">Add to Cart</button>
+      <button type="button" onClick={this.addToCart} className="btn btn-outline-danger">Add to Cart</button>
     )
     if(this.state.addedToCart){
       cartButton = (
-        <button type="button" onClick={this.removeFromCart} class="btn btn-outline-danger activeBtnn">Remove from Cart</button>   
+        <button type="button" onClick={this.removeFromCart} className="btn btn-outline-danger activeBtnn">Remove from Cart</button>   
       )
     }
 
@@ -319,7 +318,7 @@ class ProductDetails extends Component {
               {/* <img className='img-fluid' src={this.state.productDetails.picByte.data} alt='product_Img'/> */}
               {/* <img src={URL.createObjectURL(this.state.productDetails.picByte)} /> */}
               {/* <img src={`data:image/jpeg;base64,${this.state.productDetails.picByte}`} /> */}
-              <img src={`data:image/png[jpg];base64,${this.state.productDetails.picByte}`}/>
+              <img alt='productImg' src={`data:image/png[jpg];base64,${this.state.productDetails.picByte}`}/>
               {wishIcon}
             </div>
           </div>

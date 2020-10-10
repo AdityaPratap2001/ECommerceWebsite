@@ -6,7 +6,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import ProductsDisplay from './ProductsDisplay/ProductsDisplay';
 import loaderSrc from '../../assets/loader2.gif';
 import ServerService from '../../API/ServerService';
-import axios from 'axios';
+
 
 class SelectedCategory extends Component {
 
@@ -72,30 +72,30 @@ class SelectedCategory extends Component {
     }
     
     
-    console.log('MC-'+ mainSearchCategory + ' SC-' + subSearchCategory);
+    // console.log('MC-'+ mainSearchCategory + ' SC-' + subSearchCategory);
     
     if(this.state.subcategory){
       ServerService.fetchBySubcat(mainSearchCategory,subSearchCategory) 
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.setState({products : res.data});
         })
         .catch(err =>{
-          console.log(err);
+          // console.log(err);
         })
     }
     else{
       ServerService.fetchByCat(mainSearchCategory)
         .then(response => {
-          console.log(response);
+          // console.log(response);
           this.setState({products : response.data});
         })
         .catch(error => {
-          console.log(error);
+          // console.log(error);
         })
     }
     // console.log(fetchedData);
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   render() {

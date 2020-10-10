@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ProfileEditForm from './ProfileEditForm/ProfileEditForm';
 import './ProfileDetails.css';
-import axios from '../../../API/baseURL/baseURL';
 import ServerService from '../../../API/ServerService';
 
 class ProfileDetails extends Component {
@@ -29,13 +28,13 @@ class ProfileDetails extends Component {
 
     ServerService.editProfileDetails(newdetails)
      .then(res => {
-       console.log(res);
+      //  console.log(res);
        if(res.status === 200){
          window.location.reload();
        }
      })
      .catch(err => {
-       console.log(err);
+      //  console.log(err);
      })
   }
 

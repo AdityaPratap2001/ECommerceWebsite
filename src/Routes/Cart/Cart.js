@@ -7,7 +7,6 @@ import transactionSrc from '../../assets/transaction2.gif';
 import emptyImg from '../../assets/emptyCart.png';
 import ServerService from '../../API/ServerService';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
 
 class Cart extends Component {
 
@@ -28,7 +27,7 @@ class Cart extends Component {
     
     ServerService.fetchCartDetailsByID(userId)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if(res.data.length === 1){
           this.setState({isEmpty : true})
         }
@@ -37,18 +36,17 @@ class Cart extends Component {
         }
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
   }
   
   placeOrder = () => {
     let userId = localStorage.getItem('username');
-    console.log(userId);
+    // console.log(userId);
     this.setState({loading : true});
-    // ServerService.placeOrder(userId)
-    axios.get(`http://445a2038d9d1.ngrok.io/checkout/${userId}`)
+    ServerService.placeOrder(userId)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if(res.status === 200){
           // alert('Order Placed!');
           this.setState({loading : false});
@@ -59,7 +57,7 @@ class Cart extends Component {
         }
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
   }
 
@@ -80,7 +78,7 @@ class Cart extends Component {
             {
               this.state.list.map((cartItem,index) => {
                 if(index !== (this.state.list.length-1) ){
-                  return <CartItem item={cartItem}/>
+                  return <CartItem key={index} item={cartItem}/>
                 }
                 else{
                   return null;
@@ -157,7 +155,7 @@ class Cart extends Component {
             <h5>Transaction Successful!</h5>
             <img src={transactionSrc} alt='transactionCompleted'/>
             <h6>Your Order will be delivered to you, within 7 working days</h6>
-            <button onClick={this.transactionCompleted} type="button" class="btn btn-outline-dark">Back To Cart!</button>
+            <button onClick={this.transactionCompleted} type="button" className="btn btn-outline-dark">Back To Cart!</button>
           </div>
         )
       }

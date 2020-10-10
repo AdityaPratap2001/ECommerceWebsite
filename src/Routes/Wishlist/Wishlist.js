@@ -26,26 +26,26 @@ class Wishlist extends Component {
     
     ServerService.fetchDetailsByUserID(userId)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.setState({userName : res.data.firstName});
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
     
     ServerService.fetchWishlistDetailsByID(userId)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if(res.data.length === 0){
           this.setState({isEmpty : true})
         }
         else{
           this.setState({list : res.data});
-          console.log(this.state.list);
+          // console.log(this.state.list);
         }
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
 
     if(userId === null){
@@ -57,7 +57,7 @@ class Wishlist extends Component {
     if(this.state.list){
       // alert('entered!' + id);
       let oldItems = this.state.list;
-      console.log(oldItems);
+      // console.log(oldItems);
       // let newItems = [];
       // for(let i=0 ; i<oldItems.length ; i++){
       //   if(i !== id){
@@ -68,13 +68,13 @@ class Wishlist extends Component {
       if(oldItems.length === 0){
         this.setState({isEmpty : true});
       }
-      console.log(oldItems);
+      // console.log(oldItems);
       this.setState({list : oldItems});
     }
     else{
       alert('jkdcbdhjcbj');
     }
-    console.log(this.state.list);
+    // console.log(this.state.list);
   }
 
   logOut = (e) => {
@@ -98,8 +98,8 @@ class Wishlist extends Component {
         <div className='wishlistDisplay'>
           {
             this.state.list.map((id,index) => {
-              console.log('In Map : '+ id +' '+index);
-              return <WishlistItem index={index} remove={this.removeWishItem} id={id}/>
+              // console.log('In Map : '+ id +' '+index);
+              return <WishlistItem key={index} index={index} remove={this.removeWishItem} id={id}/>
             })
           }
         </div>
@@ -121,7 +121,7 @@ class Wishlist extends Component {
           <div className='accountBlock'>
             
             <div className='user'>
-              <i class="fas fa-2x fa-user-circle"></i>
+              <i className="fas fa-2x fa-user-circle"></i>
               <div className='helloUser'>
                 <h6 className='hello'>Hello,</h6>
                 <h6 className='username'>{this.state.userName}</h6>
@@ -130,21 +130,21 @@ class Wishlist extends Component {
             
             <div className='accountLinks'>
               <NavLink to='/user'>
-                <i class="fas fa-user-cog"></i>
+                <i className="fas fa-user-cog"></i>
                 Profile Details
               </NavLink>
               <NavLink to='/wishlist'>
-                <i class="fas fa-heart"></i>
+                <i className="fas fa-heart"></i>
                 My Wishlist
               </NavLink>
               <NavLink to='/cart'>
-                <i class="fas fa-shopping-cart"></i>
+                <i className="fas fa-shopping-cart"></i>
                 My Cart
               </NavLink>
             </div>
 
             <div className='logoutBtn'>
-              <button type="button" onClick={this.logOut} class="btn btn-dark logoutButton">
+              <button type="button" onClick={this.logOut} className="btn btn-dark logoutButton">
                 Logout
               </button>
             </div>

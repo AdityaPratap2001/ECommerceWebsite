@@ -37,8 +37,8 @@ class Login extends Component {
 
       ServerService.login(userData)
         .then((response)=>{
-          console.log(response);
-          console.log(response.data.jwt);
+          // console.log(response);
+          // console.log(response.data.jwt);
           if(response.status === 200){
             if(response.data !== 'Not Verified!'){
 
@@ -48,7 +48,7 @@ class Login extends Component {
 
               ServerService.fetchDetailsByUserID(userData.username)
                 .then(res => {
-                  console.log(res);
+                  // console.log(res);
                   if(res.data.roles === 'Seller'){
                     this.setState({loading : false});
                     this.setState({redirect : '/Seller'});
@@ -60,7 +60,7 @@ class Login extends Component {
                   }
                 })
                 .catch(err => {
-                  console.log(err);
+                  // console.log(err);
                 })
               
               
@@ -73,7 +73,7 @@ class Login extends Component {
         })
         .catch(error => {
           this.setState({error : true})
-          console.log(error);
+          // console.log(error);
         })
     }
     sendData(userData);
@@ -89,14 +89,14 @@ class Login extends Component {
     this.setState({loading : true});
     ServerService.userForgotPassword(email)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if(res.status === 200){
           this.setState({loading : false , sentMail : true});
           // alert('Mail sent to your registered E-mail!');
         }
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
         this.setState({loading : false , wrongEmail : true})
       })
   }

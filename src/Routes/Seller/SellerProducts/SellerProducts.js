@@ -17,7 +17,7 @@ class SellerProducts extends Component {
     ServerService.searchBySellerID(userID)
       .then(res => {
         this.setState({loading : false});
-        console.log(res.data);
+        // console.log(res.data);
         if(res.data.length === 0){
           this.setState({isEmpty : true});
         }
@@ -26,7 +26,7 @@ class SellerProducts extends Component {
         }
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
   }
 

@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import './ProductForm.css';
 
-
-const emailRegex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
-
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
@@ -337,7 +332,7 @@ class ProductForm extends Component {
             </div>
           </div>
 
-          <button type="submit" style={{width : '50%',marginTop : '10px'}} class="btn btn-primary">Submit</button>
+          <button type="submit" style={{width : '50%',marginTop : '10px'}} className="btn btn-primary">Submit</button>
         
         </form>
       </div>

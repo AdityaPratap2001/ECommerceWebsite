@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Alert } from 'reactstrap';
 import './CustomAlert.css';
 
 const CustomAlert = (props) => {
-  const [visible, setVisible] = useState(true);
+  // const [visible, setVisible] = useState(true);
 
   // const onDismiss = () => setVisible(false);
   const onDismiss = () => {
@@ -12,7 +12,7 @@ const CustomAlert = (props) => {
 
 
   return (
-    <Alert className='customAlert' color={props.color} isOpen={visible} toggle={onDismiss}>
+    <Alert className='customAlert' color={props.color} isOpen={true} toggle={onDismiss}>
       {props.content}
     </Alert>
   );

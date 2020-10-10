@@ -16,16 +16,16 @@ class PastOrders extends Component {
     let userID = localStorage.getItem('username');
     ServerService.getPastOrders(userID)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.setState({pastOrders : res.data , loading : false});
-        console.log(this.state.pastOrders);
-        if(this.state.pastOrders.length == 0){
-          console.log('No past Orders!');
+        // console.log(this.state.pastOrders);
+        if(this.state.pastOrders.length === 0){
+          // console.log('No past Orders!');
           this.setState({isEmpty : true});
         }
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
   }
 
@@ -34,8 +34,8 @@ class PastOrders extends Component {
     let data = null;
     if(this.state.pastOrders){
       data = (
-        this.state.pastOrders.map(order => {
-          return <Order details={order}/>
+        this.state.pastOrders.map((order,index) => {
+          return <Order key={index} details={order}/>
         })
       )
     }

@@ -17,13 +17,13 @@ class Navbar extends Component {
     let role = localStorage.getItem('role');
     if(token !== null && role === null){
       this.setState({isLoggedIn : true});
-      console.log(token);
+      // console.log(token);
       // window.location.reload(true);
-      console.log('token exists!');
-      console.log(this.state);
+      // console.log('token exists!');
+      // console.log(this.state);
     }
     else{
-      console.log("token doesn't exist!");
+      // console.log("token doesn't exist!");
     }
   }
 

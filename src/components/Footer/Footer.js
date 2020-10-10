@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'reactstrap';
 import paypalSrc from '../../assets/paypal2.png';
 import './Footer.css';
 
@@ -34,9 +33,9 @@ const Footer = (props) => {
         </div>
       </div>
       <div className='fontIcon'>
-        <i class="fab fa-github"></i>
-        <i class="fab fa-twitter"></i>
-        <i class="fab fa-google-plus-g"></i>
+        <i className="fab fa-github"></i>
+        <i className="fab fa-twitter"></i>
+        <i className="fab fa-google-plus-g"></i>
       </div>
       <div>
         <h6>Terms and conditions | Privacy Policy | Sitemap</h6>

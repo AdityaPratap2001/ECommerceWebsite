@@ -11,13 +11,6 @@ class Seller extends Component {
     redirect : null,
   }
 
-  // componentWillMount(){
-  //   let role = localStorage.getItem('role');
-  //   if(role === null){
-  //     this.setState({redirect : '/'});
-  //   }
-  // }
-
   render() {
 
     if(this.state.redirect){
@@ -36,7 +29,7 @@ class Seller extends Component {
 
             <div style={{position: 'absolute',right : '5%'}}>
               <NavLink to='/Seller/user'>
-                <i class="fas fa-user"></i>
+                <i className="fas fa-user"></i>
               </NavLink>
             </div>
           
@@ -66,7 +59,7 @@ class Seller extends Component {
           <div className='sellerBenefitsCont'>
             
             <div>
-              <i class="fas fa-cash-register"></i>
+              <i className="fas fa-cash-register"></i>
               <h5>Secure Payments</h5>
               <h6>
                 Whether you’re banking online or using our Mobile Banking
@@ -76,7 +69,7 @@ class Seller extends Component {
             </div>
             
             <div>
-              <i class="fas fa-truck-loading"></i>
+              <i className="fas fa-truck-loading"></i>
               <h5>Easy Shipping</h5>
               <h6>
                 Let us take care of delivering all your products, to any
@@ -85,7 +78,7 @@ class Seller extends Component {
             </div>
             
             <div>
-              <i class="fas fa-users-cog"></i>
+              <i className="fas fa-users-cog"></i>
               <h5>Services Provided</h5>
               <h6>
                Get paid support from ClickNShip's professionals for products
@@ -100,7 +93,7 @@ class Seller extends Component {
           <div className='sellerBenefitsCont sellerGrowCont'>
             
             <div>
-              <i class="fas fa-bullhorn"></i>
+              <i className="fas fa-bullhorn"></i>
               <h5>Advertise</h5>
               <h6>
                 Whether you’re banking online or using our Mobile Banking
@@ -110,7 +103,7 @@ class Seller extends Component {
             </div>
             
             <div>
-              <i class="fas fa-globe-asia"></i>
+              <i className="fas fa-globe-asia"></i>
               <h5>Sell Nationaly</h5>
               <h6>
                 Reach customers in 250+ cities with our vast network
@@ -123,7 +116,7 @@ class Seller extends Component {
 
         <div className='startSelling'>
           <NavLink to='/Seller/user'>
-            <button type="button" class="btn btn-primary">Start Selling</button>
+            <button type="button" className="btn btn-primary">Start Selling</button>
           </NavLink>
         </div>
         

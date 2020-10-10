@@ -5,8 +5,8 @@ import '../SelectedCategory.css';
 class ProductsDisplay extends Component {
   render() {
 
-    let display = this.props.products.map(item => {
-      return <ProductBlock item={item}/>
+    let display = this.props.products.map((item,index) => {
+      return <ProductBlock key={index} item={item}/>
     }) 
 
     return (

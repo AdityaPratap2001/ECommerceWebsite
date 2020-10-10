@@ -7,9 +7,9 @@ const Caterories = (props) => {
 
   let categories = ['Men','Women','Kids','Home_&_Living','Travel_Bags'];
 
-  let items = categories.map(category => {
+  let items = categories.map((category,index) => {
    return(
-     <NavLink to={`/category/${category}`}>
+     <NavLink key={index} to={`/category/${category}`}>
       <Category type={category}/>
      </NavLink>
 

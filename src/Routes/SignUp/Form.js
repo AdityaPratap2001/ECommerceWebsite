@@ -4,7 +4,6 @@ import src3 from '../../assets/login8.jpg';
 import src2 from '../../assets/login6.jpg';
 import src1 from '../../assets/login7.jpg';
 import {Link} from 'react-router-dom';
-import logoSrc from '../../assets/logo.png';
 import './Form.css';
 import './SignUp.css';
 
@@ -60,7 +59,7 @@ class App extends Component {
       this.props.submitHandler(this.state);
     } 
     else {
-      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+      // console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
 
@@ -87,7 +86,7 @@ class App extends Component {
       case "lastName":
         let spaceNum = 0;
         for(let ch in value){
-          if(value[ch] == ' '){
+          if(value[ch] === ' '){
             spaceNum = spaceNum + 1;
           }
         }

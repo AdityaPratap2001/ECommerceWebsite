@@ -45,7 +45,7 @@ class App extends Component {
       this.props.submitHandler(this.state);
     } 
     else {
-      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+      // console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
 
@@ -63,7 +63,7 @@ class App extends Component {
       case "lastName":
         let spaceNum = 0;
         for(let ch in value){
-          if(value[ch] == ' '){
+          if(value[ch] === ' '){
             spaceNum = spaceNum + 1;
           }
         }

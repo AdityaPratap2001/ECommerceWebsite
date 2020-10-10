@@ -16,13 +16,13 @@ class Notsubmitted extends Component {
     else{
       ServerService.addService(this.state.signUpEmail)
         .then(res => {
-          console.log(res);
+          // console.log(res);
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         })
     }
-    console.log(this.state);
+    // console.log(this.state);
     this.props.submitHandler();
   }
 
@@ -43,7 +43,7 @@ class Notsubmitted extends Component {
               onChange={this.changeHandler}
               value={this.state.signUpEmail}
             />
-            <button type="submit" class="btn btn-light">Submit</button>
+            <button type="submit" className="btn btn-light">Submit</button>
           </form>
         </div>
       </div>

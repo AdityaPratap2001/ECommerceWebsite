@@ -10,7 +10,7 @@ class Order extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.details);
+    // console.log(this.props.details);
     let prodIdArray = this.props.details.cart.split(';');
     let prodQtyArray = this.props.details.cartProdQty.split(';');
     this.setState({prodId : prodIdArray , prodQuantity : prodQtyArray});
@@ -24,8 +24,12 @@ class Order extends Component {
     if(this.state.prodId){
       data = (
         this.state.prodId.map((item,index) => {
-          if(index !== (this.state.prodId.length-1))
-          return <OrderItem id={item} qty={this.state.prodQuantity[index]}/>
+          if(index !== (this.state.prodId.length-1)){
+            return <OrderItem key={index} id={item} qty={this.state.prodQuantity[index]}/>
+          }
+          else{
+            return null
+          }
         })
       )
     }

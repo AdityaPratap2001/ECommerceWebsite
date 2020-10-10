@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import srlCartImg from '../../../assets/sampleProduct.png';
-import '../Cart.css';
+import React, { Component } from 'react';import '../Cart.css';
 import { NavLink } from 'react-router-dom';
 import ServerService from '../../../API/ServerService';
-import axios from 'axios';
+
 
 class CartItem extends Component {
 
@@ -23,11 +21,11 @@ class CartItem extends Component {
 
     ServerService.getProductByID(arr[0])
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.setState({data : res.data[0]});
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
 
     let userId = localStorage.getItem('username');
@@ -35,11 +33,11 @@ class CartItem extends Component {
       username : userId,
       productId : id
     }
-    console.log(productData);
+    // console.log(productData);
 
     ServerService.doesProductExistInWishlist(productData)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         if(res.data){
           this.setState({inMyWishlist : true});
         }
@@ -48,7 +46,7 @@ class CartItem extends Component {
         }
       })
       .catch(err => {
-        console.log('error');
+        // console.log('error');
       })
 
   }
@@ -62,15 +60,15 @@ class CartItem extends Component {
       productId : id,
       productAmt : '3'
     }
-    console.log(productData);
+    // console.log(productData);
 
     ServerService.removeFromCart(productData)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         window.location.reload();
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
 
   }
@@ -87,12 +85,12 @@ class CartItem extends Component {
     
     ServerService.moveFromCartToWishlist(productData)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         window.location.reload();
         // alert('Moved to wishlist!');
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       })
 
   }
@@ -123,7 +121,7 @@ class CartItem extends Component {
           <NavLink to={`/product/id/${this.state.data.id}`}>
             <div className='cartImgCont'>
               {/* <img src={srlCartImg} alt='cartProductImg'/> */}
-              <img src={`data:image/jpeg;base64,${this.state.data.picByte}`} /> 
+              <img alt='productImg' src={`data:image/jpeg;base64,${this.state.data.picByte}`} /> 
             </div>
           </NavLink>
 

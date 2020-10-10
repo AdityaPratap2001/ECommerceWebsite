@@ -16,7 +16,7 @@ class Submitted extends Component {
     return (
       <div>
         <form className='newsletter_input' onSubmit={this.submitHandler}>
-          <i class="fas fa-check-circle"></i>
+          <i className="fas fa-check-circle"></i>
           <h4>Thank you for Siging Up to our newsletter!</h4>
           <button type='submit' className='submitted'>Another Email?</button>
         </form>
