@@ -228,7 +228,7 @@ class App extends Component {
                     </select>
                   </div>
                   {formErrors.user.length > 0 && (
-                    <span className="errorMessage genderError">{formErrors.gender}</span>
+                    <span className="errorMessage genderError">{formErrors.user}</span>
                   )}
                 </div>
               

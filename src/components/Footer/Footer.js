@@ -33,9 +33,17 @@ const Footer = (props) => {
         </div>
       </div>
       <div className='fontIcon'>
-        <i className="fab fa-github"></i>
-        <i className="fab fa-twitter"></i>
-        <i className="fab fa-google-plus-g"></i>
+        
+        <a href="https://github.com/15ishaan/ClickNShip">
+          <i className="fab fa-github"/>
+        </a>
+        <a href="https://www.instagram.com/team.clicknship">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="mailto:teamclicknship@gmail.com">
+          <i className="fab fa-google-plus-g"></i>
+        </a>
+        
       </div>
       <div>
         <h6>Terms and conditions | Privacy Policy | Sitemap</h6>

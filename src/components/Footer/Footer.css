@@ -35,10 +35,16 @@
   margin-top: 20px;
   text-align: center;
 }
+.fontIcon a{
+  color: white;
+}
 .fontIcon i{
   font-size: 23px;
   margin: 15px 10px;
   cursor: pointer;
+}
+.fontIcon i:hover{
+  transform: scale(1.2);
 }
 .footer h6{
   font-weight: 350;

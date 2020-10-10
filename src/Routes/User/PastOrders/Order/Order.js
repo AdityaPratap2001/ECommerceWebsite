@@ -35,10 +35,20 @@ class Order extends Component {
     }
 
     let totalAmt = this.props.details.billingAmt + 50;
+    let orderDate = this.props.details.createdDate.slice(0,10);
+    let newDate = [];
+    for(let i in orderDate){
+      if(i == 8 || i == 9){
+        newDate.push('1');
+      }
+      else{
+        newDate.push(orderDate[i]);
+      }
+    }
 
     return (
       <div className='order'>
-        <h6 className='orderDate'>ORDER DATE : {this.props.details.createdDate}</h6>
+        <h6 className='orderDate'>ORDER DATE : {newDate}</h6>
         {data}
         <h6 className='amtPaid'>AMOUNT PAID : Rs. {totalAmt}</h6>
       </div>

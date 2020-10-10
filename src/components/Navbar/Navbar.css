@@ -164,11 +164,10 @@
   .navbar-toggler,.navbar-toggler-icon{
     height: 25px;
     border: none;
-    transform: translateY(-6px)
+    transform: translateY(-3px)
   }
   .Navbar img{
     height: 5.4vh;
-    transform: translateY(-7px);
   }
 }
 @media (max-width:536px){

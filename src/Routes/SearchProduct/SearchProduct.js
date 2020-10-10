@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import './SearchProduct.css';
 import SearchSidebar from '../../components/SearchSidebar/SearchSidebar';
 import ProductBlock from '../../components/ProductBlock/ProductBlock';
-import searchLoaderSRC from '../../assets/searchLoader.gif';
+import searchLoaderSRC from '../../assets/load_1.gif';
 import searchEmptySRC from '../../assets/searchEmpty2.gif';
 import ServerService from '../../API/ServerService';
 

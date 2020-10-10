@@ -84,10 +84,14 @@
   .sidebar{
     width: 28%;
   }
+
 }
 @media (max-width:446px){
   .sidebar{
     width: 35%;
+  }
+  .products_display{
+    margin-left: 20.5vh;
   }
 }
 @media (max-width:360px){
