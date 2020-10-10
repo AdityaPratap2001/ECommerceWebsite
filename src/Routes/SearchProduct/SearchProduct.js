@@ -17,12 +17,11 @@ class SearchProduct extends Component {
   }
 
   componentDidMount(){
-    console.log(this.state);
-    if(this.state.gender){
-      // axios.get(`/api/products/productCategory/productType/${this.state.gender}/${this.state.searchTerm}`)
-      ServerService.searchByGender(this.state.gender,this.state.searchTerm)
+    let finalTerm = this.state.searchTerm.toLowerCase();
+    if(this.state.gender){      
+      ServerService.searchByGender(this.state.gender,finalTerm)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           if(res.data.length === 0){
             this.setState({noItems : true});
           }
@@ -31,14 +30,14 @@ class SearchProduct extends Component {
           }
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         })
     }
     else{
       // axios.get(`/api/products/productType/${this.state.searchTerm}`)
-      ServerService.searchByTerm(this.state.searchTerm)
+      ServerService.searchByTerm(finalTerm)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           if(res.data.length === 0){
             this.setState({noItems : true});
           }
@@ -47,7 +46,7 @@ class SearchProduct extends Component {
           }
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         })
     }
   }
@@ -60,8 +59,8 @@ class SearchProduct extends Component {
     )
     if(this.state.products){
       data = (
-        this.state.products.map(item => {
-          return <ProductBlock item={item}/>
+        this.state.products.map((item,index) => {
+          return <ProductBlock key={index} item={item}/>
         })
       )
     }
