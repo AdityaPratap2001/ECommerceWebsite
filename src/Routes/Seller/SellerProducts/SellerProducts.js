@@ -36,8 +36,8 @@ class SellerProducts extends Component {
       results = (
         // <div className='sellerSearchResults'>
           // {
-            this.state.data.map(item => {
-              return <SellerProductItem item={item}/>
+            this.state.data.map((item,index) => {
+              return <SellerProductItem key={index} item={item}/>
             })
           // }
         // </div>

@@ -95,3 +95,54 @@
     margin: auto;
   }
 }
+@media (max-width:900px){
+  .sellerBenefits .sellerBenefitsCont>div{
+    height: 260px;
+    width: 260px;
+  }
+  .sellerBanner img{
+    height: 40vh;
+  }
+
+  .sellerPage>.sellerIntro h5{
+    font-size: 19px;
+  }
+  .sellerPage>.sellerIntro h6{
+    font-size: 16px;
+  }
+
+  .sellerPage>.sellerBenefits h5{
+    font-size: 20px;
+  }
+  .sellerPage>.sellerBenefits h6{
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+@media (max-width:701px){
+  .sellerBanner img{
+    margin-top: 16vh;
+  }
+}
+@media (max-width:650px){
+  .sellerBanner img{
+    height: 35vh;
+  }
+  .sellerPage>.sellerBenefits h6{
+    font-size: 16px;
+  }
+  .sellerPage>.sellerIntro h6{
+    line-height: 20px;
+  }
+}
+@media (max-width:500px){
+  .sellerBanner img{
+    height: 30vh;
+  }
+}
+@media (max-width:400px){
+  .sellerBanner img{
+    height: 28vh;
+  }
+}
+

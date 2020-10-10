@@ -16,9 +16,15 @@
   .offers_carousel img{
     height: 15vh;
   }
+  .offerSection{
+    height: 18vh;
+  }
 }
 @media (max-width:400px){
   .offers_carousel img{
-    height: 12vh;
+    height: 10vh;
+  }
+  .offerSection{
+    height: 13vh;
   }
 }

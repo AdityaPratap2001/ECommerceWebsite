@@ -6,27 +6,27 @@ const Footer = (props) => {
   return (
     <div className='footer'>
       <div className='footer_sub'>
-        <div>
+        <div className='footerAboutUs'>
           <h4>About Us</h4>
-          <h5>item one</h5>
-          <h5>item two</h5>
-          <h5>item three</h5>
-          <h5>Item  four</h5>
+          <h5 className='team'>Team ClickNShip,</h5>
+          <h5>Ph no : 0120-2312123</h5>
+          <h5>Uttar Pradesh</h5>
+          <h5>India</h5>
         </div>
-        <div>
+        {/* <div>
           <h4>Customer Care</h4>
           <h5>item one</h5>
           <h5>item two</h5>
           <h5>item three</h5>
           <h5>Item  four</h5>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <h4>Contact Us</h4>
           <h5>item one</h5>
           <h5>item two</h5>
           <h5>item three</h5>
           <h5>Item  four</h5>
-        </div>
+        </div> */}
         <div style={{width:'320px'}}>
           <img src={paypalSrc} alt='paypal'/><br></br>
           <h5>We promise safe transactions!</h5>

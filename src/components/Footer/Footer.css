@@ -9,6 +9,12 @@
   display: flex;
   justify-content: space-between;
 }
+.footerAboutUs{
+  width: 30%;
+}
+.footerAboutUs .team{
+  margin-bottom: 10px;
+}
 .footer_sub div{
   padding: 0 2.5%;
 }
