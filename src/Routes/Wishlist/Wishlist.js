@@ -55,16 +55,19 @@ class Wishlist extends Component {
 
   removeWishItem = (id) => { 
     if(this.state.list){
-      alert('entered!' + id);
+      // alert('entered!' + id);
       let oldItems = this.state.list;
       console.log(oldItems);
-      let newItems = [];
+      // let newItems = [];
       // for(let i=0 ; i<oldItems.length ; i++){
       //   if(i !== id){
       //     newItems.push(oldItems[i]);
       //   }
       // }
       oldItems.splice(id,1);
+      if(oldItems.length === 0){
+        this.setState({isEmpty : true});
+      }
       console.log(oldItems);
       this.setState({list : oldItems});
     }

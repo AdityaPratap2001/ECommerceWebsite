@@ -89,7 +89,7 @@ class CartItem extends Component {
       .then(res => {
         console.log(res);
         window.location.reload();
-        alert('Moved to wishlist!');
+        // alert('Moved to wishlist!');
       })
       .catch(err => {
         console.log(err);
@@ -125,18 +125,19 @@ class CartItem extends Component {
               {/* <img src={srlCartImg} alt='cartProductImg'/> */}
               <img src={`data:image/jpeg;base64,${this.state.data.picByte}`} /> 
             </div>
+          </NavLink>
 
             <div className='cartItemProp'>
-                  <h6 className='cartProdSeller'>{this.state.data.seller}</h6>
-                  <h5 className='cartProdName'>{this.state.data.name}</h5>
-                  <h5 className='cartProdPrice'>Rs. {this.state.data.price}</h5>
-                  <h6>Quantity : {this.state.qty}</h6>
-                  {/* <h6 className='cartProdMat'>Material : {this.state.data.material}</h6>  
-                  <h6 className='cartProdFit'>Fit : {this.state.data.fit}</h6> */}
-              {/* {this.state.data.id}  */}
-                  {data3}
+                <h6 className='cartProdSeller'>{this.state.data.seller}</h6>
+                <h5 className='cartProdName'>{this.state.data.name}</h5>
+                <h5 className='cartProdPrice'>Rs. {this.state.data.price}</h5>
+                <h6>Quantity : {this.state.qty}</h6>
+                {/* <h6 className='cartProdMat'>Material : {this.state.data.material}</h6>  
+                <h6 className='cartProdFit'>Fit : {this.state.data.fit}</h6> */}
+                {/* {this.state.data.id}  */}
+                {data3}
             </div>
-          </NavLink>
+  
 
           <div className='cartItemDelete'>
             <h6 style={{marginBottom:'0px'}}>Delivery by : {weekDate}</h6>

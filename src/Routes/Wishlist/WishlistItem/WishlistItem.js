@@ -24,21 +24,10 @@ class WishlistItem extends Component {
   //     })
   // }
 
-  componentWillReceiveProps(arg){
-    console.log('Arg==='+arg.id);
-    console.log('in wishlistItem : ' + this.props.id +' ' + this.props.index);
-    ServerService.getProductByID(arg.id)
-      .then(res => {
-        console.log(res);
-        this.setState({loadedData : res.data[0]});
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-
-  // componentWillUpdate(){
-  //   ServerService.getProductByID(this.props.id)
+  // componentWillReceiveProps(arg){
+  //   console.log('Arg==='+arg.id);
+  //   console.log('in wishlistItem : ' + this.props.id +' ' + this.props.index);
+  //   ServerService.getProductByID(arg.id)
   //     .then(res => {
   //       console.log(res);
   //       this.setState({loadedData : res.data[0]});
@@ -47,6 +36,17 @@ class WishlistItem extends Component {
   //       console.log(err);
   //     })
   // }
+
+  componentDidUpdate(){
+    ServerService.getProductByID(this.props.id)
+      .then(res => {
+        console.log(res);
+        this.setState({loadedData : res.data[0]});
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 
   removeWish = () => {
     let userId = localStorage.getItem('username');
